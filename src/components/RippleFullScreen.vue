@@ -1,11 +1,11 @@
 <template>
   <div ref="frame" class="frame">
     <div ref="text" class="text wave-effect waves-block" @click="toggle">this is some display text
-      <!-- <div ref="whole" class="whole"> -->
-      <div ref="rippleContainer" class="rippleContainer">
-        <div ref="realRipple" class="realRipple"></div>
+      <div ref="whole" class="whole">
+        <div ref="rippleContainer" class="rippleContainer">
+          <div ref="realRipple" class="realRipple"></div>
+        </div>
       </div>
-      <!-- </div> -->
     </div>
     <div ref="content" class="content">this is some content text</div>
   </div>
@@ -23,7 +23,9 @@ export default {
   mounted() {
     const rippleContainer = this.$refs.rippleContainer;
     const realRipple = this.$refs.realRipple;
+    const whole = this.$refs.whole;
     rippleContainer.style.display = "none";
+    whole.style.display = "none";
     this.setRippleCircle();
   },
   methods: {
@@ -42,7 +44,7 @@ export default {
       realRipple.style.top = -Math.max(x, y) + "px";
     },
     toggle(e) {
-      const { offsetX: x, offsetY: y } = e;
+      const { clientX: x, clientY: y } = e;
       console.log(x, y);
       const rippleContainer = this.$refs.rippleContainer;
       const realRipple = this.$refs.realRipple;
@@ -58,12 +60,14 @@ export default {
     show(x, y) {
       const rippleContainer = this.$refs.rippleContainer;
       const realRipple = this.$refs.realRipple;
+      const whole = this.$refs.whole;
       this.position.x = x;
       this.position.y = y;
+      whole.style.display = "";
       rippleContainer.style.left = this.position.x + "px";
       rippleContainer.style.top = this.position.y + "px";
       rippleContainer.style.display = "";
-      window.setTimeout(() => {
+      setTimeout(() => {
         realRipple.className += " anim show";
         rippleContainer.className += " anim show";
         rippleContainer.style.left = null;
@@ -78,7 +82,7 @@ export default {
     hide(x, y) {
       const rippleContainer = this.$refs.rippleContainer;
       const realRipple = this.$refs.realRipple;
-      console.log("position", this.position);
+      const whole = this.$refs.whole;
       setTimeout(() => {
         rippleContainer.style.left = this.position.x + "px";
         rippleContainer.style.top = this.position.y + "px";
@@ -91,6 +95,7 @@ export default {
         rippleContainer.classList.remove("anim");
         this.isActive = false;
         this.isAnimating = false;
+        whole.style.display = "none";
       }, 500);
     }
   }
@@ -101,6 +106,9 @@ export default {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 .frame {
   border: 2px solid #000000;
