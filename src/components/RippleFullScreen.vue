@@ -1,9 +1,11 @@
 <template>
   <div ref="frame" class="frame">
     <div ref="text" class="text wave-effect waves-block" @click="toggle">this is some display text
+      <!-- <div ref="whole" class="whole"> -->
       <div ref="rippleContainer" class="rippleContainer">
         <div ref="realRipple" class="realRipple"></div>
       </div>
+      <!-- </div> -->
     </div>
     <div ref="content" class="content">this is some content text</div>
   </div>
@@ -20,9 +22,25 @@ export default {
   },
   mounted() {
     const rippleContainer = this.$refs.rippleContainer;
+    const realRipple = this.$refs.realRipple;
     rippleContainer.style.display = "none";
+    this.setRippleCircle();
   },
   methods: {
+    setRippleCircle() {
+      const rippleContainer = this.$refs.rippleContainer;
+      const realRipple = this.$refs.realRipple;
+      var w = window,
+        d = document,
+        e = d.documentElement,
+        g = d.getElementsByTagName("body")[0],
+        x = w.innerWidth || e.clientWidth || g.clientWidth,
+        y = w.innerHeight || e.clientHeight || g.clientHeight;
+      realRipple.style.width = 2 * Math.max(x, y) + "px";
+      realRipple.style.left = -Math.max(x, y) + "px";
+      realRipple.style.height = 2 * Math.max(x, y) + "px";
+      realRipple.style.top = -Math.max(x, y) + "px";
+    },
     toggle(e) {
       const { offsetX: x, offsetY: y } = e;
       console.log(x, y);
@@ -46,14 +64,15 @@ export default {
       rippleContainer.style.top = this.position.y + "px";
       rippleContainer.style.display = "";
       window.setTimeout(() => {
-        rippleContainer.style.left = null;
-        rippleContainer.style.top = null;
         realRipple.className += " anim show";
         rippleContainer.className += " anim show";
+        rippleContainer.style.left = null;
+        rippleContainer.style.top = null;
       }, 1);
       setTimeout(() => {
         this.isActive = true;
         this.isAnimating = false;
+        // this.setRippleSquare();
       }, 500);
     },
     hide(x, y) {
@@ -78,6 +97,11 @@ export default {
 };
 </script>
 <style>
+.whole {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 .frame {
   border: 2px solid #000000;
   position: relative;
@@ -92,15 +116,13 @@ export default {
 .rippleContainer {
   position: absolute;
   border: #000000 solid;
-  max-width: 100vw;
-  max-height: 100vh;
 }
 .realRipple {
   position: absolute;
   top: -100vh;
   left: -100vw;
-  width: 200vw;
-  height: 200vh;
+  /* width: 200vw;
+  height: 200vh; */
   border-radius: 100%;
   background-color: #000000;
   transform: scale(0.01);
