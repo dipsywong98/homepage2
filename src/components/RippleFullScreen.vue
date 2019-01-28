@@ -92,12 +92,10 @@ export default {
       const rippleContainer = this.$refs.rippleContainer;
       const realRipple = this.$refs.realRipple;
       const whole = this.$refs.whole;
-      setTimeout(() => {
-        rippleContainer.style.left = this.position.x + "px";
-        rippleContainer.style.top = this.position.y + "px";
-      }, 1);
       realRipple.classList.remove("show");
       rippleContainer.classList.remove("show");
+      rippleContainer.style.left = this.position.x + "px";
+      rippleContainer.style.top = this.position.y + "px";
       setTimeout(() => {
         rippleContainer.style.display = "none";
         realRipple.classList.remove("anim");
