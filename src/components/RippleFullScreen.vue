@@ -1,13 +1,17 @@
 <template>
-  <div ref="frame" class="frame">
-    <div ref="text" class="text wave-effect waves-block" @click="toggle">this is some display text
+  <div ref="frame" class="frame" @click="toggle">
+    <div ref="text" class="text" @click="toggle">
+      <slot name="outside"></slot>
+      <!-- <span>this is some display text</span> -->
       <div ref="whole" class="whole">
+        <div :class="`content anim ${(!isAnimating&&isActive?'show':'')}`">
+          <slot name="inside"></slot>
+        </div>
         <div ref="rippleContainer" class="rippleContainer">
           <div ref="realRipple" class="realRipple"></div>
         </div>
       </div>
     </div>
-    <div ref="content" class="content">this is some content text</div>
   </div>
 </template>
 <script>
@@ -38,10 +42,15 @@ export default {
         g = d.getElementsByTagName("body")[0],
         x = w.innerWidth || e.clientWidth || g.clientWidth,
         y = w.innerHeight || e.clientHeight || g.clientHeight;
-      realRipple.style.width = 2 * Math.max(x, y) + "px";
-      realRipple.style.left = -Math.max(x, y) + "px";
-      realRipple.style.height = 2 * Math.max(x, y) + "px";
-      realRipple.style.top = -Math.max(x, y) + "px";
+      const radius = Math.sqrt(x ** 2 + y ** 2);
+      realRipple.style.width = radius + "px";
+      realRipple.style.left = -radius / 2 + "px";
+      realRipple.style.height = radius + "px";
+      realRipple.style.top = -radius / 2 + "px";
+      // realRipple.style.width = 2 * Math.max(x, y) + "px";
+      // realRipple.style.left = -Math.max(x, y) + "px";
+      // realRipple.style.height = 2 * Math.max(x, y) + "px";
+      // realRipple.style.top = -Math.max(x, y) + "px";
     },
     toggle(e) {
       const { clientX: x, clientY: y } = e;
@@ -101,7 +110,7 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss" scoped>
 .whole {
   width: 100vw;
   height: 100vh;
@@ -115,15 +124,14 @@ export default {
   position: relative;
 }
 .text {
-  margin: 20px;
   position: relative;
-}
-.content {
-  display: none;
 }
 .rippleContainer {
   position: absolute;
-  border: #000000 solid;
+  &.show {
+    top: 50vh;
+    left: 50vw;
+  }
 }
 .realRipple {
   position: absolute;
@@ -132,21 +140,26 @@ export default {
   /* width: 200vw;
   height: 200vh; */
   border-radius: 100%;
-  background-color: #000000;
-  transform: scale(0.01);
+  background-color: #41b883;
+  transform: scale(0.001);
   overflow: hidden;
+  &.show {
+    transform: scale(1);
+    top: -100vh;
+    left: -100vw;
+  }
 }
 .anim {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.realRipple.show {
-  transform: scale(1);
-  top: -100vh;
-  left: -100vw;
-}
-.rippleContainer.show {
-  top: 50vh;
-  left: 50vw;
+.content {
+  color: #ffffff;
+  z-index: 1;
+  position: relative;
+  opacity: 0;
+  &.show {
+    opacity: 1;
+  }
 }
 </style>
 

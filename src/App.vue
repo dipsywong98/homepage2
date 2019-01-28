@@ -1,7 +1,14 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <RippleFullScreen/>
+    <RippleFullScreen>
+      <template slot="outside">
+        <p>hello</p>
+      </template>
+      <template slot="inside">
+        <p>bla bla bla</p>
+      </template>
+    </RippleFullScreen>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
