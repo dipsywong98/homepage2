@@ -9,6 +9,9 @@
         <p>bla bla bla</p>
       </template>
     </RippleFullScreen>
+    <!-- <Rippify>
+      <div>x</div>
+    </Rippify> -->
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
@@ -16,12 +19,14 @@
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
 import RippleFullScreen from "./components/RippleFullScreen.vue";
+import Rippify from "./components/Rippify.vue";
 
 export default {
   name: "app",
   components: {
     HelloWorld,
-    RippleFullScreen
+    RippleFullScreen,
+    Rippify
   }
 };
 </script>

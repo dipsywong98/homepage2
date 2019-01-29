@@ -6,6 +6,7 @@
       <div ref="whole" class="whole">
         <div :class="`content anim ${(!isAnimating&&isActive?'show':'')}`">
           <slot name="inside"></slot>
+          <div class="close" @click="hide">x</div>
         </div>
         <div ref="rippleContainer" class="rippleContainer">
           <div ref="realRipple" class="realRipple"></div>
@@ -43,30 +44,25 @@ export default {
         x = w.innerWidth || e.clientWidth || g.clientWidth,
         y = w.innerHeight || e.clientHeight || g.clientHeight;
       const radius = Math.sqrt(x ** 2 + y ** 2);
-      realRipple.style.width = radius + "px";
-      realRipple.style.left = -radius / 2 + "px";
-      realRipple.style.height = radius + "px";
-      realRipple.style.top = -radius / 2 + "px";
-      // realRipple.style.width = 2 * Math.max(x, y) + "px";
-      // realRipple.style.left = -Math.max(x, y) + "px";
-      // realRipple.style.height = 2 * Math.max(x, y) + "px";
-      // realRipple.style.top = -Math.max(x, y) + "px";
+      // realRipple.style.width = radius + "px";
+      // realRipple.style.left = -radius / 2 + "px";
+      // realRipple.style.height = radius + "px";
+      // realRipple.style.top = -radius / 2 + "px";
     },
     toggle(e) {
       const { clientX: x, clientY: y } = e;
-      console.log(x, y);
       const rippleContainer = this.$refs.rippleContainer;
       const realRipple = this.$refs.realRipple;
       if (!this.isAnimating) {
-        this.isAnimating = true;
         if (this.isActive) {
-          this.hide(x, y);
+          // this.hide(x, y);
         } else {
           this.show(x, y);
         }
       }
     },
     show(x, y) {
+      this.isAnimating = true;
       const rippleContainer = this.$refs.rippleContainer;
       const realRipple = this.$refs.realRipple;
       const whole = this.$refs.whole;
@@ -76,6 +72,7 @@ export default {
       rippleContainer.style.left = this.position.x + "px";
       rippleContainer.style.top = this.position.y + "px";
       rippleContainer.style.display = "";
+      document.body.style.overflowY = "hidden";
       setTimeout(() => {
         realRipple.className += " anim show";
         rippleContainer.className += " anim show";
@@ -89,6 +86,7 @@ export default {
       }, 500);
     },
     hide(x, y) {
+      this.isAnimating = true;
       const rippleContainer = this.$refs.rippleContainer;
       const realRipple = this.$refs.realRipple;
       const whole = this.$refs.whole;
@@ -96,6 +94,7 @@ export default {
       rippleContainer.classList.remove("show");
       rippleContainer.style.left = this.position.x + "px";
       rippleContainer.style.top = this.position.y + "px";
+      document.body.style.overflowY = "";
       setTimeout(() => {
         rippleContainer.style.display = "none";
         realRipple.classList.remove("anim");
@@ -116,6 +115,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1;
 }
 .frame {
   border: 2px solid #000000;
@@ -133,22 +133,22 @@ export default {
 }
 .realRipple {
   position: absolute;
-  top: -100vh;
-  left: -100vw;
-  /* width: 200vw;
-  height: 200vh; */
+  top: calc(-50vw - 50vh);
+  left: calc(-50vw - 50vh);
+  width: calc(100vw + 100vh);
+  height: calc(100vw + 100vh);
   border-radius: 100%;
   background-color: #41b883;
   transform: scale(0.001);
   overflow: hidden;
   &.show {
     transform: scale(1);
-    top: -100vh;
-    left: -100vw;
+    top: calc(-50vw - 50vh);
+    left: calc(-50vw - 50vh);
   }
 }
 .anim {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s cubic-bezier(0.6, 0.03, 0.09, 1.03);
 }
 .content {
   color: #ffffff;
@@ -157,6 +157,19 @@ export default {
   opacity: 0;
   &.show {
     opacity: 1;
+  }
+}
+.close {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 1em;
+  height: 1em;
+  margin: 0.5em;
+  padding: 0.5em;
+  border-radius: 100%;
+  &:hover {
+    background-color: #ffffff44;
   }
 }
 </style>
