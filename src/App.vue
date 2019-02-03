@@ -71,4 +71,7 @@ body {
   filter: drop-shadow(0 0.5vh 1vh rgba(0, 0, 0, 0.3));
   perspective-origin: top;
 }
+.anim {
+  transition: all 0.5s cubic-bezier(0.6, 0.03, 0.09, 1.03);
+}
 </style>

@@ -147,9 +147,6 @@ export default {
     left: calc(-50vw - 50vh);
   }
 }
-.anim {
-  transition: all 0.5s cubic-bezier(0.6, 0.03, 0.09, 1.03);
-}
 .content {
   color: #ffffff;
   z-index: 1;
