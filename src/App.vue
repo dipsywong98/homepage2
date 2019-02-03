@@ -1,6 +1,7 @@
 <template lang="pug">
   div#app
     NavBar
+    Dipsyland
     img(alt="Vue logo" src="./assets/logo.png")
     RippleFullScreen
       template(slot="outside")
@@ -18,13 +19,15 @@ import Vue from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import RippleFullScreen from "./components/RippleFullScreen.vue";
 import NavBar from "./components/NavBar.vue";
+import Dipsyland from "./components/Dipsyland.vue";
 
 export default Vue.extend({
   name: "app",
   components: {
     HelloWorld,
     RippleFullScreen,
-    NavBar
+    NavBar,
+    Dipsyland
   },
   data() {
     return { rx: 0 };
@@ -53,6 +56,7 @@ body {
   padding: 0;
   position: absolute;
   width: 100vw;
+  overflow-x: hidden;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -70,6 +74,7 @@ body {
   -webkit-filter: drop-shadow(0 0.5vh 1vh rgba(0, 0, 0, 0.3));
   filter: drop-shadow(0 0.5vh 1vh rgba(0, 0, 0, 0.3));
   perspective-origin: top;
+  overflow: hidden;
 }
 .anim {
   transition: all 0.5s cubic-bezier(0.6, 0.03, 0.09, 1.03);

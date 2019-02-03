@@ -22,7 +22,7 @@ export default {};
 <style lang="scss" scoped>
 .navbar-fixed {
   box-shadow: 0px 0px 8px 0px;
-  position: sticky;
+  position: fixed;
   top: 0px;
   width: 100vw;
   z-index: 1;
