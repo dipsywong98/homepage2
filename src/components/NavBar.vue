@@ -24,7 +24,7 @@ export default {};
   box-shadow: 0px 0px 8px 0px;
   position: fixed;
   top: 0px;
-  width: 100vw;
+  width: 100%;
   z-index: 1;
 }
 .nav-wrapper {

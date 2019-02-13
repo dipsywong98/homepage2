@@ -50,13 +50,21 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+// @font-face {
+//   font-family: "Musical";
+//   src: url("./assets/fonts/musicals/musicals.ttf") format("truetype");
+// }
+@font-face {
+  font-family: "flappy";
+  src: url("./assets/fonts/04B_19__.TTF") format("truetype");
+}
 html,
 body {
   margin: 0;
   padding: 0;
   position: absolute;
-  width: 100vw;
-  overflow-x: hidden;
+  width: 100%;
+  // overflow-x: hidden;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

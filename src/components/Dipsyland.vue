@@ -1,29 +1,35 @@
 <template lang="pug">
-  div.container(ref="background")
-    div.background.sky(ref="sky")
-    div.background.cloud(ref="cloud" :style="`left: ${x*10}px; top: ${y*10}px;`")
-    div.background.city(ref="city" :style="`left: ${x*50}px; top: ${y*50}px;`")
-    div.background.grass(ref="grass" :style="`left: ${x*100}px; top: ${y*100}px;`")
+  .container(ref="background")
+    .background.sky(ref="sky")
+    .background.cloud(ref="cloud" :style="`left: ${x*10-w}px; top: ${y*10}px;`")
+    .background.city(ref="city" :style="`left: ${x*50-w}px; top: ${y*50}px;`")
+    .background.grass(ref="grass" :style="`left: ${x*100-w}px; top: ${10+y*100}px;`")
+    .float
+      h1.title Dipsyland
+      h6 Not Lalaland nor Poland
+      //- button "hey"
 </template>
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
   data() {
-    return { x: 0, y: 0 };
+    return { x: 0, y: 0, w: 0, h: 0 };
   },
   mounted() {
     this.$refs.background.onmousemove = this.mouseMove;
+    const { clientWidth: w, clientHeight: h } = this.$refs.background;
+    this.w = w;
+    this.h = h;
   },
   methods: {
     mouseMove(event) {
       console.log(event);
-      const {
-        clientX: x,
-        clientY: y,
-        target: { clientWidth: w, clientHeight: h }
-      } = event;
+      const { screenX: x, screenY: y } = event;
+      const { clientWidth: w, clientHeight: h } = this.$refs.background;
       this.x = (x - w / 2) / w - 0.3;
       this.y = -y / h / 2 + 0.1;
+      this.w = w;
+      this.h = h;
     }
   }
 });
@@ -31,7 +37,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .container {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
 }
@@ -41,7 +47,7 @@ export default Vue.extend({
   background-position: center;
   background-size: auto 100vh;
   resize: both;
-  width: 150vw;
+  width: 300vw;
   height: 110vh;
 
   &.sky {
@@ -55,6 +61,22 @@ export default Vue.extend({
   }
   &.grass {
     background-image: url("../assets/img/grass.png");
+  }
+}
+
+.float {
+  position: absolute;
+  left: 50vw;
+  top: 50vh;
+  transform: translateX(-50%) translateY(-30%);
+  & > h1.title {
+    font-family: "flappy";
+    text-shadow: 5px 5px 3px #000000;
+    color: #ffffff;
+    text-align: center;
+    font-size: 4.2rem;
+    line-height: 110%;
+    margin: 0.3rem;
   }
 }
 </style>
