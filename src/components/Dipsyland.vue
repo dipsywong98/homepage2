@@ -6,7 +6,7 @@
     .background.grass(ref="grass" :style="`left: ${x*100-w}px; top: ${10+y*100}px;`")
     .float
       h1.title Dipsyland
-      h6 Not Lalaland nor Poland
+      h6.quote "Not Lalaland nor Poland"
       //- button "hey"
 </template>
 <script lang="ts">
@@ -40,6 +40,7 @@ export default Vue.extend({
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  background-color: #96e282;
 }
 .background {
   position: absolute;
@@ -76,7 +77,13 @@ export default Vue.extend({
     text-align: center;
     font-size: 4.2rem;
     line-height: 110%;
-    margin: 0.3rem;
+    margin: 1rem;
+  }
+  & > h6.quote {
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: unset;
+    margin: 1rem;
   }
 }
 </style>
