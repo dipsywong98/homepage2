@@ -1,7 +1,5 @@
-function Hello(val: number) : number{
+function Hello(val: number): number {
   return val ** 2;
 }
 
-export {
-  Hello
-}
+export { Hello };

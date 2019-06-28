@@ -1,33 +1,39 @@
 <template lang="pug">
-  div#app
+  div#app(ref="ctn")
     NavBar
-    Dipsyland
-    img(alt="Vue logo" src="./assets/logo.png")
+    .section
+      Dipsyland
+    .section
+      PhotoBanner(src="/img/banners/game.jpg")
+    .section
+      NameCard
+    //- PhotoBanner(src="")
+    
     RippleFullScreen
       template(slot="outside")
         p hello
       template(slot="inside")
         p bla bla bla
-    div.perspectiveContainer
-      div(:style="`transform: rotateX(${rx}deg);`" ref="ctn")
-        HelloWorld( msg="Welcome to Your Vue.js App")
-      div(style="width:100%;height:100vh")
+    //- button.float-btn
 </template>
 
-<script lang="ts">
-import Vue from "vue";
+<script>
 import HelloWorld from "./components/HelloWorld.vue";
 import RippleFullScreen from "./components/RippleFullScreen.vue";
 import NavBar from "./components/NavBar.vue";
 import Dipsyland from "./components/Dipsyland.vue";
+import PhotoBanner from "./components/PhotoBanner";
+import NameCard from "./components/NameCard";
 
-export default Vue.extend({
+export default {
   name: "app",
   components: {
     HelloWorld,
     RippleFullScreen,
     NavBar,
-    Dipsyland
+    Dipsyland,
+    PhotoBanner,
+    NameCard
   },
   data() {
     return { rx: 0 };
@@ -46,14 +52,10 @@ export default Vue.extend({
   destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
   }
-});
+};
 </script>
 
 <style lang="scss">
-// @font-face {
-//   font-family: "Musical";
-//   src: url("./assets/fonts/musicals/musicals.ttf") format("truetype");
-// }
 @font-face {
   font-family: "flappy";
   src: url("./assets/fonts/04B_19__.TTF") format("truetype");
@@ -64,7 +66,6 @@ body {
   padding: 0;
   position: absolute;
   width: 100%;
-  // overflow-x: hidden;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -86,5 +87,23 @@ body {
 }
 .anim {
   transition: all 0.5s cubic-bezier(0.6, 0.03, 0.09, 1.03);
+}
+.section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.float-btn {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
 }
 </style>

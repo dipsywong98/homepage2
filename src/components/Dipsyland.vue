@@ -1,17 +1,16 @@
 <template lang="pug">
-  .container(ref="background")
-    .background.sky(ref="sky")
-    .background.cloud(ref="cloud" :style="`left: ${x*10-w}px; top: ${y*10}px;`")
-    .background.city(ref="city" :style="`left: ${x*50-w}px; top: ${y*50}px;`")
-    .background.grass(ref="grass" :style="`left: ${x*100-w}px; top: ${10+y*100}px;`")
+  .root
+    .container(ref="background")
+      .background.sky(ref="sky")
+      .background.cloud(ref="cloud" :style="`left: ${x*10-w}px; top: ${y*10}px;`")
+      .background.city(ref="city" :style="`left: ${x*50-w}px; top: ${y*50}px;`")
+      .background.grass(ref="grass" :style="`left: ${x*100-w}px; top: ${10+y*100}px;`")
     .float
       h1.title Dipsyland
       h6.quote "Not Lalaland nor Poland"
-      //- button "hey"
 </template>
-<script lang="ts">
-import Vue from "vue";
-export default Vue.extend({
+<script>
+export default {
   data() {
     return { x: 0, y: 0, w: 0, h: 0 };
   },
@@ -23,7 +22,6 @@ export default Vue.extend({
   },
   methods: {
     mouseMove(event) {
-      console.log(event);
       const { screenX: x, screenY: y } = event;
       const { clientWidth: w, clientHeight: h } = this.$refs.background;
       this.x = (x - w / 2) / w - 0.3;
@@ -32,25 +30,32 @@ export default Vue.extend({
       this.h = h;
     }
   }
-});
+};
 </script>
 <style lang="scss" scoped>
-.container {
+.root {
   position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.container {
+  position: fixed;
   width: 100%;
   height: 100vh;
   overflow: hidden;
   background-color: #96e282;
+  z-index: 0;
 }
 .background {
   position: absolute;
-  // background-attachment: fixed;
   background-position: center;
   background-size: auto 100vh;
+  background-repeat-y: no-repeat;
   resize: both;
   width: 300vw;
   height: 110vh;
-
+  position: fixed;
+  z-index: -1000;
   &.sky {
     background-image: url("../assets/img/sky.png");
   }
