@@ -27,6 +27,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
 }
 .field {
   margin: 20px;

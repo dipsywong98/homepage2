@@ -138,11 +138,15 @@ export default {
   box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.25);
   @media screen and (max-width: 600px) {
     margin: 10rem 0;
+    --time-width: 12px;
   }
 }
 .container {
   margin: 5rem;
   position: relative;
+  @media screen and (max-width: 600px) {
+    margin: 10rem 10px;
+  }
 }
 .my-work {
   text-align: left;
@@ -181,6 +185,9 @@ export default {
 .work-time {
   width: calc(var(--time-width) - var(--line-width) / 2 - 2px);
   font-weight: bold;
+  @media screen and (max-width: 600px) {
+    visibility: hidden;
+  }
 }
 .line-circle {
   width: var(--line-width);
