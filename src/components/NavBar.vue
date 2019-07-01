@@ -25,13 +25,13 @@ export default {};
   position: fixed;
   top: 0px;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
 }
 .nav-wrapper {
   display: flex;
   justify-content: space-between;
-  background-color: #ccefff;
-  color: #00aeff;
+  background-color: var(--blue-light);
+  color: var(--blue);
   padding: 0 1em;
 }
 .nav-item {

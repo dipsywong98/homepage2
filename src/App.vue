@@ -1,12 +1,11 @@
 <template lang="pug">
   div#app(ref="ctn")
     NavBar
-    .section
-      Dipsyland
-    .section
-      PhotoBanner(src="/img/banners/game.jpg")
-    .section
-      NameCard
+    Dipsyland
+    PhotoBanner(src="/img/banners/game.jpg")
+    NameCard
+    PhotoBanner(src="/img/banners/oscon.jpg")
+    Works
     //- PhotoBanner(src="")
     
     RippleFullScreen
@@ -24,6 +23,7 @@ import NavBar from "./components/NavBar.vue";
 import Dipsyland from "./components/Dipsyland.vue";
 import PhotoBanner from "./components/PhotoBanner";
 import NameCard from "./components/NameCard";
+import Works from "./components/Works";
 
 export default {
   name: "app",
@@ -33,7 +33,8 @@ export default {
     NavBar,
     Dipsyland,
     PhotoBanner,
-    NameCard
+    NameCard,
+    Works
   },
   data() {
     return { rx: 0 };
@@ -60,19 +61,32 @@ export default {
   font-family: "flappy";
   src: url("./assets/fonts/04B_19__.TTF") format("truetype");
 }
+:root {
+  --line-width: 20px;
+  --green: #96e282;
+  --green-light: #b3e893;
+  --blue: #00aeff;
+  --blue-pale: #84c3cf;
+  --blue-light: #ccefff;
+  --dark: #2c3e50;
+  --bright: #f8f8f8;
+
+  --bubble-color: var(--blue-light);
+}
 html,
 body {
   margin: 0;
   padding: 0;
   position: absolute;
   width: 100%;
+  overflow-y: overlay;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: var(--dark);
 }
 .perspectiveContainer {
   perspective: 300px;

@@ -37,7 +37,7 @@ export default {
     setRippleCircle() {
       const rippleContainer = this.$refs.rippleContainer;
       const realRipple = this.$refs.realRipple;
-      var w = window,
+      const w = window,
         d = document,
         e = d.documentElement,
         g = d.getElementsByTagName("body")[0],
@@ -115,7 +115,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 3;
 }
 .frame {
   border: 2px solid #000000;
