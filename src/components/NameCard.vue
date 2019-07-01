@@ -19,7 +19,8 @@
   position: relative;
   background-color: var(--bright);
   max-width: 1000px;
-  margin: 20rem auto;
+  margin: calc((100vh - 288px) / 2) auto;
+  box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.25);
   @media screen and (max-width: 600px) {
     margin: 10rem 0;
   }

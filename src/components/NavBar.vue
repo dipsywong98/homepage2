@@ -7,7 +7,6 @@
           <div style="display: inherit;">
             <a href="#about" class="nav-item anim">About Me</a>
             <a href="#works" class="nav-item anim">My Works</a>
-            <a href="#cv" class="nav-item anim">Resume</a>
             <a href="#blog" class="nav-item anim">Blog</a>
             <a href="#contact" class="nav-item anim">Contact</a>
           </div>

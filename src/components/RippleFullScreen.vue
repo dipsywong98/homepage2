@@ -30,6 +30,9 @@ export default {
     const realRipple = this.$refs.realRipple;
     const whole = this.$refs.whole;
     rippleContainer.style.display = "none";
+    window.onkeydown = ({ key }) => {
+      if (key === "Escape") this.hide();
+    };
     whole.style.display = "none";
     this.setRippleCircle();
   },
@@ -120,6 +123,7 @@ export default {
 .frame {
   border: 2px solid #000000;
   position: relative;
+  cursor: pointer;
 }
 .text {
   position: relative;

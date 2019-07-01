@@ -1,10 +1,12 @@
 <template lang="pug">
   div#app(ref="ctn")
     NavBar
-    Dipsyland
+    Dipsyland#home
     PhotoBanner(src="/img/banners/game.jpg")
+    div#about
     NameCard
     PhotoBanner(src="/img/banners/oscon.jpg")
+    div#works
     Works
     //- PhotoBanner(src="")
     
@@ -75,6 +77,7 @@ export default {
 }
 html,
 body {
+  scroll-behavior: smooth;
   margin: 0;
   padding: 0;
   position: absolute;

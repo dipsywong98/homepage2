@@ -7,19 +7,17 @@
       .line
       .works-container
         .work(v-for="work in works")
+          .work-time {{work.startTime}}
+          .line-circle
           .work-content
             .bubble
+              .arrow.left
               .bubble-content
                 h3 {{work.title}}
                 p {{work.brief}}
                 div {{work.cover}}
                 div
                   span(v-for="tag in work.tags") {{tag}}
-          .line-circle
-          .work-time
-            .bubble
-              .bubble-content {{work.startTime}}
-              .arrow.left
 
 </template>
 <script>
@@ -131,11 +129,13 @@ export default {
 
 <style lang="scss" scoped>
 .card {
+  --time-width: 100px;
   position: relative;
   background-color: #f8f8f8;
   max-width: 1200px;
   margin: 10rem auto;
   overflow: hidden;
+  box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.25);
   @media screen and (max-width: 600px) {
     margin: 10rem 0;
   }
@@ -153,11 +153,11 @@ export default {
   height: 100%;
   position: absolute;
   top: 61.44px;
-  left: calc(50% - var(--line-width) / 2);
+  left: calc(var(--time-width) - var(--line-width) / 2);
 }
 .line-arrow {
   position: absolute;
-  left: calc(50% - var(--line-width));
+  left: calc(var(--time-width) - var(--line-width));
   top: calc(61.44px - var(--line-width));
   width: 0;
   height: 0;
@@ -176,26 +176,27 @@ export default {
   align-items: center;
 }
 .work-content {
-  width: calc(50% - var(--line-width) / 2 - 2px);
+  width: calc(100% - var(--time-width) - var(--line-width) / 2 - 2px);
 }
 .work-time {
-  width: calc(50% - var(--line-width) / 2 - 2px);
+  width: calc(var(--time-width) - var(--line-width) / 2 - 2px);
   font-weight: bold;
 }
 .line-circle {
   width: var(--line-width);
   height: var(--line-width);
   border-radius: calc(var(--line-width) / 2);
-  border: black solid 2px;
+  border: var(--dark) solid 2px;
   z-index: 1;
   background-color: white;
 }
 .bubble {
   position: relative;
   margin: var(--line-width);
-  border: black solid 1px;
+  border: var(--blue-pale) solid 1px;
   border-radius: 10px;
   background-color: var(--bubble-color);
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.25);
 }
 .bubble-content {
   margin: var(--line-width);
@@ -209,8 +210,8 @@ export default {
   top: calc(50% - var(--line-width) / 2);
   &.left {
     left: calc(-1 * var(--line-width) / 2);
-    border-left: solid 1px;
-    border-bottom: solid 1px;
+    border-left: var(--blue-pale) solid 1px;
+    border-bottom: var(--blue-pale) solid 1px;
   }
 }
 </style>
