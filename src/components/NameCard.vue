@@ -1,7 +1,7 @@
 <template lang="pug">
   .card
     .field
-      img(src="/img/icon.png" width="204px" style="margin:20px 0px")
+      img(src="/img/icon.png" width="204px")
     .field
       h1 Dipsy Wong
       h3 Year4 BEng(COMP & MATH), HKUST
@@ -26,6 +26,7 @@
   .card {
     position: relative;
     background-color: var(--bright);
+    min-height: 300px;
     max-width: 1000px;
     margin: calc((100vh - 288px) / 2) auto;
     box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.25);
