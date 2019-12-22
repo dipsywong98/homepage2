@@ -120,6 +120,7 @@
     padding: 2px 8px;
     border-radius: 8px;
     border: 1px solid var(--gray-light);
+    transition: 0.4s;
 
     &.active {
       background: #ffffff;

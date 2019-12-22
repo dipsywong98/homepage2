@@ -2,6 +2,7 @@ export default ()=>[
   {
     title: 'Project title',
     titleLink: '//google.com',
+    liveLink: '//google.com',
     brief: 'brief description',
     tags: ['PHP','tag1']
   },
