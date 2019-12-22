@@ -2,9 +2,9 @@
   .root
     .container(ref="background")
       .background.sky(ref="sky")
-      .background.cloud(ref="cloud" :style="`left: ${x*10-w}px; top: ${y*10}px;`")
-      .background.city(ref="city" :style="`left: ${x*50-w}px; top: ${y*50}px;`")
-      .background.grass(ref="grass" :style="`left: ${x*100-w}px; top: ${10+y*100}px;`")
+      .background.cloud(ref="cloud" :style="`left: ${x*10-w}px; bottom: ${y*10}px;`")
+      .background.city(ref="city" :style="`left: ${x*50-w}px; bottom: ${y*50}px;`")
+      .background.grass(ref="grass" :style="`left: ${x*100-w}px; bottom: ${10+y*100}px;`")
     .float
       h1.title Dipsyland
       h6.quote "Not Lalaland nor Poland"
@@ -15,7 +15,7 @@ export default {
     return { x: 0, y: 0, w: 0, h: 0 };
   },
   mounted() {
-    this.$refs.background.onmousemove = this.mouseMove;
+    window.onmousemove = this.mouseMove;
     const { clientWidth: w, clientHeight: h } = this.$refs.background;
     this.w = w;
     this.h = h;
@@ -24,8 +24,8 @@ export default {
     mouseMove(event) {
       const { screenX: x, screenY: y } = event;
       const { clientWidth: w, clientHeight: h } = this.$refs.background;
-      this.x = (x - w / 2) / w - 0.3;
-      this.y = -y / h / 2 + 0.1;
+      // this.x = (x - w / 2) / w - 0.3;
+      this.y = -y / h / 2;
       this.w = w;
       this.h = h;
     }
@@ -48,12 +48,12 @@ export default {
 }
 .background {
   position: absolute;
-  background-position: center;
-  background-size: auto 100vh;
+  background-position: bottom;
+  background-size: auto 1024px;
   background-repeat-y: no-repeat;
   resize: both;
   width: 300vw;
-  height: 110vh;
+  height: 1024px;
   position: fixed;
   z-index: -1000;
   &.sky {
@@ -61,13 +61,21 @@ export default {
   }
   &.cloud {
     background-image: url("../assets/img/cloud.png");
+    animation: move 8s 0s infinite linear;
   }
   &.city {
     background-image: url("../assets/img/city.png");
+    animation: move 4s 0s infinite linear;
   }
   &.grass {
     background-image: url("../assets/img/grass.png");
+    animation: move 2s 0s infinite linear;
   }
+}
+
+@keyframes move {
+  from {left: 0;}
+  to {left: -576px;}
 }
 
 .float {
