@@ -72,7 +72,8 @@ export default {
   --blue-light: #ccefff;
   --dark: #2c3e50;
   --bright: #f8f8f8;
-
+  --gray-light: #d1d5da;
+  --gray-very-light: #e1e5ea;
   --bubble-color: var(--blue-light);
 }
 html,

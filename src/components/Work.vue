@@ -4,7 +4,6 @@
       h4.title {{work.title}}
     p.brief {{work.brief}}
     .tags
-      Tag(:tag="work.lang")
       Tag(v-for="tag in work.tags" :tag="tag")
 
 

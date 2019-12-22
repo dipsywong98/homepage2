@@ -3,72 +3,85 @@
     .container
       .my-work
         h1 My Works
+        div
+          label Filter
+          ChipInput(:availables="['ab','abgg','ddef']")
         .works
           Work(v-for="work in works" :work="work")
+
+
 
 
 </template>
 <script>
   import Work from './Work'
+  import ChipInput from './ChipInput'
 
   export default {
-    components: { Work },
+    components: { Work, ChipInput },
     computed: {
-      works(){
-        return this.allWorks
+      works() {
+        if (this.filters.length === 0) {
+          return this.allWorks
+        } else {
+          return this.allWorks.filter(({ tags }) => this.filters.filter(f => tags.includes(f)).length > 0)
+        }
+      },
+      filters() {
+        return this.filtersRaw.split(',').filter(f=>f!=='')
       }
     },
     data() {
       return {
+        filtersRaw: '',
         allWorks: [
           {
             title: 'Project title',
             titleLink: '//google.com',
             brief: 'brief description',
-            lang: 'PHP',
-            tags: ['tag1']
+            tags: ['PHP','tag1']
           },
           {
             title: 'Project title',
             titleLink: '//google.com',
             brief: 'brief description',
             lang: 'PHP',
-            tags: ['tag1']
+            tags: ['PHP','tag2']
           },
           {
             title: 'Project title',
             titleLink: '//google.com',
             brief: 'brief description',
             lang: 'PHP',
-            tags: ['tag1']
+            tags: ['PHP','tag1']
           },
           {
             title: 'Project title',
             titleLink: '//google.com',
             brief: 'brief description',
             lang: 'PHP',
-            tags: ['tag1']
+            tags: ['PHP','tag1']
           },
           {
             title: 'Project title',
             titleLink: '//google.com',
             brief: 'brief description wow this description is very very very very long long long long long',
             lang: 'PHP',
-            tags: ['tag1']
+            tags: ['PHP','tag1']
           },
           {
             title: 'Project title',
             titleLink: '//google.com',
             brief: 'brief description',
             lang: 'PHP',
-            tags: ['tag1']
+            tags: ['PHP','tag1']
           },
           {
             title: 'Project title',
             titleLink: '//google.com',
             brief: 'brief description',
             lang: 'PHP',
-            tags: ['tag1']
+            tags: ['PHP','tag1']
           }
         ]
       }
@@ -102,7 +115,7 @@
     text-align: left;
   }
 
-  .works{
+  .works {
     display: flex;
     flex-flow: wrap;
     /*justify-content: space-between;*/

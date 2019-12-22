@@ -1,5 +1,5 @@
 <template lang="pug">
-  .tag
+  .tag(@click="onClick")
     div(v-if="tag in ghcolors")
       span.color(:style="'background-color:'+ghcolors[tag]")
       span {{tag}}
@@ -11,6 +11,11 @@
     props: ['tag'],
     data() {
       return {ghcolors}
+    },
+    methods:{
+      onClick(){
+        this.$emit('click')
+      }
     }
   }
 </script>
@@ -19,10 +24,11 @@
     font-size: .7em;
     display: inline-block;
     padding: .3em .9em;
-    margin: 0 .5em .5em 0;
+    margin: .25em .25em;
     white-space: nowrap;
     background-color: #f1f8ff;
     border-radius: 3px;
+    cursor: pointer;
     &:hover{
       text-decoration: none;
       background-color: #def;
