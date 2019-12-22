@@ -5,9 +5,10 @@
         h1 My Works
         .filter
           .label Filter:
-          ChipInput(:availables="['ab','abgg','ddef']" v-model="filters")
+          ChipInput(:availables="allTags" v-model="filters")
         .works
           Work(v-for="work in works" :work="work" @tagClick="onTagClick")
+
 
 </template>
 <script>
@@ -28,6 +29,9 @@
               f => tags.includes(f)
             ).length > 0)
         }
+      },
+      allTags() {
+        return this.allWorks.map(({ tags }) => tags).flat().filter((t, k, s) => s.indexOf(t) === k)
       }
     },
     data() {

@@ -44,6 +44,7 @@
   }
 
   .rect {
+    overflow:hidden;
     flex: 1 1 0;
     margin: 10px 10px;
     padding: 16px;
@@ -62,11 +63,12 @@
 
   .live-root {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: -1px;
+    right: -1px;
     overflow: hidden;
     width: 75px;
     height: 75px;
+    border-radius: 0 4px 0 0;
 
     & > .live {
       position: absolute;
@@ -86,6 +88,7 @@
         background: -webkit-linear-gradient(45deg, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(45deg, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e5799', endColorstr='#7db9e8', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+        z-index: -1;
       }
 
       & > .gradient {
@@ -94,9 +97,9 @@
         width: 100px;
         height: 100px;
         background: #4c4c4c; /* Old browsers */
-        background: -moz-linear-gradient(45deg, #1e5799 0%, #2989d8 2%, #7db9e8 7%, #207cca 17%, #ffffff 17%, #ffffff 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(45deg, #1e5799 0%, #2989d8 2%, #7db9e8 7%, #207cca 17%, #ffffff 17%, #ffffff 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(45deg, #1e5799 0%, #2989d8 2%, #7db9e8 7%, #207cca 17%, #ffffff 17%, #ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        background: -moz-linear-gradient(45deg, #1e5799 0%, #2989d8 2%, #7db9e8 7%, #207cca 17%, var(--dark) 17%, var(--bright) 19%, var(--bright) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(45deg, #1e5799 0%, #2989d8 2%, #7db9e8 7%, #207cca 17%, var(--dark) 17%, var(--bright) 19%, var(--bright) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(45deg, #1e5799 0%, #2989d8 2%, #7db9e8 7%, #207cca 17%, var(--dark) 17%, var(--bright) 19%, var(--bright) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4c4c4c', endColorstr='#ffffff', GradientType=1); /* IE6-9 fallback on horizontal gradient */
         top: -50px;
         transition: top 0.2s ease-in-out;

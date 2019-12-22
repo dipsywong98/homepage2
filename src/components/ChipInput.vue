@@ -113,12 +113,13 @@
   .input-root {
     display: inline-block;
     flex: 10 1 0;
+    z-index: 20;
   }
 
   .input-field-root {
     display: flex;
     padding: 2px 8px;
-    border-radius: 8px;
+    border-radius: 4px;
     border: 1px solid var(--gray-light);
     transition: 0.4s;
 
@@ -128,7 +129,7 @@
     }
 
     &.auto {
-      border-radius: 8px 8px 0 0;
+      border-radius: 4px 4px 0 0;
     }
   }
 
@@ -150,7 +151,7 @@
   }
 
   .autofill-container {
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 4px 4px;
     border: 1px solid var(--gray-light);
     position: absolute;
     max-height: 80px;
