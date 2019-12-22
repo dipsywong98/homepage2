@@ -20,7 +20,7 @@
   import Tag from './Tag'
 
   export default {
-    props: ['availables','value'],
+    props: ['availables', 'value'],
     components: { Tag },
     data() {
       return {
@@ -49,7 +49,12 @@
         }
       },
       onChipClick(chip) {
-        this.chips = this.chips.filter(c => c !== chip)
+        while(true){
+          const index = this.chips.indexOf(chip)
+          if(index === -1) break;
+          this.chips.splice(index,1)
+        }
+        // this.chips = this.chips.filter(c => c !== chip)
         this.$refs.input.focus()
       },
       onKey(event) {
@@ -80,8 +85,10 @@
         this.active = false
       },
       trimAndMoveChip(newChip) {
-        this.chips.push(newChip.match(/^(\w+)[\s,]*$/g)[0])
-        this.chips = this.chips.filter((c, k) => this.chips.indexOf(c) === k)
+        const trimmed = newChip.match(/^(\w+)[\s,]*$/g)[0]
+        if (this.chips.indexOf(trimmed)===-1) {
+          this.chips.push(trimmed)
+        }
         this.input = ''
         this.cursor = 0
         this.$refs.input.focus()
@@ -89,7 +96,15 @@
     },
     watch: {
       chips() {
+        console.log(this.chips)
         this.$emit('input', this.chips)
+      },
+      value(oldVal, newVal) {
+        newVal.forEach(v=>{
+          if (this.chips.indexOf(v)===-1) {
+            this.chips.push(v)
+          }
+        })
       }
     }
   }

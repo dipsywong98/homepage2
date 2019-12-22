@@ -7,15 +7,13 @@
           .label Filter:
           ChipInput(:availables="['ab','abgg','ddef']" v-model="filters")
         .works
-          Work(v-for="work in works" :work="work")
-
-
-
+          Work(v-for="work in works" :work="work" @tagClick="onTagClick")
 
 </template>
 <script>
   import Work from './Work'
   import ChipInput from './ChipInput'
+  import getWorks from '../lib/getWorks'
 
   export default {
     components: { Work, ChipInput },
@@ -24,63 +22,25 @@
         if (this.filters.length === 0) {
           return this.allWorks
         } else {
-          return this.allWorks.filter(({ tags }) => this.filters.filter(f => tags.includes(f)).length > 0)
+          console.log('hi')
+          return this.allWorks.filter(
+            ({ tags }) => this.filters.filter(
+              f => tags.includes(f)
+            ).length > 0)
         }
       }
     },
     data() {
       return {
         filters: [],
-        allWorks: [
-          {
-            title: 'Project title',
-            titleLink: '//google.com',
-            brief: 'brief description',
-            tags: ['PHP','tag1']
-          },
-          {
-            title: 'Project title',
-            titleLink: '//google.com',
-            brief: 'brief description',
-            lang: 'PHP',
-            tags: ['PHP','tag2']
-          },
-          {
-            title: 'Project title',
-            titleLink: '//google.com',
-            brief: 'brief description',
-            lang: 'PHP',
-            tags: ['PHP','tag1']
-          },
-          {
-            title: 'Project title',
-            titleLink: '//google.com',
-            brief: 'brief description',
-            lang: 'PHP',
-            tags: ['PHP','tag1']
-          },
-          {
-            title: 'Project title',
-            titleLink: '//google.com',
-            brief: 'brief description wow this description is very very very very long long long long long',
-            lang: 'PHP',
-            tags: ['PHP','tag1']
-          },
-          {
-            title: 'Project title',
-            titleLink: '//google.com',
-            brief: 'brief description',
-            lang: 'PHP',
-            tags: ['PHP','tag1']
-          },
-          {
-            title: 'Project title',
-            titleLink: '//google.com',
-            brief: 'brief description',
-            lang: 'PHP',
-            tags: ['PHP','tag1']
-          }
-        ]
+        allWorks: getWorks()
+      }
+    },
+    methods: {
+      onTagClick(tag) {
+        if (!this.filters.includes(tag)) {
+          this.filters.push(tag)
+        }
       }
     }
   }
@@ -112,12 +72,13 @@
     text-align: left;
   }
 
-  .filter{
+  .filter {
     margin: 0 8px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    > .label{
+
+    > .label {
       margin: 0 4px;
     }
   }

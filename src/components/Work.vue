@@ -4,7 +4,7 @@
       h4.title {{work.title}}
     p.brief {{work.brief}}
     .tags
-      Tag(v-for="tag in work.tags" :tag="tag")
+      Tag(v-for="tag in work.tags" :tag="tag" @click="onTagClick(tag)")
 
 
 
@@ -18,6 +18,11 @@
     props: ['work'],
     data() {
       return { ghcolors }
+    },
+    methods: {
+      onTagClick(tag){
+        this.$emit('tagClick',tag)
+      }
     }
   }
 </script>
