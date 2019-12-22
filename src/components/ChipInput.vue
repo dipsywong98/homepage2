@@ -18,10 +18,9 @@
 </template>
 <script>
   import Tag from './Tag'
-  import Vue from 'vue'
 
   export default {
-    props: ['availables'],
+    props: ['availables','value'],
     components: { Tag },
     data() {
       return {
@@ -56,7 +55,11 @@
       onKey(event) {
         switch (event.keyCode) {
           case 13: //enter
-            this.trimAndMoveChip(this.suggestions[this.cursor])
+            if (this.suggestions.length > this.cursor) {
+              this.trimAndMoveChip(this.suggestions[this.cursor])
+            } else {
+              this.trimAndMoveChip(this.input)
+            }
             break
           case 8: //backspace
             if (this.input === '') {
@@ -83,11 +86,18 @@
         this.cursor = 0
         this.$refs.input.focus()
       }
+    },
+    watch: {
+      chips() {
+        this.$emit('input', this.chips)
+      }
     }
   }
 </script>
 <style lang="scss">
   .input-root {
+    display: inline-block;
+    flex: 10 1 0;
   }
 
   .input-field-root {

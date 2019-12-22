@@ -3,9 +3,9 @@
     .container
       .my-work
         h1 My Works
-        div
-          label Filter
-          ChipInput(:availables="['ab','abgg','ddef']")
+        .filter
+          .label Filter:
+          ChipInput(:availables="['ab','abgg','ddef']" v-model="filters")
         .works
           Work(v-for="work in works" :work="work")
 
@@ -26,14 +26,11 @@
         } else {
           return this.allWorks.filter(({ tags }) => this.filters.filter(f => tags.includes(f)).length > 0)
         }
-      },
-      filters() {
-        return this.filtersRaw.split(',').filter(f=>f!=='')
       }
     },
     data() {
       return {
-        filtersRaw: '',
+        filters: [],
         allWorks: [
           {
             title: 'Project title',
@@ -113,6 +110,16 @@
 
   .my-work {
     text-align: left;
+  }
+
+  .filter{
+    margin: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    > .label{
+      margin: 0 4px;
+    }
   }
 
   .works {
