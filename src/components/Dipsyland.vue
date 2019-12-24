@@ -61,15 +61,15 @@ export default {
   }
   &.cloud {
     background-image: url("../assets/img/cloud.png");
-    animation: move 8s 0s infinite linear;
+    animation: move 32s 0s infinite linear;
   }
   &.city {
     background-image: url("../assets/img/city.png");
-    animation: move 4s 0s infinite linear;
+    animation: move 16s 0s infinite linear;
   }
   &.grass {
     background-image: url("../assets/img/grass.png");
-    animation: move 2s 0s infinite linear;
+    animation: move 8s 0s infinite linear;
   }
 }
 

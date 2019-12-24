@@ -18,6 +18,9 @@
 
   export default {
     components: { Work, ChipInput },
+    mounted(){
+      getWorks().then(v=>this.allWorks = v)
+    },
     computed: {
       works() {
         if (this.filters.length === 0) {
@@ -37,7 +40,7 @@
     data() {
       return {
         filters: [],
-        allWorks: getWorks()
+        allWorks: []
       }
     },
     methods: {
