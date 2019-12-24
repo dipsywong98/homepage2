@@ -1,21 +1,24 @@
 <template lang="pug">
   div#app(ref="ctn")
-    NavBar
-    Dipsyland#home
-    PhotoBanner(src="/img/banners/game.jpg")
-    div#about
-    NameCard
-    PhotoBanner(src="/img/banners/oscon.jpg")
-    div#works
-    Works
-    //- PhotoBanner(src="")
-    
-    RippleFullScreen
-      template(slot="outside")
-        p hello
-      template(slot="inside")
-        p bla bla bla
-    //- button.float-btn
+    #head
+      NavBar
+    #content
+      #dipsyland
+        Dipsyland#home
+      PhotoBanner(src="/img/banners/game.jpg")
+      div#about
+      NameCard
+      PhotoBanner(src="/img/banners/oscon.jpg")
+      div#works
+      Works
+      //- PhotoBanner(src="")
+      
+      RippleFullScreen
+        template(slot="outside")
+          p hello
+        template(slot="inside")
+          p bla bla bla
+        //- button.float-btn
 </template>
 
 <script>
@@ -83,7 +86,7 @@ body {
   padding: 0;
   position: absolute;
   width: 100%;
-  overflow-y: overlay;
+  // overflow-y: overlay;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -91,6 +94,30 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: var(--dark);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  overflow-x: hidden;
+  // grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  // grid-template-areas: "head" "content";
+}
+#head {
+  // grid-area: head;
+  height: 52px;
+  grid-row: 1;
+}
+#content {
+  // grid-area: content;
+  position: relative;
+  scroll-behavior: smooth;
+  grid-row: 2;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .perspectiveContainer {
   perspective: 300px;

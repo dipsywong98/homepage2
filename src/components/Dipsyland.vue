@@ -44,7 +44,7 @@ export default {
   height: 100vh;
   overflow: hidden;
   background-color: #96e282;
-  z-index: 0;
+  z-index: -1;
 }
 .background {
   position: absolute;
@@ -74,8 +74,12 @@ export default {
 }
 
 @keyframes move {
-  from {left: 0;}
-  to {left: -576px;}
+  from {
+    left: 0;
+  }
+  to {
+    left: -576px;
+  }
 }
 
 .float {
@@ -100,4 +104,3 @@ export default {
   }
 }
 </style>
-
