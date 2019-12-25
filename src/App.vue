@@ -14,13 +14,7 @@
       PhotoBanner(src="/img/banners/success.JPG")
       #blog
       Works(category="blog")
-      div
-        RippleFullScreen
-          template(slot="outside")
-            p hello
-          template(slot="inside")
-            p bla bla bla
-        //- button.float-btn
+      Footer
 </template>
 
 <script>
@@ -31,6 +25,7 @@
   import PhotoBanner from './components/PhotoBanner'
   import NameCard from './components/NameCard'
   import Works from './components/Works'
+  import Footer from './components/Footer'
 
   export default {
     name: 'app',
@@ -41,7 +36,8 @@
       Dipsyland,
       PhotoBanner,
       NameCard,
-      Works
+      Works,
+      Footer
     },
     data() {
       return { rx: 0 }
@@ -72,6 +68,7 @@
   :root {
     --line-width: 20px;
     --green: #96e282;
+    --green-dark: #8ACF81;
     --green-light: #b3e893;
     --blue: #00aeff;
     --blue-pale: #84c3cf;
