@@ -18,7 +18,6 @@
 </template>
 
 <script>
-  import HelloWorld from './components/HelloWorld.vue'
   import RippleFullScreen from './components/RippleFullScreen.vue'
   import NavBar from './components/NavBar.vue'
   import Dipsyland from './components/Dipsyland.vue'
@@ -31,7 +30,6 @@
   export default {
     name: 'app',
     components: {
-      HelloWorld,
       RippleFullScreen,
       NavBar,
       Dipsyland,

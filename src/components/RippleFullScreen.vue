@@ -19,7 +19,7 @@
   import { setTimeout } from 'timers'
 
   export default {
-    props: ['ripple'],
+    props: { ripple: { default: true } },
     data() {
       return {
         position: {},
