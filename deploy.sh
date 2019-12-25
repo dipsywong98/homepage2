@@ -1,3 +1,4 @@
+mkdir __tmp
 mv dist/.git/ __tmp/.git/
 npm run build
 mv __tmp/.git/ dist/.git/
