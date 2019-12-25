@@ -12,12 +12,12 @@
       div#works
       Works
       //- PhotoBanner(src="")
-      
-      RippleFullScreen
-        template(slot="outside")
-          p hello
-        template(slot="inside")
-          p bla bla bla
+      div
+        RippleFullScreen
+          template(slot="outside")
+            p hello
+          template(slot="inside")
+            p bla bla bla
         //- button.float-btn
 </template>
 
@@ -73,6 +73,7 @@ export default {
   --blue: #00aeff;
   --blue-pale: #84c3cf;
   --blue-light: #ccefff;
+  --blue-dark: #1a237e;
   --dark: #2c3e50;
   --bright: #f8f8f8;
   --gray-light: #d1d5da;

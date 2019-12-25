@@ -26,7 +26,6 @@ export default {
       if (this.filters.length === 0) {
         return this.allWorks;
       } else {
-        console.log("hi");
         return this.allWorks.filter(
           ({ tags }) =>
             this.filters.filter(f => tags.includes(f)).length ===

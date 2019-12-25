@@ -47,7 +47,7 @@ export default {
   z-index: -1;
 }
 .background {
-  position: absolute;
+  /*position: absolute;*/
   background-position: bottom;
   background-size: auto 1024px;
   background-repeat-y: no-repeat;
