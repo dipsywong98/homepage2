@@ -6,8 +6,13 @@
         .filter
           .label Filter:
           ChipInput(:availables="allTags" v-model="filters")
-        .works
+        .works(v-if="!partitions || partitions.length === 0 || filters.length !== 0")
           Work(v-for="work in works" :work="work" @tagClick="onTagClick" :category="category")
+        div(v-else)
+          div(v-for="(partition,k) in allWorksByPartitions")
+            h3 {{partitions[k] || 'Fun Projects'}}
+            .works
+              Work(v-for="work in partition" :work="work" @tagClick="onTagClick" :category="category")
 
 
 </template>
@@ -18,7 +23,7 @@
 
   export default {
     components: { Work, ChipInput },
-    props: ['category'],
+    props: ['category', 'partitions'],
     mounted() {
       getWorks(this.category).then(v => (this.allWorks = v))
     },
@@ -29,7 +34,7 @@
         } else {
           return this.allWorks.filter(
             ({ tags }) =>
-              this.filters.filter(f => (tags||[]).includes(f)).length ===
+              this.filters.filter(f => (tags || []).includes(f)).length ===
               this.filters.length
           )
         }
@@ -38,10 +43,28 @@
         return this.allWorks
           .map(({ tags }) => tags)
           .flat()
-          .filter((t, k, s) => t&&s.indexOf(t) === k)
+          .filter((t, k, s) => t && s.indexOf(t) === k)
       },
       Category() {
         return this.category[0].toUpperCase() + this.category.substring(1)
+      },
+      allWorksByPartitions() {
+        if(this.partitions){
+          const workPartitions = new Array(this.partitions.length + 1).fill('').map(()=>[])
+          this.allWorks.forEach(work=>{
+            let flag = false
+            this.partitions.forEach((tag, k)=>{
+              if(work.tags.includes(tag)){
+                workPartitions[k].push(work)
+                flag = true
+              }
+            })
+            if(!flag){
+              workPartitions[workPartitions.length - 1].push(work)
+            }
+          })
+          return workPartitions
+        }return this.allWorks
       }
     },
     data() {

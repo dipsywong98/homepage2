@@ -10,7 +10,7 @@
       NameCard
       PhotoBanner(src="/img/banners/oscon.jpg")
       #works
-      Works(category="works")
+      Works(category="works" :partitions="['Academic', 'Robotics']")
       PhotoBanner(src="/img/banners/success.JPG")
       #blog
       Works(category="blog")
