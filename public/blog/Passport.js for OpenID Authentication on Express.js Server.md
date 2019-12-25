@@ -24,9 +24,9 @@ Actually I am just copying the implementation from wiki.js YO
 
 I used GitLab openid
 
-![img](./img/openid1.jpg)
+![img](img/openid1.JPG)
 
-![img](./img/openid2.jpg)
+![img](img/openid2.JPG)
 
 ```js
 //oidc configurations

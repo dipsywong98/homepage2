@@ -21,7 +21,7 @@
     - Firebase
 - title: Good Software
   story:
-- title: Host Simple Real time Chatroom using Node.js and socket.io on Heroku
+- title: Host Simple Realtime Chatroom using Node.js and socket.io on Heroku
   story:
   tags:
     - JavaScript

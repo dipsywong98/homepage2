@@ -31,9 +31,9 @@
       const realRipple = this.$refs.realRipple
       const whole = this.$refs.whole
       rippleContainer.style.display = 'none'
-      window.onkeydown = ({ key }) => {
+      window.addEventListener('keydown', ({ key }) => {
         if (key === 'Escape') this.hide()
-      }
+      })
       whole.style.display = 'none'
       this.setRippleCircle()
     },
@@ -187,7 +187,7 @@
 
   .close {
     position: fixed;
-    right: 0;
+    right: 10px;
     top: 0;
     width: 1em;
     height: 1em;
