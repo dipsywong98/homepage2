@@ -1,6 +1,6 @@
 <template>
   <div class="input-root">
-    <div :class="`input-field-root ${isShowingAuto && 'auto'} ${active && 'active'}`">
+    <div :class="`input-field-root ${isShowingAuto && 'auto'} ${active && 'active'} shadow-hover`">
       <Tag v-for="chip in chips" @click="()=>onChipClick(chip)" :tag="chip"></Tag>
       <input class="input-field" ref="input" v-model="input" @input="onType" @keydown="onKey"
              @focus="active=true"

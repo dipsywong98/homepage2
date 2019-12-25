@@ -6,7 +6,7 @@
           <a href="#home" class="nav-item title anim">Dipsyland</a>
           <div style="display: inherit;">
             <a href="#about" class="nav-item anim">About Me</a>
-            <a href="#works" class="nav-item anim">My Works</a>
+            <a href="#works" class="nav-item anim">Works</a>
             <a href="#blog" class="nav-item anim">Blog</a>
             <a href="#about" class="nav-item anim">Contact</a>
           </div>

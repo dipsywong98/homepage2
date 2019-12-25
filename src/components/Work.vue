@@ -1,24 +1,23 @@
 <template lang="pug">
-  .rect
-    div(v-if="ripple")
-      RippleFullScreen(@animate="onRippleAnimate()" @active="onRippleAnimate()")
-        template(slot="outside")
-          .work-ripple-outside
-            h4.title
-              a.title(:href="work.titleLink") {{work.title}}
-            p.brief {{work.brief}}
-            .tags
-              Tag.prevent-ripple-full-screen(v-for="tag in work.tags" :tag="tag" @click="onTagClick(tag)" )
-        template(slot="inside")
-          .work-ripple-inside
-            vue-markdown(:watches="['source', 'show', 'toc', 'story']" :source="story")
-    div(v-else)
-      .work-ripple-outside
-        h4.title
-          a.title(:href="work.titleLink") {{work.title}}
-        p.brief {{work.brief}}
-        .tags
-          Tag.prevent-ripple-full-screen(v-for="tag in work.tags" :tag="tag" @click="onTagClick(tag)" )
+  .rect.shadow-hover
+    RippleFullScreen(v-if="ripple" @animate="onRippleAnimate()" @active="onRippleAnimate()")
+      template(slot="outside")
+        .work-ripple-outside
+          h4.title
+            a.title.prevent-ripple-full-screen(v-if="work.titleLink" :href="work.titleLink") {{work.title}}
+            a.title(v-else="work.titleLink") {{work.title}}
+          p.brief {{work.brief}}
+          .tags
+            Tag.prevent-ripple-full-screen(v-for="tag in work.tags" :tag="tag" @click="onTagClick(tag)" )
+      template(slot="inside")
+        .work-ripple-inside
+          vue-markdown(:watches="['source', 'show', 'toc', 'story']" :source="story")
+    .work-ripple-outside(v-else)
+      h4.title
+        a.title(:href="work.titleLink") {{work.title}}
+      p.brief {{work.brief}}
+      .tags
+        Tag.prevent-ripple-full-screen(v-for="tag in work.tags" :tag="tag" @click="onTagClick(tag)" )
     .live-root(v-if="work.liveLink")
       a.live(:href="work.liveLink")
         .triangle {{' '}}
@@ -34,7 +33,7 @@
 
   export default {
     components: { Tag, RippleFullScreen, VueMarkdown },
-    props: ['work'],
+    props: ['work', 'category'],
     computed: {
       ripple() {
         return 'story' in this.work
@@ -48,8 +47,13 @@
         this.$emit('tagClick', tag)
       },
       onRippleAnimate() {
-        fetch(`/works/${this.work.title}.md`).then(res => res.text()).then(text => this.story = text)
-        console.log('animate')
+        if ('story' in this.work) {
+          if (typeof this.work.story === 'string') {
+            fetch(this.work.story).then(res => res.text()).then(text => this.story = text)
+          } else {
+            fetch(`/${this.category}/${this.work.title}.md`).then(res => res.text()).then(text => this.story = text)
+          }
+        }
       }
     }
   }
@@ -69,12 +73,12 @@
   }
 
   .rect {
-    flex: 1 1 0;
+    flex: 1 1 30%;
     overflow: hidden;
     margin: 10px 10px;
     min-width: 200px;
     min-height: 80px;
-    border: 1px solid #d1d5da;
+    border: 1px solid var(--gray-light);
     border-radius: 3px;
     position: relative;
   }
@@ -92,7 +96,7 @@
     margin: 40px auto;
     max-width: 1000px;
 
-    & a{
+    & a {
       color: var(--blue-pale);
     }
   }

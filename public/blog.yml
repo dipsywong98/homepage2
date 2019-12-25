@@ -1,0 +1,96 @@
+- title: Android + OpenCV note
+  brief: OpenCV in Android
+  story:
+  tags:
+    - Android
+    - OpenCV
+- title: Android notes
+  brief: My learning on Android
+  story:
+  tags:
+    - Android
+- title: Build Desktop Serial App with Electron
+  story:
+  tags:
+    - JavaScript
+    - Electronjs
+- title: Firebase in 10 minutes
+  story:
+  tags:
+    - JavaScript
+    - Firebase
+- title: Good Software
+  story:
+- title: Host Simple Real time Chatroom using Node.js and socket.io on Heroku
+  story:
+  tags:
+    - JavaScript
+    - socker.io
+    - heroku
+- title: How I Setup Separate Production and Development Environment of imba.js with Hot Reload
+  story:
+  tags:
+    - JavaScript
+    - imba.js
+    - hot-reload
+    - webpack
+- title: Laravel Note
+  story:
+  tags:
+    - PHP
+    - Laravel
+- title: MongoDB with imba and nodejs
+  story:
+  tags:
+    - JavaScript
+    - MongoDB
+    - imba.js
+- title: Passport.js for OpenID Authentication on Express.js Server
+  story:
+  tags:
+    - JavaScript
+    - Passport.js
+    - OpenID
+- title: React-Redux
+  story:
+  tags:
+    - JavaScript
+    - React
+    - Redux
+- title: SailsJS, MVC JavaScript Framework
+  story:
+  tags:
+    - JavaScript
+    - SailsJS
+- title: python_note
+  story:
+  tags:
+    - Python
+- title: Installing Ubuntu on my Nvidia RTX2060 Laptop (Lenovo Legion Y7000SE)
+  titleLink: //gist.github.com/dipsywong98/76c3c956916cc18b7125e5a1c1e6d7d5
+  brief: Pains and tears installing ubuntu
+  story: //gist.githubusercontent.com/dipsywong98/76c3c956916cc18b7125e5a1c1e6d7d5/raw/ac1f07ff401c78cb70c30bfc1f05c333cdd6b812/Installing%2520Ubuntu%2520on%2520Nvidia%2520RTX2060%2520Laptop.md
+  tags:
+    - Linux
+    - Nvidia
+    - KDE
+- title: Apollo_notes
+  titleLink: //gist.github.com/dipsywong98/a8c63a36ea41ad7cb05f81a34eb89239
+  story: //gist.githubusercontent.com/dipsywong98/a8c63a36ea41ad7cb05f81a34eb89239/raw/621d22ccdf3bf63c00d435587df2a3b79351d1ca/Apollo_notes.md
+  tags:
+    - JavaScript
+    - Apollo
+    - GraphQL
+- title: EC2 root loginconfig
+  titleLink: https://gist.github.com/dipsywong98/ca1ced267eaecbb483ed237690d04140
+  story: https://gist.githubusercontent.com/dipsywong98/ca1ced267eaecbb483ed237690d04140/raw/9bc6993db75f9dd01bd7f93521d760d52655be45/EC2-root-login-config.md
+  tags:
+    - SSH
+    - AWS
+    - EC2
+- title: Setup-new-subdomain-on-NginX-with-redirected-SSL
+  titleLink: https://gist.github.com/dipsywong98/66559f2a14b59d40a0c423d53a52ef02
+  story: https://gist.githubusercontent.com/dipsywong98/66559f2a14b59d40a0c423d53a52ef02/raw/779b9470975dc14a7bfe8c433b6da8cf8ae68e0b/Setup-new-subdomain-on-NginX-with-redirected-SSL.md
+  tags:
+    - SSL
+    - NginX

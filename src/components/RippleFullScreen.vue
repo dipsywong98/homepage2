@@ -177,6 +177,8 @@
     z-index: 1;
     position: relative;
     opacity: 0;
+    overflow-y: auto;
+    max-height: 100vh;
 
     &.show {
       opacity: 1;
