@@ -11,7 +11,8 @@
             Tag.prevent-ripple-full-screen(v-for="tag in work.tags" :tag="tag" @click="onTagClick(tag)" )
       template(slot="inside")
         .work-ripple-inside
-          vue-markdown(:watches="['source', 'show', 'toc', 'story']" :source="story")
+          .loading(v-if="loading") Loading...
+          vue-markdown(v-else :watches="['source', 'show', 'toc', 'story']" :source="story")
     .work-ripple-outside(v-else)
       h4.title
         a.title(:href="work.titleLink") {{work.title}}
@@ -40,18 +41,19 @@
       }
     },
     data() {
-      return { ghcolors, story: '' }
+      return { ghcolors, story: '', loading: false }
     },
     methods: {
       onTagClick(tag) {
         this.$emit('tagClick', tag)
       },
       onRippleAnimate() {
-        if ('story' in this.work) {
+        if ('story' in this.work && this.story === '') {
+          this.loading = true
           if (typeof this.work.story === 'string') {
-            fetch(this.work.story).then(res => res.text()).then(text => this.story = text)
+            fetch(this.work.story).then(res => res.text()).then(text => this.story = text).finally(() => this.loading = false)
           } else {
-            fetch(`/${this.category}/${this.work.title}.md`).then(res => res.text()).then(text => this.story = text)
+            fetch(`/${this.category}/${this.work.title}.md`).then(res => res.text()).then(text => this.story = text).finally(() => this.loading = false)
           }
         }
       }
