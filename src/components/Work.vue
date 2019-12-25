@@ -1,11 +1,13 @@
 <template lang="pug">
   .rect.shadow-hover
-    RippleFullScreen(v-if="ripple" @animate="onRippleAnimate()" @active="onRippleAnimate()")
+    RippleFullScreen(@animate="onRippleAnimate()" @active="onRippleAnimate()" :ripple="ripple")
       template(slot="outside")
         .work-ripple-outside
           h4.title
             a.title.prevent-ripple-full-screen(v-if="work.titleLink" :href="work.titleLink") {{work.title}}
             a.title(v-else="work.titleLink") {{work.title}}
+          small
+            i {{work.time}}
           p.brief {{work.brief}}
           .tags
             Tag.prevent-ripple-full-screen(v-for="tag in work.tags" :tag="tag" @click="onTagClick(tag)" )
@@ -13,12 +15,6 @@
         .work-ripple-inside
           .loading(v-if="loading") Loading...
           vue-markdown(v-else :watches="['source', 'show', 'toc', 'story']" :source="story")
-    .work-ripple-outside(v-else)
-      h4.title
-        a.title(:href="work.titleLink") {{work.title}}
-      p.brief {{work.brief}}
-      .tags
-        Tag.prevent-ripple-full-screen(v-for="tag in work.tags" :tag="tag" @click="onTagClick(tag)" )
     .live-root(v-if="work.liveLink")
       a.live(:href="work.liveLink")
         .triangle {{' '}}
@@ -75,7 +71,7 @@
   }
 
   .rect {
-    flex: 1 1 30%;
+    flex: 0 0 31%;
     overflow: hidden;
     margin: 10px 10px;
     min-width: 200px;

@@ -25,7 +25,7 @@
     data() {
       return {
         input: '',
-        chips: [],
+        chips: this.value,
         cursor: 0,
         active: false
       }
@@ -101,7 +101,6 @@
     },
     watch: {
       chips() {
-        console.log(this.chips)
         this.$emit('input', this.chips)
       },
       value(oldVal, newVal) {

@@ -1,5 +1,5 @@
 <template lang="pug">
-  .card
+  .card(ref="top")
     .container
       .my-work
         h1 My {{Category}}
@@ -54,6 +54,7 @@
       onTagClick(tag) {
         if (!this.filters.includes(tag)) {
           this.filters.push(tag)
+          this.$refs.top.scrollIntoView()
         }
       }
     }

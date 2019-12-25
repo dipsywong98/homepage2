@@ -1,5 +1,5 @@
 <template>
-  <div ref="frame" class="frame" @click="toggle">
+  <div ref="frame" :class="`frame ${(!ripple)&&'disabled'}`" @click="toggle">
     <div ref="text" class="text" @click="toggle">
       <slot name="outside"></slot>
       <!-- <span>this is some display text</span> -->
@@ -19,6 +19,7 @@
   import { setTimeout } from 'timers'
 
   export default {
+    props: ['ripple'],
     data() {
       return {
         position: {},
@@ -54,6 +55,7 @@
         // realRipple.style.top = -radius / 2 + "px";
       },
       toggle(e) {
+        if (!this.ripple) return false
         const prevent = e.path
           .map(el => el.classList)
           .filter(a => !!a)
@@ -138,6 +140,10 @@
     height: 100%;
     position: relative;
     cursor: pointer;
+
+    &.disabled {
+      cursor: unset;
+    }
   }
 
   .text {

@@ -1,53 +1,90 @@
-- title: Creative18
-  titleLink: //github.com/hkust-smartcar/Creative18
-  brief: NXP Cup Creative Challenge - Quoridor
-  story:
+- title: homepage2
+  titleLink: //github.com/dipsywong98/homepage2
+  liveLink: //dipsywong98.github.io
+  brief: homepage version 2
+  time: 2020 winter
+  tags:
+    - JavaScript
+    - Vue
+- title: Serverless Smart Album
+  titleLink: //github.com/mcreng/serverless-smart-album
+  brief: Smart album that auto label photos on cloud
+  time: 2019 fall
   tags:
     - Python
     - JavaScript
+    - kubernetes
+    - docker
+    - openfaas
+    - COMP4651
+    - React
+    - Academic
+- title: Foundations of Computer Vision
+  titleLink: //github.com/dipsywong98/COMP4901L
+  brief: CMU 16-385
+  time: 2019 fall
+  tags:
+    - Matlab
+    - Computer Vision
+    - COMP4901L
+    - Academic
+- title: Quoridor AI
+  titleLink: //github.com/dipsywong98/Quoridor
+  brief: AI that can play Quoridor game implemented by Min-Max Tree
+  time: 2019 summer
+  tags:
     - cpp
+    - SFML
     - Robotics
-    - OpenMV
-    - k60
     - AI
-    - Computer Vision
-    - embebded system
-    - electronjs
     - Competition
-- title: NFC Tuckshop
-  titleLink: //github.com/hkust-smartcar/NFC-server
-  brief: Touchscreen POS with NFS support for smart car team
+- title: AI Rebellion
+  titleLink: //github.com/danvim/tone-server
+  brief: A realtime multi-player strategy game
+  time: 2019 spring
   tags:
-    - JavaScript
-    - cpp
-    - Robotics
-    - NFC
-    - k60
-    - embebded system
-- title: Chasing17
-  titleLink: //github.com/hkust-smartcar/Chasing17
-  brief: NXP Cup Camera Chasing Challenge
+    - TypeScript
+    - Vue
+    - protobuf.js
+    - WebRTC
+    - Academic
+    - COMP4451
+- title: Trace
+  titleLink: //github.com/dipsywong98/COMP4411-trace
+  brief: 'Graphics project on ray tracing, CSE457 of University of Washington'
+  time: 2019 spring
   tags:
     - cpp
-    - Robotics
-    - k60
-    - Computer Vision
-    - embebded system
-    - Competition
-- title: Corner-Detection-Challenge
-  titleLink: //github.com/hkust-smartcar/Corner-Detection-Challenge
-  liveLink: https://hkust-smartcar.github.io/Corner-Detection-Challenge/
-  brief: Corner Detection Challenge first generation judge
+    - Computer Graphics
+    - COMP4411
+    - Academic
+- title: Modeler
+  titleLink: //github.com/dipsywong98/COMP4411-modeler
+  brief: >-
+    Graphics project on controlling 3D models, CSE457 of University of
+    Washington
+  time: 2019 spring
   tags:
-    - JavaScript
-    - PHP
     - cpp
-    - Firebase
-    - Robotics
+    - Computer Graphics
+    - COMP4411
+    - Academic
+- title: Impressionist
+  titleLink: //github.com/dipsywong98/COMP4411-impressionist
+  brief: >-
+    Graphics project on photo editing software, CSE457 of University of
+    Washington
+  time: 2019 spring
+  tags:
+    - cpp
+    - Computer Graphics
+    - COMP4411
+    - Academic
 - title: Judge2
   titleLink: //github.com/hkust-smartcar/Judge
   liveLink: //judge.hkustracing.com
   brief: Corner Detection Challenge second generation judge
+  time: 2019 winter
   tags:
     - JavaScript
     - cpp
@@ -57,160 +94,10 @@
     - socket.io
     - OpenID
     - Robotics
-- title: Robotics Tutorials
-  titleLink: //github.com/hkust-smartcar/tutorials
-  brief: Tutorials and assignments for HKUST Robotics team
-  tags:
-    - cpp
-    - k60
-    - Robotics
-    - Computer Vision
-- title: Reimbusement System
-  brief: Automate the reimbursement process of Robotics Team
-  tags:
-    - PHP
-    - Laravel
-    - JavaScript
-    - Vue.js
-    - Robotics
-- title: ScoreBoard
-  titleLink: https://github.com/dipsywong98/ScoreBoard
-  liveLink: https://scoreboard-d.firebaseapp.com/
-  brief: Score board, brackets and pannel for HKUST Robotics Team internal competition
-  tags:
-    - JavaScript
-    - Vue.js
-    - Firebase
-    - Robotics
-- title: Quoridor AI
-  titleLink: //github.com/dipsywong98/Quoridor
-  brief: AI that can play Quoridor game implemented by Min-Max Tree
-  tags:
-    - cpp
-    - SFML
-    - Robotics
-    - AI
-    - Competition
-- title: Procal
-  titleLink: //github.com/danvim/Procal
-  liveLink: //github.com/danvim/Procal/releases/download/v1.1/Procal.apk
-  brief: Programmable Calculator
-  tags:
-    - Java
-    - Android
-    - Competition
-
-- title: SpyFall
-  titleLink: //github.com/dipsywong98/SpyFall
-  liveLink: //spy4.herokuapp.com
-  brief: The Spy Fall partygame
-  tags:
-    - JavaScript
-    - React
-    - Next.js
-    - Firebase
-    - MaterialUI
-    - Fun
-- title: Academic Requirement
-  titleLink: //github.com/dipsywong98/USThing-AR
-  brief: SIS Academic requirement parser
-  tags:
-    - JavaScript
-    - Fun
-    - USThing
-- title: Find Room
-  titleLink: //github.com/dipsywong98/USThing-FindRoom
-  liveLink: //dipsywong98.github.io/USThing-FindRoom/
-  brief: Find available room in HKUST and timetable of a room, web scrapper of class schedule
-  tags:
-    - JavaScript
-    - Vue.js
-    - Bootstrap
-    - Fun
-    - USThing
-- title: Exchange Fetch
-  titleLink: //github.com/dipsywong98/Exchange-Fetch
-  liveLink: //dipsywong98.github.io/Exchange-Fetch/
-  brief: (deprecated) A better way to search exchange credit transfer data
-  tags:
-    - JavaScript
-    - Vue.js
-    - Fun
-- title: twf300contest
-  titleLink: //github.com/dipsywong98/twf300contest
-  liveLink: //twf.jamiephan.net/contest/
-  brief: Competition website for organizing twf300 challenge (300容量挑戰賽)
-  tags:
-    - PHP
-    - JavaScript
-    - twf
-    - Fun
-- title: CodeIT Suisse 2018
-  titleLink: https://github.com/mcreng/CodeIT-2018
-  liveLink: https://badger-network.herokuapp.com/
-  brief: CodeIT Suisse 2018 Repo. Scored 8th out of 33 shortlisted teams with 4141 marks.
-  tags:
-    - JavaScript
-    - Python
-    - heroku
-    - Competition
-- title: Serverless Smart Album
-  titleLink: https://github.com/mcreng/serverless-smart-album
-  brief: Smart album that auto label photos on cloud
-  tags:
-    - Python
-    - JavaScript
-    - kubernetes
-    - docker
-    - openfaas
-    - COMP4651
-    - Academic
-- title: AI Rebellion
-  titleLink: https://github.com/danvim/tone-server
-  brief: A realtime multi-player strategy game
-  tags:
-    - TypeScript
-    - Vue.js
-    - protobuf.js
-    - WebRTC
-    - fun
-    - Academic
-    - COMP4451
-- title: Impressionist
-  titleLink: https://github.com/dipsywong98/COMP4411-impressionist
-  brief: Graphics project on photo editing software, CSE457 of University of Washington
-  tags:
-    - cpp
-    - Computer Graphics
-    - COMP4411
-    - Academic
-- title: Modeler
-  titleLink: https://github.com/dipsywong98/COMP4411-modeler
-  brief: Graphics project on controlling 3D models, CSE457 of University of Washington
-  tags:
-    - cpp
-    - Computer Graphics
-    - COMP4411
-    - Academic
-- title: Trace
-  titleLink: https://github.com/dipsywong98/COMP4411-trace
-  brief: Graphics project on ray tracing, CSE457 of University of Washington
-  tags:
-    - cpp
-    - Computer Graphics
-    - COMP4411
-    - Academic
-- title: Foundation of Computer Vision
-  titleLink: https://github.com/dipsywong98/COMP4901L
-  brief: CMU 16-385
-  tags:
-    - Matlab
-    - Computer Vision
-    - COMP4901L
-    - Academic
 - title: Deep Learning in Computer Vision
-  titleLink: https://github.com/dipsywong98/COMP4901J
+  titleLink: //github.com/dipsywong98/COMP4901J
   brief: Standford cs231n
+  time: 2018 fall
   tags:
     - Jupyter Notebook
     - Python
@@ -218,9 +105,139 @@
     - Machine Learning
     - COMP4901J
     - Academic
+- title: ScoreBoard
+  titleLink: //github.com/dipsywong98/ScoreBoard
+  liveLink: //scoreboard-d.firebaseapp.com/
+  brief: >-
+    Score board, brackets and pannel for HKUST Robotics Team internal
+    competition
+  time: 2018 fall
+  tags:
+    - JavaScript
+    - Vue
+    - Firebase
+    - Robotics
+- title: CodeIT Suisse 2018
+  titleLink: //github.com/mcreng/CodeIT-2018
+  liveLink: //badger-network.herokuapp.com/
+  brief: >-
+    CodeIT Suisse 2018 Repo. Scored 8th out of 33 shortlisted teams with 4141
+    marks.
+  time: 2018 fall
+  tags:
+    - JavaScript
+    - Python
+    - heroku
+    - Competition
+- title: Academic Requirement
+  titleLink: //github.com/dipsywong98/USThing-AR
+  brief: SIS Academic requirement parser
+  tags:
+    - JavaScript
+    - USThing
+  time: 2018 summer
+- title: Reimbusement System
+  brief: Automate the reimbursement process of Robotics Team
+  time: 2018 summer
+  tags:
+    - PHP
+    - Laravel
+    - JavaScript
+    - Vue
+    - Robotics
+    - Work
+- title: Creative18
+  titleLink: //github.com/hkust-smartcar/Creative18
+  brief: NXP Cup Creative Challenge - Quoridor
+  story: null
+  time: 2018 summer
+  tags:
+    - Python
+    - JavaScript
+    - cpp
+    - Robotics
+    - OpenMV
+    - AI
+    - Computer Vision
+    - embeded system
+    - electronjs
+    - Competition
+- title: libsccc
+  titleLink: //github.com/hkust-racing/libsccc
+  brief: HKUST Robotics team k60 library
+  time: 2018 summer
+  tags:
+    - cpp
+    - embeded system
+    - Robotics
+- title: SpyFall
+  titleLink: //github.com/dipsywong98/SpyFall
+  liveLink: //spy4.herokuapp.com
+  brief: The Spy Fall partygame
+  time: 2018 summer
+  tags:
+    - JavaScript
+    - React
+    - Next.js
+    - Firebase
+    - MaterialUI
+- title: NFC Tuckshop
+  titleLink: //github.com/hkust-smartcar/NFC-server
+  brief: Touchscreen POS with NFS support for smart car team
+  time: 2018 spring
+  tags:
+    - JavaScript
+    - cpp
+    - Robotics
+    - NFC
+    - embeded system
+- title: developers.altizure.com
+  titleLink: //developers.altizure.com
+  liveLink: //developers.altizure.com
+  brief: My internship project at Everest Inc.
+  time: 2018 winter
+  tags:
+    - JavaScript
+    - React
+    - Next.js
+    - Apollo
+    - GraphQL
+    - Work
+- title: Robotics Tutorials
+  titleLink: //github.com/hkust-smartcar/tutorials
+  brief: Tutorials and assignments for HKUST Robotics team
+  time: 2018 winter
+  tags:
+    - cpp
+    - Robotics
+    - embeded system
+    - Computer Vision
+- title: Corner-Detection-Challenge
+  titleLink: //github.com/hkust-smartcar/Corner-Detection-Challenge
+  liveLink: //hkust-smartcar.github.io/Corner-Detection-Challenge/
+  brief: Corner Detection Challenge first generation judge
+  time: 2018 winter
+  tags:
+    - JavaScript
+    - PHP
+    - cpp
+    - Firebase
+    - Robotics
+- title: homepage1
+  titleLink: //github.com/dipsywong98/dipsywong98.github.io
+  liveLink: //dipsywong98.github.io
+  brief: Homepage version 1
+  time: 2017 fall
+  tags:
+    - HTML
+    - CSS
+    - JavaScript
+    - Vue
 - title: Principles of Programming Languages
-  titleLink: https://github.com/dipsywong98/COMP3031
-  brief: 3 Programming assignments on functional programming, parser and logical programming
+  titleLink: //github.com/dipsywong98/COMP3031
+  brief: >-
+    Functional programming, parser and logical programming
+  time: 2017 fall
   tags:
     - Standard ML
     - C
@@ -229,3 +246,80 @@
     - bison
     - COMP3031
     - Academic
+- title: Exchange Fetch
+  titleLink: //github.com/dipsywong98/Exchange-Fetch
+  liveLink: //dipsywong98.github.io/Exchange-Fetch/
+  brief: (deprecated) A better way to search exchange credit transfer data
+  time: 2017 fall
+  tags:
+    - JavaScript
+    - Vue
+- title: Find Room
+  titleLink: //github.com/dipsywong98/USThing-FindRoom
+  liveLink: //dipsywong98.github.io/USThing-FindRoom/
+  brief: >-
+    Find available room in HKUST and timetable of a room, web scrapper of class
+    schedule
+  time: 2017 fall
+  tags:
+    - JavaScript
+    - Vue
+    - Bootstrap
+    - USThing
+- title: twf300contest
+  titleLink: //github.com/dipsywong98/twf300contest
+  liveLink: //twf.jamiephan.net/contest/
+  brief: Competition website for organizing twf300 challenge (300容量挑戰賽)
+  time: 2017 summer
+  tags:
+    - PHP
+    - JavaScript
+    - twf
+- title: Chasing17
+  titleLink: //github.com/hkust-smartcar/Chasing17
+  brief: NXP Cup Camera Chasing Challenge
+  time: 2017 summer
+  tags:
+    - cpp
+    - Robotics
+    - Computer Vision
+    - embeded system
+    - Competition
+- title: Procal
+  titleLink: //github.com/danvim/Procal
+  liveLink: //github.com/danvim/Procal/releases/download/v1.1/Procal.apk
+  brief: Programmable Calculator
+  time: 2017 winter
+  tags:
+    - Java
+    - Android
+    - Competition
+- title: 光暈戰珠 - 序
+  titleLink: //drive.google.com/open?id=1qyAnxdjDvDGX4lCBuAaNN1SKohF6yeBi
+  liveLink: //youtu.be/LOzIH5Vv-m8
+  brief: orb-matching game
+  time: 2016 spring
+  tags:
+    - twf
+- title: 同人技術研討中心
+  titleLink: //sites.google.com/site/twftechnique/
+  liveLink: //sites.google.com/site/twftechnique/
+  brief: Leading reference site in twf
+  time: 2015
+  tags:
+    - twf
+    - google site
+- title: 搶塔攻城
+  titleLink: //drive.google.com/open?id=0B2wxG8U_9xycQ2themFZUDBXRHc
+  liveLink: //youtu.be/wbbEV4_dFCA
+  brief: Mixture of AOE and COC, real time multiplayer strategy
+  time: '2015'
+  tags:
+    - twf
+- title: 鏡之宮殿
+  titleLink: //drive.google.com/open?id=0B2wxG8U_9xycOHU0WWRLT1pjT28
+  liveLink: //youtu.be/50atRrQrToE
+  brief: Sokuban with mirrors and lazers
+  time: '2014'
+  tags:
+    - twf
