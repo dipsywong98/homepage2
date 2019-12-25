@@ -38,7 +38,7 @@
         return this.allWorks
           .map(({ tags }) => tags)
           .flat()
-          .filter((t, k, s) => s.indexOf(t) === k)
+          .filter((t, k, s) => t&&s.indexOf(t) === k)
       },
       Category() {
         return this.category[0].toUpperCase() + this.category.substring(1)

@@ -7,7 +7,7 @@
              @blur="onBlur">
     </div>
     <div class="autofill-root" v-show="isShowingAuto">
-      <div class="autofill-container">
+      <div class="autofill-container" ref="items">
         <div :class="`autofill-item ${(k===cursor)&&'active'}`" v-for="(op,k) in suggestions"
              @mousedown="event=>event.preventDefault()"
              @click="trimAndMoveChip(op)">{{op}}
@@ -35,7 +35,8 @@
         if (this.input === '') {
           return []
         } else {
-          return this.availables.filter(a => a.includes(this.input)).filter(a => !this.chips.includes(a))
+          const regex = new RegExp(`^${this.input.toLowerCase()}`)
+          return this.availables.filter(a => a.toLowerCase().match(regex)).filter(a => !this.chips.includes(a))
         }
       },
       isShowingAuto() {
@@ -73,10 +74,14 @@
             break
           case 38: //up
             this.cursor = (this.cursor - 1 + this.suggestions.length) % this.suggestions.length
+            this.$refs.items.scrollTop = this.$refs.items.children[Math.max(0,this.cursor-3)].offsetTop
+            // this.$refs.items.scrollIntoView()
             event.preventDefault()
             break
           case 40: //down
             this.cursor = (this.cursor + 1) % this.suggestions.length
+            this.$refs.items.scrollTop = this.$refs.items.children[Math.max(0,this.cursor-3)].offsetTop
+            // this.$refs.items.scrollIntoView()
             event.preventDefault()
             break
         }
@@ -138,7 +143,6 @@
     width: 100%;
     margin: .25em .25em;
     background: none;
-    padding: .3em 0em;
 
     &:focus {
       outline: none;
@@ -151,19 +155,20 @@
   }
 
   .autofill-container {
+    scroll-behavior: auto;
     border-radius: 0 0 4px 4px;
     border: 1px solid var(--gray-light);
     position: absolute;
-    max-height: 80px;
+    max-height: 180px;
     width: 100%;
     overflow-y: auto;
     background: #ffffff;
-    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
   }
 
   .autofill-item {
     padding: 2px 8px;
-    border-bottom: 1px solid var(--gray-light);
+    border-bottom: 1px solid var(--gray-very-light);
     cursor: pointer;
 
     &.active {

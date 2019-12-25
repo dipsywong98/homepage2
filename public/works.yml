@@ -1,10 +1,11 @@
 - title: Creative18
   titleLink: //github.com/hkust-smartcar/Creative18
-  brief: NXP Cup Creative Challenge - Quorridor
+  brief: NXP Cup Creative Challenge - Quoridor
   story:
   tags:
     - Python
     - JavaScript
+    - cpp
     - Robotics
     - OpenMV
     - k60
@@ -12,22 +13,219 @@
     - Computer Vision
     - embebded system
     - electronjs
+    - Competition
 - title: NFC Tuckshop
   titleLink: //github.com/hkust-smartcar/NFC-server
   brief: Touchscreen POS with NFS support for smart car team
   tags:
     - JavaScript
+    - cpp
     - Robotics
     - NFC
     - k60
     - embebded system
+- title: Chasing17
+  titleLink: //github.com/hkust-smartcar/Chasing17
+  brief: NXP Cup Camera Chasing Challenge
+  tags:
+    - cpp
+    - Robotics
+    - k60
+    - Computer Vision
+    - embebded system
+    - Competition
+- title: Corner-Detection-Challenge
+  titleLink: //github.com/hkust-smartcar/Corner-Detection-Challenge
+  liveLink: https://hkust-smartcar.github.io/Corner-Detection-Challenge/
+  brief: Corner Detection Challenge first generation judge
+  tags:
+    - JavaScript
+    - PHP
+    - cpp
+    - Firebase
+    - Robotics
+- title: Judge2
+  titleLink: //github.com/hkust-smartcar/Judge
+  liveLink: //judge.hkustracing.com
+  brief: Corner Detection Challenge second generation judge
+  tags:
+    - JavaScript
+    - cpp
+    - MongoDB
+    - imba.js
+    - firejail
+    - socket.io
+    - OpenID
+    - Robotics
+- title: Robotics Tutorials
+  titleLink: //github.com/hkust-smartcar/tutorials
+  brief: Tutorials and assignments for HKUST Robotics team
+  tags:
+    - cpp
+    - k60
+    - Robotics
+    - Computer Vision
+- title: Reimbusement System
+  brief: Automate the reimbursement process of Robotics Team
+  tags:
+    - PHP
+    - Laravel
+    - JavaScript
+    - Vue.js
+    - Robotics
+- title: ScoreBoard
+  titleLink: https://github.com/dipsywong98/ScoreBoard
+  liveLink: https://scoreboard-d.firebaseapp.com/
+  brief: Score board, brackets and pannel for HKUST Robotics Team internal competition
+  tags:
+    - JavaScript
+    - Vue.js
+    - Firebase
+    - Robotics
+- title: Quoridor AI
+  titleLink: //github.com/dipsywong98/Quoridor
+  brief: AI that can play Quoridor game implemented by Min-Max Tree
+  tags:
+    - cpp
+    - SFML
+    - Robotics
+    - AI
+    - Competition
+- title: Procal
+  titleLink: //github.com/danvim/Procal
+  liveLink: //github.com/danvim/Procal/releases/download/v1.1/Procal.apk
+  brief: Programmable Calculator
+  tags:
+    - Java
+    - Android
+    - Competition
+
 - title: SpyFall
-  titleLink: //github/dipsywong98/SpyFall
+  titleLink: //github.com/dipsywong98/SpyFall
   liveLink: //spy4.herokuapp.com
   brief: The Spy Fall partygame
   tags:
     - JavaScript
-    - Reactjs
-    - Nextjs
+    - React
+    - Next.js
     - Firebase
     - MaterialUI
+    - Fun
+- title: Academic Requirement
+  titleLink: //github.com/dipsywong98/USThing-AR
+  brief: SIS Academic requirement parser
+  tags:
+    - JavaScript
+    - Fun
+    - USThing
+- title: Find Room
+  titleLink: //github.com/dipsywong98/USThing-FindRoom
+  liveLink: //dipsywong98.github.io/USThing-FindRoom/
+  brief: Find available room in HKUST and timetable of a room, web scrapper of class schedule
+  tags:
+    - JavaScript
+    - Vue.js
+    - Bootstrap
+    - Fun
+    - USThing
+- title: Exchange Fetch
+  titleLink: //github.com/dipsywong98/Exchange-Fetch
+  liveLink: //dipsywong98.github.io/Exchange-Fetch/
+  brief: (deprecated) A better way to search exchange credit transfer data
+  tags:
+    - JavaScript
+    - Vue.js
+    - Fun
+- title: twf300contest
+  titleLink: //github.com/dipsywong98/twf300contest
+  liveLink: //twf.jamiephan.net/contest/
+  brief: Competition website for organizing twf300 challenge (300容量挑戰賽)
+  tags:
+    - PHP
+    - JavaScript
+    - twf
+    - Fun
+- title: CodeIT Suisse 2018
+  titleLink: https://github.com/mcreng/CodeIT-2018
+  liveLink: https://badger-network.herokuapp.com/
+  brief: CodeIT Suisse 2018 Repo. Scored 8th out of 33 shortlisted teams with 4141 marks.
+  tags:
+    - JavaScript
+    - Python
+    - heroku
+    - Competition
+- title: Serverless Smart Album
+  titleLink: https://github.com/mcreng/serverless-smart-album
+  brief: Smart album that auto label photos on cloud
+  tags:
+    - Python
+    - JavaScript
+    - kubernetes
+    - docker
+    - openfaas
+    - COMP4651
+    - Academic
+- title: AI Rebellion
+  titleLink: https://github.com/danvim/tone-server
+  brief: A realtime multi-player strategy game
+  tags:
+    - TypeScript
+    - Vue.js
+    - protobuf.js
+    - WebRTC
+    - fun
+    - Academic
+    - COMP4451
+- title: Impressionist
+  titleLink: https://github.com/dipsywong98/COMP4411-impressionist
+  brief: Graphics project on photo editing software, CSE457 of University of Washington
+  tags:
+    - cpp
+    - Computer Graphics
+    - COMP4411
+    - Academic
+- title: Modeler
+  titleLink: https://github.com/dipsywong98/COMP4411-modeler
+  brief: Graphics project on controlling 3D models, CSE457 of University of Washington
+  tags:
+    - cpp
+    - Computer Graphics
+    - COMP4411
+    - Academic
+- title: Trace
+  titleLink: https://github.com/dipsywong98/COMP4411-trace
+  brief: Graphics project on ray tracing, CSE457 of University of Washington
+  tags:
+    - cpp
+    - Computer Graphics
+    - COMP4411
+    - Academic
+- title: Foundation of Computer Vision
+  titleLink: https://github.com/dipsywong98/COMP4901L
+  brief: CMU 16-385
+  tags:
+    - Matlab
+    - Computer Vision
+    - COMP4901L
+    - Academic
+- title: Deep Learning in Computer Vision
+  titleLink: https://github.com/dipsywong98/COMP4901J
+  brief: Standford cs231n
+  tags:
+    - Jupyter Notebook
+    - Python
+    - Computer Vision
+    - Machine Learning
+    - COMP4901J
+    - Academic
+- title: Principles of Programming Languages
+  titleLink: https://github.com/dipsywong98/COMP3031
+  brief: 3 Programming assignments on functional programming, parser and logical programming
+  tags:
+    - Standard ML
+    - C
+    - Prolog
+    - flex
+    - bison
+    - COMP3031
+    - Academic

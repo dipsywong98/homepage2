@@ -1,6 +1,6 @@
 # Creative18
 
-> NXP Cup Creative Challenge - Quorridor
+> NXP Cup Creative Challenge - Quoridor
 
 ## Teammates
 

@@ -2,9 +2,9 @@
   .root
     .container(ref="background")
       .background.sky(ref="sky")
-      .background.cloud(ref="cloud" :style="`left: ${x*10-w}px; bottom: ${y*10}px;`")
-      .background.city(ref="city" :style="`left: ${x*50-w}px; bottom: ${y*50}px;`")
-      .background.grass(ref="grass" :style="`left: ${x*100-w}px; bottom: ${10+y*100}px;`")
+      .background.cloud(ref="cloud" :style="`margin-left: ${x*5-w}px; bottom: ${y*10-50}px;`")
+      .background.city(ref="city" :style="`margin-left: ${x*40-w}px; bottom: ${y*50-50}px;`")
+      .background.grass(ref="grass" :style="`margin-left: ${x*80-w}px; bottom: ${y*100-50}px;`")
     .float
       h1.title Dipsyland
       h6.quote "Not Lalaland nor Poland"
