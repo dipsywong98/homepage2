@@ -6,7 +6,7 @@
           h4.title
             a.title.prevent-ripple-full-screen(v-if="work.titleLink" :href="work.titleLink") {{work.title}}
             a.title(v-else="work.titleLink") {{work.title}}
-          small
+          small.prevent-ripple-full-screen(@click="onTagClick(work.time)")
             i {{work.time}}
           p.brief {{work.brief}}
           .tags
@@ -96,6 +96,13 @@
 
     & a {
       color: var(--blue-pale);
+    }
+  }
+
+  small{
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
     }
   }
 

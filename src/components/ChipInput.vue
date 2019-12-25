@@ -90,7 +90,7 @@
         this.active = false
       },
       trimAndMoveChip(newChip) {
-        const trimmed = newChip.match(/^(\w+)[\s,]*$/g)[0]
+        const trimmed = newChip.match(/^(.+)[\s,]*$/g)[0]
         if (this.chips.indexOf(trimmed)===-1) {
           this.chips.push(trimmed)
         }

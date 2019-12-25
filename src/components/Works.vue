@@ -28,16 +28,19 @@
           return this.allWorks
         } else {
           return this.allWorks.filter(
-            ({ tags }) =>
-              this.filters.filter(f => (tags||[]).includes(f)).length ===
-              this.filters.length
+            ({ tags, time, title }) =>{
+              const template = (tags||[]).concat([time,title])
+              return this.filters.filter(f => template.includes(f)).length ===this.filters.length
+            }
           )
         }
       },
       allTags() {
         return this.allWorks
-          .map(({ tags }) => tags)
+          .map(({ title, time, tags }) => (tags||[]).concat(time, title))
           .flat()
+          .filter(t=>typeof t !== 'undefined')
+          .sort()
           .filter((t, k, s) => t&&s.indexOf(t) === k)
       },
       Category() {
