@@ -10,7 +10,7 @@
 <script>
   export default {
     mounted() {
-      fetch('https://api.github.com/repos/dipsywong98/dipsywong98.github.io/commits/master')
+      fetch('https://api.github.com/repositories/167823230/commits/dev')
         .then(res => res.json())
         .then(json => {
           this.lastTime = json.commit.author.date + ' '
