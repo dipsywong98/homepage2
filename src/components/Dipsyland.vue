@@ -52,7 +52,7 @@ export default {
   background-size: auto 1024px;
   background-repeat-y: no-repeat;
   resize: both;
-  width: 300vw;
+  width: 600vw;
   height: 1024px;
   position: fixed;
   z-index: -1000;
