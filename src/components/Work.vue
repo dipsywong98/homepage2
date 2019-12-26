@@ -71,10 +71,10 @@
   }
 
   .rect {
-    flex: 0 0 31%;
+    flex: 1 1 0;
     overflow: hidden;
     margin: 10px 10px;
-    min-width: 200px;
+    min-width: 300px;
     min-height: 80px;
     border: 1px solid var(--gray-light);
     border-radius: 3px;

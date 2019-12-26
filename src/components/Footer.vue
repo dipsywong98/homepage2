@@ -1,19 +1,26 @@
 <template lang="pug">
   footer
     .footer
-      div Make with love by Dipsy, Copyright© 2019 All Right Reserved
-      a(href="https://github.com/dipsywong98/dipsywong98.github.io") Last Update: {{lastUpdate}}
+      .footer-item Make with love by Dipsy, Copyright© 2019 All Right Reserved
+      .footer-item
+        a(href="https://github.com/dipsywong98/dipsywong98.github.io")
+          div Last Update: {{lastTime}}
+          div {{lastMessage}}
 </template>
 <script>
   export default {
     mounted() {
       fetch('https://api.github.com/repos/dipsywong98/dipsywong98.github.io/commits/master')
         .then(res => res.json())
-        .then(json => this.lastUpdate = json.commit.author.date + ' ' + json.commit.message)
+        .then(json => {
+          this.lastTime = json.commit.author.date + ' '
+          this.lastMessage = json.commit.message
+        })
     },
     data() {
       return {
-        lastUpdate: ''
+        lastMessage: '',
+        lastTime: ''
       }
     }
   }
@@ -29,10 +36,23 @@
     display: flex;
     margin: auto;
     justify-content: space-around;
+    flex-wrap: wrap;
 
-  a {
-    color: var(--bright)
-  }
+    & a {
+      color: var(--bright);
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+      margin: auto;
+      & div {
+        text-align: center;
+        margin: auto;
+        white-space: nowrap;
+      }
+    }
 
+    & .footer-item {
+      margin: 4px;
+    }
   }
 </style>

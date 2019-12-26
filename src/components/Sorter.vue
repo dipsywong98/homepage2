@@ -51,7 +51,10 @@
     },
     mounted() {
       getWorks(this.category).then(w => this.works = w)
-      window.addEventListener('mouseup', this.onUp.bind(this))
+      window.addEventListener('mouseup', this.onUp)
+    },
+    beforeDestroy() {
+      window.removeEventListener('mouseup', this.onUp)
     },
     methods: {
       onDown(e, w) {

@@ -117,7 +117,7 @@
   .input-root {
     display: inline-block;
     flex: 10 1 0;
-    z-index: 3;
+    z-index: 1;
   }
 
   .input-field-root {

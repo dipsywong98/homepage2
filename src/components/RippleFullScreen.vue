@@ -32,13 +32,17 @@
       const realRipple = this.$refs.realRipple
       const whole = this.$refs.whole
       rippleContainer.style.display = 'none'
-      window.addEventListener('keydown', ({ key }) => {
-        if (key === 'Escape') this.hide()
-      })
+      window.addEventListener('keydown', this.onKeyDown)
       whole.style.display = 'none'
       this.setRippleCircle()
     },
+    beforeDestroy() {
+      window.removeEventListener('keydown', this.onKeyDown)
+    },
     methods: {
+      onKeyDown({ key }) {
+        if (key === 'Escape') this.hide()
+      },
       setRippleCircle() {
         const rippleContainer = this.$refs.rippleContainer
         const realRipple = this.$refs.realRipple
@@ -118,7 +122,16 @@
           this.isActive = false
           this.isAnimating = false
           whole.style.display = 'none'
+          this.$emit('close')
         }, 500)
+      },
+    },
+    watch: {
+      ripple(newv, oldv) {
+        console.log(newv)
+        if (newv === false) {
+          this.hide()
+        }
       }
     }
   }

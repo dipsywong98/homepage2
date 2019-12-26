@@ -8,6 +8,8 @@
           ChipInput(:availables="allTags" v-model="filters")
         .works
           Work(v-for="work in works" :work="work" @tagClick="onTagClick" :category="category")
+          .placeholder
+          .placeholder
 
 
 </template>
@@ -28,20 +30,20 @@
           return this.allWorks
         } else {
           return this.allWorks.filter(
-            ({ tags, time, title }) =>{
-              const template = (tags||[]).concat([time,title])
-              return this.filters.filter(f => template.includes(f)).length ===this.filters.length
+            ({ tags, time, title }) => {
+              const template = (tags || []).concat([time, title])
+              return this.filters.filter(f => template.includes(f)).length === this.filters.length
             }
           )
         }
       },
       allTags() {
         return this.allWorks
-          .map(({ title, time, tags }) => (tags||[]).concat(time, title))
+          .map(({ title, time, tags }) => (tags || []).concat(time, title))
           .flat()
-          .filter(t=>typeof t !== 'undefined')
+          .filter(t => typeof t !== 'undefined')
           .sort()
-          .filter((t, k, s) => t&&s.indexOf(t) === k)
+          .filter((t, k, s) => t && s.indexOf(t) === k)
       },
       Category() {
         return this.category[0].toUpperCase() + this.category.substring(1)
@@ -81,8 +83,11 @@
   .container {
     margin: 5rem;
     position: relative;
+    @media screen and (max-width: 800px) {
+      margin: 5rem 20px;
+    }
     @media screen and (max-width: 600px) {
-      margin: 10rem 10px;
+      margin: 5rem 10px;
     }
   }
 
@@ -105,5 +110,12 @@
     display: flex;
     flex-flow: wrap;
     /*justify-content: space-between;*/
+    & .placeholder{
+      content: '';
+      flex: 1 1 0;
+      margin: 11px 11px;
+      min-width: 300px;
+    }
   }
+
 </style>
