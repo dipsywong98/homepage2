@@ -8,8 +8,8 @@
           <slot name="inside"></slot>
           <div class="close" @click="hide">x</div>
         </div>
-        <div ref="rippleContainer" class="rippleContainer">
-          <div ref="realRipple" class="realRipple"></div>
+        <div ref="rippleContainer" class="rippleContainer anim">
+          <div ref="realRipple" class="realRipple anim"></div>
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@
       },
       toggle(e) {
         if (!this.ripple) return false
-        const prevent = e.path
+        const prevent = e.composedPath()
           .map(el => el.classList)
           .filter(a => !!a)
           .map(l => l.contains('prevent-ripple-full-screen'))
@@ -93,10 +93,15 @@
         rippleContainer.style.display = ''
         document.body.style.overflowY = 'hidden'
         setTimeout(() => {
-          realRipple.className += ' anim show'
-          rippleContainer.className += ' anim show'
-          rippleContainer.style.left = null
-          rippleContainer.style.top = null
+          this.$nextTick(() => {
+            realRipple.classList.add('show')
+            rippleContainer.classList.add('show')
+            rippleContainer.style.left = '50vw'
+            rippleContainer.style.top = '50vh'
+            // realRipple.style.transform = 'scale(1)'
+            // realRipple.style.left = 'calc(-50vw - 50vh)'
+            // realRipple.style.top = 'calc(-50vw - 50vh)'
+          })
         }, 1)
         setTimeout(() => {
           this.$emit('active')
@@ -112,13 +117,12 @@
         const whole = this.$refs.whole
         realRipple.classList.remove('show')
         rippleContainer.classList.remove('show')
+        // realRipple.style.transform = 'scale(0.001)'
         rippleContainer.style.left = this.position.x + 'px'
         rippleContainer.style.top = this.position.y + 'px'
         document.body.style.overflowY = ''
         setTimeout(() => {
           rippleContainer.style.display = 'none'
-          realRipple.classList.remove('anim')
-          rippleContainer.classList.remove('anim')
           this.isActive = false
           this.isAnimating = false
           whole.style.display = 'none'
@@ -166,7 +170,7 @@
 
   .rippleContainer {
     position: absolute;
-
+    -moz-transition: top,left 0.5s cubic-bezier(0.6, 0.03, 0.09, 1.03);
     &.show {
       top: 50vh;
       left: 50vw;
@@ -183,6 +187,8 @@
     background-color: var(--blue-dark);
     transform: scale(0.001);
     overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.6, 0.03, 0.09, 1.03);
+    -moz-transition: -moz-transform 0.5s cubic-bezier(0.6, 0.03, 0.09, 1.03);
 
     &.show {
       transform: scale(1);

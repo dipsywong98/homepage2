@@ -14,7 +14,8 @@
       template(slot="inside")
         .work-ripple-inside
           .loading(v-if="loading") Loading...
-          vue-markdown(v-else :watches="['source', 'show', 'toc', 'story']" :source="story")
+          .markdown(v-else)
+            vue-markdown(:watches="['source', 'show', 'toc', 'story']" :source="story")
     .live-root(v-if="work.liveLink")
       a.live(:href="work.liveLink")
         .triangle {{' '}}
@@ -96,6 +97,10 @@
 
     & a {
       color: var(--blue-pale);
+    }
+
+    & .markdown {
+      margin: 0 10px;
     }
   }
 

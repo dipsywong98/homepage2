@@ -1,5 +1,5 @@
 - title: Installing Ubuntu on my Nvidia RTX2060 Laptop (Lenovo Legion Y7000SE)
-  titleLink: //gist.github.com/dipsywong98/76c3c956916cc18b7125e5a1c1e6d7d5
+#  titleLink: //gist.github.com/dipsywong98/76c3c956916cc18b7125e5a1c1e6d7d5
   brief: Pains and tears installing ubuntu
   story: >-
     //gist.githubusercontent.com/dipsywong98/76c3c956916cc18b7125e5a1c1e6d7d5/raw/ac1f07ff401c78cb70c30bfc1f05c333cdd6b812/Installing%2520Ubuntu%2520on%2520Nvidia%2520RTX2060%2520Laptop.md
@@ -8,7 +8,7 @@
     - Nvidia
     - KDE
 - title: Setup-new-subdomain-on-NginX-with-redirected-SSL
-  titleLink: //gist.github.com/dipsywong98/66559f2a14b59d40a0c423d53a52ef02
+#  titleLink: //gist.github.com/dipsywong98/66559f2a14b59d40a0c423d53a52ef02
   story: >-
     https://gist.githubusercontent.com/dipsywong98/66559f2a14b59d40a0c423d53a52ef02/raw/779b9470975dc14a7bfe8c433b6da8cf8ae68e0b/Setup-new-subdomain-on-NginX-with-redirected-SSL.md
   tags:
