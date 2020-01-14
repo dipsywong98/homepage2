@@ -5,7 +5,7 @@
     .field
       h1 Dipsy Wong
       h3 Year4 BEng(COMP & MATH), HKUST
-      h5 A random hacky programmer who love making anything fun!
+      h5 A random hacky programmer who loves making anything fun!
       .links
         SvgLink(href="//www.facebook.com/FK.twf/" icon="facebook" color="#1877F2")
         SvgLink(href="//github.com/dipsywong98" icon="github" color="#181717")
