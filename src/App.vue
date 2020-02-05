@@ -9,11 +9,9 @@
       #about
       NameCard
       PhotoBanner(src="/img/banners/oscon.jpg")
-      #works
-      Works(category="works")
+      Works#works(category="works")
       PhotoBanner(src="/img/banners/success.JPG")
-      #blog
-      Works(category="blog")
+      Works#blog(category="blog")
       Footer
 </template>
 
@@ -25,7 +23,7 @@
   import NameCard from './components/NameCard'
   import Works from './components/Works'
   import Footer from './components/Footer'
-  import Sorter from '@/components/Sorter'
+  import Sorter from './components/Sorter'
 
   export default {
     name: 'app',
@@ -130,7 +128,6 @@
     position: relative;
     padding: 3vh 4vw;
     -webkit-perspective: 300px;
-    perspective: 300px;
     -webkit-filter: drop-shadow(0 0.5vh 1vh rgba(0, 0, 0, 0.3));
     filter: drop-shadow(0 0.5vh 1vh rgba(0, 0, 0, 0.3));
     perspective-origin: top;
@@ -162,6 +159,7 @@
 
   .shadow-hover {
     transition: box-shadow 0.2s;
+
     &:hover {
       box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.25);;
     }

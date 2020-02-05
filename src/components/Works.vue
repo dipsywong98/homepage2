@@ -17,12 +17,19 @@
   import Work from './Work'
   import ChipInput from './ChipInput'
   import getWorks from '../lib/getWorks'
+  import updateScroll from '../lib/updateScroll'
 
   export default {
     components: { Work, ChipInput },
     props: ['category'],
     mounted() {
-      getWorks(this.category).then(v => (this.allWorks = v))
+      getWorks(this.category)
+        .then(v => (this.allWorks = v))
+        .then(() => {
+          this.$nextTick(() => {
+            updateScroll()
+          })
+        })
     },
     computed: {
       works() {
@@ -45,6 +52,9 @@
           .sort()
           .filter((t, k, s) => t && s.indexOf(t) === k)
       },
+      /**
+       * @return {string}
+       */
       Category() {
         return this.category[0].toUpperCase() + this.category.substring(1)
       }
@@ -110,7 +120,7 @@
     display: flex;
     flex-flow: wrap;
     /*justify-content: space-between;*/
-    & .placeholder{
+    & .placeholder {
       content: '';
       flex: 1 1 0;
       margin: 11px 11px;
