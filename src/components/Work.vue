@@ -50,10 +50,10 @@
         this.$emit('tagClick', tag)
       },
       onRippleAnimate() {
+        const title = `${this.work.title} | ${this.category} - Dipsyland`
+        document.title = title
+        window.history.pushState('', title, `#${encodeURIComponent(this.work.title)}`)
         if ('story' in this.work && this.story === '') {
-          const title = `${this.work.title} | ${this.category} - Dipsyland`
-          document.title = title
-          window.history.pushState('', title, `#${encodeURIComponent(this.work.title)}`)
           this.loading = true
           if (typeof this.work.story === 'string') {
             fetch(this.work.story)
