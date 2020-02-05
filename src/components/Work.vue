@@ -1,6 +1,6 @@
 <template lang="pug">
-  .rect.shadow-hover
-    RippleFullScreen(@animate="onRippleAnimate()" @active="onRippleAnimate()" :ripple="ripple")
+  .rect.shadow-hover(:id="encodeURIComponent(work.title)")
+    RippleFullScreen(@animate="onRippleAnimate()" @active="onRippleAnimate()" @close="onClose()" :ripple="ripple" :showByDefault="show")
       template(slot="outside")
         .work-ripple-outside
           h4.title
@@ -32,13 +32,18 @@
   export default {
     components: { Tag, RippleFullScreen, VueMarkdown },
     props: ['work', 'category'],
+    mounted() {
+      if (window.location.hash === `#${encodeURIComponent(this.work.title)}`) {
+        this.show = true
+      }
+    },
+    data() {
+      return { ghcolors, story: '', loading: false, show: false }
+    },
     computed: {
       ripple() {
         return 'story' in this.work
       }
-    },
-    data() {
-      return { ghcolors, story: '', loading: false }
     },
     methods: {
       onTagClick(tag) {
@@ -46,13 +51,27 @@
       },
       onRippleAnimate() {
         if ('story' in this.work && this.story === '') {
+          const title = `${this.work.title} | ${this.category} - Dipsyland`
+          document.title = title
+          window.history.pushState('', title, `#${encodeURIComponent(this.work.title)}`)
           this.loading = true
           if (typeof this.work.story === 'string') {
-            fetch(this.work.story).then(res => res.text()).then(text => this.story = text).finally(() => this.loading = false)
+            fetch(this.work.story)
+              .then(res => res.text())
+              .then(text => this.story = text)
+              .finally(() => this.loading = false)
           } else {
-            fetch(`/${this.category}/${this.work.title}.md`).then(res => res.text()).then(text => this.story = text).finally(() => this.loading = false)
+            fetch(`/${this.category}/${this.work.title}.md`)
+              .then(res => res.text())
+              .then(text => this.story = text)
+              .finally(() => this.loading = false)
           }
         }
+      },
+      onClose() {
+        const title = `Dipsyland`
+        document.title = title
+        window.history.pushState('', title, `/`)
       }
     }
   }
@@ -213,7 +232,7 @@
         position: absolute;
         width: 100px;
         text-align: center;
-        bottom: 0px;
+        bottom: 0;
       }
     }
   }

@@ -19,7 +19,7 @@
   import { setTimeout } from 'timers'
 
   export default {
-    props: { ripple: { default: true } },
+    props: { ripple: { default: true }, showByDefault: { default: false } },
     data() {
       return {
         position: {},
@@ -29,12 +29,11 @@
     },
     mounted() {
       const rippleContainer = this.$refs.rippleContainer
-      const realRipple = this.$refs.realRipple
       const whole = this.$refs.whole
       rippleContainer.style.display = 'none'
       window.addEventListener('keydown', this.onKeyDown)
       whole.style.display = 'none'
-      this.setRippleCircle()
+      this.isActive = this.showByDefault
     },
     beforeDestroy() {
       window.removeEventListener('keydown', this.onKeyDown)
@@ -42,21 +41,6 @@
     methods: {
       onKeyDown({ key }) {
         if (key === 'Escape') this.hide()
-      },
-      setRippleCircle() {
-        const rippleContainer = this.$refs.rippleContainer
-        const realRipple = this.$refs.realRipple
-        const w = window,
-          d = document,
-          e = d.documentElement,
-          g = d.getElementsByTagName('body')[0],
-          x = w.innerWidth || e.clientWidth || g.clientWidth,
-          y = w.innerHeight || e.clientHeight || g.clientHeight
-        const radius = Math.sqrt(x ** 2 + y ** 2)
-        // realRipple.style.width = radius + "px";
-        // realRipple.style.left = -radius / 2 + "px";
-        // realRipple.style.height = radius + "px";
-        // realRipple.style.top = -radius / 2 + "px";
       },
       toggle(e) {
         if (!this.ripple) return false
@@ -69,12 +53,8 @@
           return false
         }
         const { clientX: x, clientY: y } = e
-        const rippleContainer = this.$refs.rippleContainer
-        const realRipple = this.$refs.realRipple
         if (!this.isAnimating) {
-          if (this.isActive) {
-            // this.hide(x, y);
-          } else {
+          if (!this.isActive) {
             this.show(x, y)
           }
         }
@@ -98,26 +78,21 @@
             rippleContainer.classList.add('show')
             rippleContainer.style.left = '50vw'
             rippleContainer.style.top = '50vh'
-            // realRipple.style.transform = 'scale(1)'
-            // realRipple.style.left = 'calc(-50vw - 50vh)'
-            // realRipple.style.top = 'calc(-50vw - 50vh)'
           })
         }, 1)
         setTimeout(() => {
           this.$emit('active')
           this.isActive = true
           this.isAnimating = false
-          // this.setRippleSquare();
         }, 500)
       },
-      hide(x, y) {
+      hide() {
         this.isAnimating = true
         const rippleContainer = this.$refs.rippleContainer
         const realRipple = this.$refs.realRipple
         const whole = this.$refs.whole
         realRipple.classList.remove('show')
         rippleContainer.classList.remove('show')
-        // realRipple.style.transform = 'scale(0.001)'
         rippleContainer.style.left = this.position.x + 'px'
         rippleContainer.style.top = this.position.y + 'px'
         document.body.style.overflowY = ''
@@ -131,10 +106,15 @@
       },
     },
     watch: {
-      ripple(newv, oldv) {
+      ripple(newv) {
         console.log(newv)
         if (newv === false) {
           this.hide()
+        }
+      },
+      showByDefault(newv) {
+        if (newv) {
+          this.show(0, 0)
         }
       }
     }
@@ -153,7 +133,6 @@
   }
 
   .frame {
-    // border: 2px solid #000000;
     height: 100%;
     position: relative;
     cursor: pointer;
