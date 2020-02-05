@@ -129,7 +129,7 @@
     top: 0;
     left: 0;
     z-index: 3;
-    cursor: default;
+    cursor: auto;
   }
 
   .frame {
@@ -199,6 +199,7 @@
     padding: 0.5em;
     border-radius: 100%;
     text-align: center;
+    cursor: pointer;
 
     &:hover {
       background-color: #ffffff44;

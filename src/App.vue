@@ -71,7 +71,7 @@
     --blue: #00aeff;
     --blue-pale: #84c3cf;
     --blue-light: #ccefff;
-    --blue-dark: #1a237e;
+    --blue-dark: #021a34;
     --dark: #2c3e50;
     --bright: #f8f8f8;
     --gray-light: #d1d5da;

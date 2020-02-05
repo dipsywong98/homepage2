@@ -15,7 +15,7 @@
         .work-ripple-inside
           .loading(v-if="loading") Loading...
           .markdown(v-else)
-            vue-markdown(:watches="['source', 'show', 'toc', 'story']" :source="story")
+            Markdown(:source="story")
     .live-root(v-if="work.liveLink")
       a.live(:href="work.liveLink")
         .triangle {{' '}}
@@ -27,10 +27,10 @@
   import ghcolors from '../lib/ghcolors'
   import Tag from './Tag'
   import RippleFullScreen from './RippleFullScreen'
-  import VueMarkdown from 'vue-markdown'
+  import Markdown from './Markdown'
 
   export default {
-    components: { Tag, RippleFullScreen, VueMarkdown },
+    components: { Tag, RippleFullScreen, Markdown },
     props: ['work', 'category'],
     mounted() {
       if (window.location.hash === `#${encodeURIComponent(this.work.title)}`) {
