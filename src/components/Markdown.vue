@@ -11,7 +11,9 @@
     mounted() {
       const addListener = (code) => {
         code.addEventListener('click', () => {
-          copyToClipboard(code.innerText)
+          if (!window.getSelection().toString()) {
+            copyToClipboard(code.innerText)
+          }
         })
       }
       this.$refs.md.$el.querySelectorAll('pre').forEach(addListener)

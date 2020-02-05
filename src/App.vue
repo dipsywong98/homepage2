@@ -73,6 +73,7 @@
     --blue-light: #ccefff;
     --blue-dark: #021a34;
     --dark: #2c3e50;
+    --dark-background: #282c30;
     --bright: #f8f8f8;
     --gray-light: #d1d5da;
     --gray-very-light: #e1e5ea;

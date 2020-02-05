@@ -10,7 +10,7 @@
             i {{work.time}}
           p.brief {{work.brief}}
           .tags
-            Tag.prevent-ripple-full-screen(v-for="tag in work.tags" :tag="tag" @click="onTagClick(tag)" )
+            Tag.prevent-ripple-full-screen(v-for="tag in work.tags" :tag="tag" @click="onTagClick(tag)" :key="tag")
       template(slot="inside")
         .work-ripple-inside
           .loading(v-if="loading") Loading...

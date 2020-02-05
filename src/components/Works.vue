@@ -7,7 +7,7 @@
           .label Filter:
           ChipInput(:availables="allTags" v-model="filters")
         .works
-          Work(v-for="work in works" :work="work" @tagClick="onTagClick" :category="category")
+          Work(v-for="work in works" :work="work" @tagClick="onTagClick" :category="category" :key="work.title")
           .placeholder
           .placeholder
 

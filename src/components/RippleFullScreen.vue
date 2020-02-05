@@ -163,7 +163,7 @@
     width: calc(100vw + 100vh);
     height: calc(100vw + 100vh);
     border-radius: 100%;
-    background-color: var(--blue-dark);
+    background-color: var(--dark-background);
     transform: scale(0.001);
     overflow: hidden;
     transition: transform 0.5s cubic-bezier(0.6, 0.03, 0.09, 1.03);

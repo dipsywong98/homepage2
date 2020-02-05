@@ -1,10 +1,12 @@
 <template>
   <div class="input-root">
     <div :class="`input-field-root ${isShowingAuto && 'auto'} ${active && 'active'} shadow-hover`">
-      <Tag v-for="chip in chips" @click="()=>onChipClick(chip)" :tag="chip"></Tag>
-      <input class="input-field" ref="input" v-model="input" @input="onType" @keydown="onKey"
-             @focus="active=true"
-             @blur="onBlur">
+      <Tag :key="chip" :tag="chip" @click="()=>onChipClick(chip)" v-for="chip in chips"></Tag>
+      <label class="input-field">
+        <input @blur="onBlur" @focus="active=true" @input="onType" @keydown="onKey"
+               ref="input"
+               v-model="input">
+      </label>
     </div>
     <div class="autofill-root" v-show="isShowingAuto">
       <div class="autofill-container" ref="items">
@@ -33,7 +35,7 @@
     computed: {
       suggestions() {
         if (this.input === '') {
-          return []
+          return this.availables
         } else {
           const regex = new RegExp(`^${this.input.toLowerCase()}`)
           return this.availables.filter(a => a.toLowerCase().match(regex)).filter(a => !this.chips.includes(a))
@@ -81,12 +83,11 @@
           case 40: //down
             this.cursor = (this.cursor + 1) % this.suggestions.length
             this.$refs.items.scrollTop = this.$refs.items.children[Math.max(0,this.cursor-3)].offsetTop
-            // this.$refs.items.scrollIntoView()
             event.preventDefault()
             break
         }
       },
-      onBlur(event) {
+      onBlur() {
         this.active = false
       },
       trimAndMoveChip(newChip) {
@@ -129,7 +130,7 @@
 
     &.active {
       background: #ffffff;
-      box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
     }
 
     &.auto {
@@ -138,13 +139,17 @@
   }
 
   .input-field {
-    border: none;
     width: 100%;
-    margin: .25em .25em;
-    background: none;
 
-    &:focus {
-      outline: none;
+    input {
+      border: none;
+      width: 100%;
+      margin: .25em .25em;
+      background: none;
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 
@@ -158,7 +163,7 @@
     border-radius: 0 0 4px 4px;
     border: 1px solid var(--gray-light);
     position: absolute;
-    max-height: 180px;
+    max-height: 300px;
     width: 100%;
     overflow-y: auto;
     background: #ffffff;
@@ -166,8 +171,7 @@
   }
 
   .autofill-item {
-    padding: 2px 8px;
-    border-bottom: 1px solid var(--gray-very-light);
+    padding: 8px 16px;
     cursor: pointer;
 
     &.active {
