@@ -62,11 +62,11 @@
       }
 
       tbody {
-        tr:nth-child(odd) {
+        tr:nth-child(even) {
           background-color: var(--dark-1);
         }
 
-        tr:nth-child(even) {
+        tr:nth-child(odd) {
           background-color: var(--dark-background);
         }
       }
