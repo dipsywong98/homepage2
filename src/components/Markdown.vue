@@ -2,7 +2,7 @@
   vue-markdown(:watches="['source', 'show', 'toc', 'story']" :source="source" ref="md")
 </template>
 <script>
-  import VueMarkdown from 'vue-markdown'
+  import VueMarkdown from './VueMarkdown'
   import copyToClipboard from '../lib/copyToClipboard'
 
   export default {
@@ -43,6 +43,33 @@
 
     img {
       max-width: 100%;
+      margin: auto;
+    }
+
+    table {
+      border-collapse: collapse;;
+      border-spacing: 0;
+
+      td, th {
+        /*border: 1px solid var(--dark-2);*/
+        padding: 6px 13px;
+      }
+
+      width: 100%;
+
+      thead {
+        background-color: var(--dark);
+      }
+
+      tbody {
+        tr:nth-child(odd) {
+          background-color: var(--dark-1);
+        }
+
+        tr:nth-child(even) {
+          background-color: var(--dark-background);
+        }
+      }
     }
 
     %code-block {
