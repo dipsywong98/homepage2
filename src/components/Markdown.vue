@@ -13,6 +13,7 @@ export default {
         code.addEventListener('click', () => {
           if (!window.getSelection().toString()) {
             copyToClipboard(code.innerText)
+            this.$store.commit('popText', 'copied!')
           }
         })
       }
@@ -133,6 +134,7 @@ export default {
     code {
       @extend %code-block;
       padding: 4px;
+      cursor: text;
     }
 
     pre {

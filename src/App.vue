@@ -1,5 +1,6 @@
 <template lang="pug">
   div#app(ref="ctn")
+    Poptip
     #head
       NavBar
     #content
@@ -26,10 +27,12 @@ import NameCard from './components/NameCard'
 import Works from './components/Works'
 import Footer from './components/Footer'
 import Sorter from './components/Sorter'
+import Poptip from './components/Poptip'
 
 export default {
   name: 'app',
   components: {
+    Poptip,
     RippleFullScreen,
     NavBar,
     Dipsyland,

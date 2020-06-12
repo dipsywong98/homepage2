@@ -7,11 +7,11 @@
       h3 Year4 BEng(COMP & MATH), HKUST
       h5 A random hacky programmer who loves making anything fun!
       .links
-        SvgLink(href="//www.facebook.com/FK.twf/" icon="facebook" color="#1877F2")
-        SvgLink(href="//github.com/dipsywong98" icon="github" color="#181717")
-        SvgLink(href="//www.linkedin.com/in/dipsywong/" icon="linkedin" color="0077B5")
-        SvgLink(href="mailto:ycwongal@connect.ust.hk" icon="gmail" color="D14836")
-        SvgLink(href="//www.youtube.com/user/FacebookArmyOffical" icon="youtube" color="#FF0000")
+        SvgLink(href="//www.facebook.com/FK.twf/" icon="facebook" color="#1877F2" title="Facebook")
+        SvgLink(href="//github.com/dipsywong98" icon="github" color="#181717" title="GitHub")
+        SvgLink(href="//www.linkedin.com/in/dipsywong/" icon="linkedin" color="0077B5" title="LinkedIn")
+        SvgLink(href="mailto:ycwongal@connect.ust.hk" icon="gmail" color="D14836" title="Email")
+        SvgLink(href="//www.youtube.com/user/FacebookArmyOffical" icon="youtube" color="#FF0000" title="YouTube")
 
 </template>
 <style lang="scss" scoped>

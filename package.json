@@ -16,6 +16,7 @@
     "@iktakahiro/markdown-it-katex": "^3.1.0",
     "github-language-colors": "^1.0.0",
     "js-yaml": "latest",
+    "lodash.debounce": "^4.0.8",
     "markdown-it": "^10.0.0",
     "markdown-it-abbr": "^1.0.4",
     "markdown-it-container": "^3.0.0",
@@ -29,7 +30,8 @@
     "markdown-it-task-lists": "^2.1.1",
     "markdown-it-toc-and-anchor": "^4.2.0",
     "prismjs": "^1.20.0",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",

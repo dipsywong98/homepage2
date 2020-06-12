@@ -1,12 +1,13 @@
-<template>
-  <div >
-    <a :href="href">
-      <img width="24px" height="24px" :src="`/svg/${icon}.svg`" :alt="icon">
-    </a>
-  </div>
+<template lang="pug">
+  Tooltip(:title="title")
+    a(:href="href")
+      img(width="32px" height="32px" :src="`/svg/${icon}.svg`" :alt="icon")
 </template>
 <script>
-  export default {
-    props: ['href', 'icon', 'color']
-  }
+import Tooltip from './Tooltip'
+
+export default {
+  props: ['href', 'icon', 'color', 'title'],
+  components: { Tooltip }
+}
 </script>
