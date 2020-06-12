@@ -60,7 +60,7 @@ export default {
           if (typeof this.work.story === 'string') {
             fetch(this.work.story)
               .then(res => res.text())
-              .then(text => this.story = text)
+              .then(text => this.story = text.replace(/^---(\n.*)*?---/gm, ''))
               .finally(() => this.loading = false)
           } else {
             fetch(`/${this.category}/${this.work.title}.md`)

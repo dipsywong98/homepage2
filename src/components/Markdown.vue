@@ -2,10 +2,10 @@
   vue-markdown(:watches="['source', 'show', 'toc', 'story']" :source="source" ref="md")
 </template>
 <script>
-  import VueMarkdown from './VueMarkdown'
-  import copyToClipboard from '../lib/copyToClipboard'
+import VueMarkdown from './VueMarkdown'
+import copyToClipboard from '../lib/copyToClipboard'
 
-  export default {
+export default {
     components: { VueMarkdown },
     props: ['source'],
     mounted() {
@@ -72,6 +72,41 @@
       }
     }
 
+    %container {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+
+    .success {
+      @extend %container;
+      color: #3c763d;
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+    }
+
+    .info {
+      @extend %container;
+      color: #31708f;
+      background-color: #d9edf7;
+      border-color: #bce8f1;
+    }
+
+    .warning {
+      @extend %container;
+      color: #8a6d3b;
+      background-color: #fcf8e3;
+      border-color: #faebcc;
+    }
+
+    .danger {
+      @extend %container;
+      color: #a94442;
+      background-color: #f2dede;
+      border-color: #ebccd1;
+    }
+
     %code-block {
       font-family: monospace;
       font-size: inherit;
@@ -87,6 +122,12 @@
       &:hover {
         background-color: #232323;
       }
+    }
+
+    blockquote {
+      margin: 0 0 16px;
+      padding: 0 1em;
+      border-left: .25em solid var(--gray-light);
     }
 
     code {

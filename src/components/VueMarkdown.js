@@ -10,6 +10,7 @@ import mark from 'markdown-it-mark'
 import toc from 'markdown-it-toc-and-anchor'
 import tasklists from 'markdown-it-task-lists'
 import mk from '@iktakahiro/markdown-it-katex'
+import container from 'markdown-it-container'
 
 export default {
   md: new MarkdownIt().use(mk),
@@ -153,6 +154,23 @@ export default {
       .use(mark)
       // .use(katex, { "throwOnError": false, "errorColor": " #cc0000" })
       .use(tasklists, { enabled: this.taskLists })
+      .use(container, 'success')
+      .use(container, 'info')
+      .use(container, 'warning')
+      .use(container, 'danger')
+      .use(require('markdown-it-container'), 'spoiler',
+        {
+        render: (tokens, idx) => {
+          const token = tokens[idx]
+          if(token.type === 'container_spoiler_open'){
+            return '<details><summary>' + this.md.utils.escapeHtml(token.info) + '</summary>\n'
+          } else if (token.type === 'container_spoiler_close'){
+            return '</details>\n'
+          }
+          return ''
+        }
+      }
+      )
 
     if (this.emoji) {
       this.md.use(emoji)
