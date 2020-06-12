@@ -14,26 +14,26 @@
 
 </template>
 <script>
-  import Work from './Work'
-  import ChipInput from './ChipInput'
-  import getWorks from '../lib/getWorks'
-  import updateScroll from '../lib/updateScroll'
+import Work from './Work'
+import ChipInput from './ChipInput'
+import getWorks from '../lib/getWorks'
+import updateScroll from '../lib/updateScroll'
 
-  export default {
-    components: { Work, ChipInput },
-    props: ['category'],
-    mounted() {
-      getWorks(this.category)
+export default {
+  components: { Work, ChipInput },
+  props: ['category'],
+  mounted() {
+    getWorks(this.category)
         .then(v => (this.allWorks = v))
         .then(() => {
           this.$nextTick(() => {
             updateScroll()
           })
         })
-    },
-    computed: {
-      works() {
-        if (this.filters.length === 0) {
+  },
+  computed: {
+    works() {
+      if (this.filters.length === 0) {
           return this.allWorks
         } else {
           return this.allWorks.filter(
@@ -81,6 +81,7 @@
     position: relative;
     background-color: #f8f8f8;
     max-width: 1200px;
+    min-height: calc(var(--section-height) - 10rem * 2);
     margin: 10rem auto;
     overflow: hidden;
     box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.25);

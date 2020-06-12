@@ -28,7 +28,7 @@
     background-color: var(--bright);
     min-height: 300px;
     max-width: 1000px;
-    margin: calc((100vh - 288px) / 2) auto;
+    margin: calc((var(--section-height) - 300px) / 2) auto;
     box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.25);
     @media screen and (max-width: 600px) {
       margin: 10rem 0;
@@ -49,9 +49,9 @@
   }
 </style>
 <script>
-  import SvgLink from './SvgLink'
+import SvgLink from './SvgLink'
 
-  export default {
-    components: { SvgLink }
-  }
+export default {
+  components: { SvgLink }
+}
 </script>

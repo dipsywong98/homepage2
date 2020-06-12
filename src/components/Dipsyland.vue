@@ -36,12 +36,12 @@ export default {
 .root {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: var(--section-height);
 }
 .container {
   position: fixed;
   width: 100%;
-  height: 100vh;
+  height: var(--section-height);
   overflow: hidden;
   background-color: #96e282;
   z-index: -1;

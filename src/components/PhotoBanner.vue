@@ -17,6 +17,6 @@ export default {
   background-position: center;
   background-size: cover;
   background-color: #000000;
-  height: 80vh;
+  height: var(--section-height);
 }
 </style>

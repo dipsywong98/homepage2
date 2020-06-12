@@ -9,43 +9,45 @@
       #about
       NameCard
       PhotoBanner(src="/img/banners/oscon.jpg")
-      Works#works(category="works")
+      #works
+      Works(category="works")
       PhotoBanner(src="/img/banners/success.JPG")
-      Works#blog(category="blog")
+      #blog
+      Works(category="blog")
       Footer
 </template>
 
 <script>
-  import RippleFullScreen from './components/RippleFullScreen.vue'
-  import NavBar from './components/NavBar.vue'
-  import Dipsyland from './components/Dipsyland.vue'
-  import PhotoBanner from './components/PhotoBanner'
-  import NameCard from './components/NameCard'
-  import Works from './components/Works'
-  import Footer from './components/Footer'
-  import Sorter from './components/Sorter'
+import RippleFullScreen from './components/RippleFullScreen.vue'
+import NavBar from './components/NavBar.vue'
+import Dipsyland from './components/Dipsyland.vue'
+import PhotoBanner from './components/PhotoBanner'
+import NameCard from './components/NameCard'
+import Works from './components/Works'
+import Footer from './components/Footer'
+import Sorter from './components/Sorter'
 
-  export default {
-    name: 'app',
-    components: {
-      RippleFullScreen,
-      NavBar,
-      Dipsyland,
-      PhotoBanner,
-      NameCard,
-      Works,
-      Sorter,
-      Footer
-    },
-    data() {
-      return { rx: 0 }
-    },
-    methods: {
-      handleScroll() {
-        this.rx = Math.min(
+export default {
+  name: 'app',
+  components: {
+    RippleFullScreen,
+    NavBar,
+    Dipsyland,
+    PhotoBanner,
+    NameCard,
+    Works,
+    Sorter,
+    Footer
+  },
+  data() {
+    return { rx: 0 }
+  },
+  methods: {
+    handleScroll() {
+      this.rx = Math.min(
           (window.scrollY / this.$refs.ctn.clientHeight) * 110,
           110
-        )
+      )
       }
     },
     created() {
@@ -65,6 +67,8 @@
 
   :root {
     --line-width: 20px;
+    --nav-height: 52px;
+    --section-height: calc(100vh - var(--nav-height));
     --green: #96e282;
     --green-dark: #8ACF81;
     --green-light: #b3e893;

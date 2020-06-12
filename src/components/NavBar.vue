@@ -30,34 +30,35 @@
   </header>
 </template>
 <script>
-  import RippleFullScreen from './RippleFullScreen'
+import RippleFullScreen from './RippleFullScreen'
 
-  export default {
-    components: { RippleFullScreen },
-    mounted() {
-      this.$nextTick(() => {
-        window.addEventListener('resize', this.onResize)
-        this.onResize()
-      })
-    },
-    beforeDestroy() {
-      window.removeEventListener('resize', this.onResize)
-    },
-    data() {
-      return {
-        windowWidth: 0,
-        ripple: true
-      }
-    },
-    methods: {
-      onResize() {
-        this.windowWidth = window.innerWidth
-      }
+export default {
+  components: { RippleFullScreen },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize)
+      this.onResize()
+    })
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize)
+  },
+  data() {
+    return {
+      windowWidth: 0,
+      ripple: true
+    }
+  },
+  methods: {
+    onResize() {
+      this.windowWidth = window.innerWidth
+    }
     }
   }
 </script>
 <style lang="scss" scoped>
   .navbar-fixed {
+    height: var(--nav-height);
     box-shadow: 0 0 8px 0;
     position: fixed;
     top: 0;

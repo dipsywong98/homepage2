@@ -19,29 +19,29 @@
   </div>
 </template>
 <script>
-  import Tag from './Tag'
+import Tag from './Tag'
 
-  export default {
-    props: ['availables', 'value'],
-    components: { Tag },
-    data() {
-      return {
-        input: '',
-        chips: this.value,
-        cursor: 0,
-        active: false
+export default {
+  props: ['availables', 'value'],
+  components: { Tag },
+  data() {
+    return {
+      input: '',
+      chips: this.value,
+      cursor: 0,
+      active: false
+    }
+  },
+  computed: {
+    suggestions() {
+      if (this.input === '') {
+        return this.availables
+      } else {
+        const regex = new RegExp(`^${this.input.toLowerCase()}`)
+        return this.availables.filter(a => a.toLowerCase().match(regex)).filter(a => !this.chips.includes(a))
       }
     },
-    computed: {
-      suggestions() {
-        if (this.input === '') {
-          return this.availables
-        } else {
-          const regex = new RegExp(`^${this.input.toLowerCase()}`)
-          return this.availables.filter(a => a.toLowerCase().match(regex)).filter(a => !this.chips.includes(a))
-        }
-      },
-      isShowingAuto() {
+    isShowingAuto() {
         return this.active && this.suggestions.length > 0
       }
     },
@@ -61,30 +61,32 @@
         this.$refs.input.focus()
       },
       onKey(event) {
-        switch (event.keyCode) {
-          case 13: //enter
+        switch (event.key) {
+          case 'Enter': //enter
             if (this.suggestions.length > this.cursor) {
               this.trimAndMoveChip(this.suggestions[this.cursor])
             } else {
               this.trimAndMoveChip(this.input)
             }
             break
-          case 8: //backspace
+          case 'Backspace': //backspace
             if (this.input === '') {
               this.chips.pop()
             }
             break
-          case 38: //up
+          case 'ArrowUp': //up
             this.cursor = (this.cursor - 1 + this.suggestions.length) % this.suggestions.length
-            this.$refs.items.scrollTop = this.$refs.items.children[Math.max(0,this.cursor-3)].offsetTop
+            this.$refs.items.scrollTop = this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop
             // this.$refs.items.scrollIntoView()
             event.preventDefault()
             break
-          case 40: //down
+          case 'ArrowDown': //down
             this.cursor = (this.cursor + 1) % this.suggestions.length
-            this.$refs.items.scrollTop = this.$refs.items.children[Math.max(0,this.cursor-3)].offsetTop
+            this.$refs.items.scrollTop = this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop
             event.preventDefault()
             break
+          case 'Escape':
+            this.$refs.input.blur()
         }
       },
       onBlur() {
