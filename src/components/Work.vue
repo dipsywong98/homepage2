@@ -8,7 +8,9 @@
             a.title(v-else="work.titleLink") {{work.title}}
           small.prevent-ripple-full-screen(@click="onTagClick(work.time)")
             i {{work.time}}
-          p.brief {{work.brief}}
+          .brief
+            span {{(work.brief || '') + ' '}}
+            a.title(v-if="showMore" @click="onMoreClick()") more
           .tags
             Tag.prevent-ripple-full-screen(v-for="tag in work.tags" :tag="tag" @click="onTagClick(tag)" :key="tag")
       template(slot="inside")
@@ -24,25 +26,25 @@
 
 </template>
 <script>
-  import ghcolors from '../lib/ghcolors'
-  import Tag from './Tag'
-  import RippleFullScreen from './RippleFullScreen'
-  import Markdown from './Markdown'
+import ghcolors from '../lib/ghcolors'
+import Tag from './Tag'
+import RippleFullScreen from './RippleFullScreen'
+import Markdown from './Markdown'
 
-  export default {
-    components: { Tag, RippleFullScreen, Markdown },
-    props: ['work', 'category'],
-    mounted() {
-      if (window.location.hash === `#${encodeURIComponent(this.work.title)}`) {
-        this.show = true
-      }
-    },
-    data() {
-      return { ghcolors, story: '', loading: false, show: false }
-    },
+export default {
+  components: { Tag, RippleFullScreen, Markdown },
+  props: ['work', 'category'],
+  mounted() {
+    if (window.location.hash === `#${encodeURIComponent(this.work.title)}`) {
+      this.show = true
+    }
+  },
+  data() {
+    return { ghcolors, story: '', loading: false, show: false, ripple: 'story' in this.work && !('more' in this.work) }
+  },
     computed: {
-      ripple() {
-        return 'story' in this.work
+      showMore() {
+        return 'story' in this.work && 'more' in this.work
       }
     },
     methods: {
@@ -62,9 +64,9 @@
               .finally(() => this.loading = false)
           } else {
             fetch(`/${this.category}/${this.work.title}.md`)
-              .then(res => res.text())
-              .then(text => this.story = text)
-              .finally(() => this.loading = false)
+                .then(res => res.text())
+                .then(text => this.story = text)
+                .finally(() => this.loading = false)
           }
         }
       },
@@ -72,6 +74,12 @@
         const title = `Dipsyland`
         document.title = title
         window.history.pushState('', title, `/`)
+        if ('more' in this.work) {
+          this.ripple = false
+        }
+      },
+      onMoreClick() {
+        this.ripple = true
       }
     }
   }
@@ -84,6 +92,7 @@
   a.title {
     text-decoration: none;
     color: var(--blue);
+    cursor: pointer;
 
     &:hover {
       text-decoration: underline;
@@ -131,6 +140,7 @@
   }
 
   .brief {
+    margin: 8px 0;
     flex: 2 2 0;
   }
 
