@@ -26,22 +26,28 @@
 
 </template>
 <script>
-import ghcolors from '../lib/ghcolors'
-import Tag from './Tag'
-import RippleFullScreen from './RippleFullScreen'
-import Markdown from './Markdown'
+  import ghcolors from '../lib/ghcolors'
+  import Tag from './Tag'
+  import RippleFullScreen from './RippleFullScreen'
+  import Markdown from './Markdown'
 
-export default {
-  components: { Tag, RippleFullScreen, Markdown },
-  props: ['work', 'category'],
-  mounted() {
-    if (window.location.hash === `#${encodeURIComponent(this.work.title)}`) {
-      this.show = true
-    }
-  },
-  data() {
-    return { ghcolors, story: '', loading: false, show: false, ripple: 'story' in this.work && !('more' in this.work) }
-  },
+  export default {
+    components: { Tag, RippleFullScreen, Markdown },
+    props: ['work', 'category'],
+    mounted() {
+      if (window.location.hash === `#${encodeURIComponent(this.work.title)}`) {
+        this.show = true
+      }
+    },
+    data() {
+      return {
+        ghcolors,
+        story: '',
+        loading: false,
+        show: false,
+        ripple: 'story' in this.work && !('more' in this.work)
+      }
+    },
     computed: {
       showMore() {
         return 'story' in this.work && 'more' in this.work
@@ -60,7 +66,7 @@ export default {
           if (typeof this.work.story === 'string') {
             fetch(this.work.story)
               .then(res => res.text())
-              .then(text => this.story = text.replace(/^---(\n.*)*?---/gm, ''))
+              .then(text => this.story = text.replace(/^---(\n.*?)*?---/gm, ''))
               .finally(() => this.loading = false)
           } else {
             fetch(`/${this.category}/${this.work.title}.md`)
