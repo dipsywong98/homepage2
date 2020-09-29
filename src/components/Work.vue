@@ -154,10 +154,6 @@
     position: absolute;
     top: -1px;
     right: -1px;
-    overflow: hidden;
-    width: 75px;
-    height: 75px;
-    border-radius: 0 4px 0 0;
 
     & > .live {
       position: absolute;
