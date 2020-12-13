@@ -78,7 +78,7 @@ export default {
     left: 0;
   }
   to {
-    left: -576px;
+    left: -552px;
   }
 }
 
