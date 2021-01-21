@@ -1,7 +1,7 @@
 <template lang="pug">
   footer
     .footer
-      .footer-item Make with love by Dipsy, Copyright© 2020 All Right Reserved
+      .footer-item Make with love by Dipsy, Copyright© 2021 All Right Reserved
       .footer-item
         a(href="https://github.com/dipsywong98/dipsywong98.github.io")
           div Last Update: {{lastTime}}

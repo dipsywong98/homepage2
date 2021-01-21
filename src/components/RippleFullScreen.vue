@@ -16,8 +16,6 @@
   </div>
 </template>
 <script>
-  import { setTimeout } from 'timers'
-
   export default {
     props: { ripple: { default: true }, showByDefault: { default: false } },
     data() {
@@ -107,7 +105,6 @@
     },
     watch: {
       ripple(newv) {
-        console.log(newv)
         if (newv === false) {
           this.hide()
         }

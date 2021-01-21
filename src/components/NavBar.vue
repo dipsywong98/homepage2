@@ -98,10 +98,9 @@ export default {
   .inner-links {
     display: flex;
     flex-direction: column;
-    /*justify-content: space-around;*/
-    height: 200px;
+    justify-content: center;
+    height: 100vh;
     align-items: center;
-    margin: 5rem 0;
 
     & .inner-link {
       display: block;
