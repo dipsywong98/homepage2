@@ -31,11 +31,11 @@
     "markdown-it-toc-and-anchor": "^4.2.0",
     "prismjs": "^1.23.0",
     "vue": "^2.6.12",
-    "vuex": "^3.6.0"
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.10",
-    "@vue/cli-service": "^4.5.10",
+    "@vue/cli-plugin-babel": "^4.5.12",
+    "@vue/cli-service": "^4.5.12",
     "babel-core": "7.0.0-bridge.0",
     "node-sass": "^4.14.1",
     "pug": "^3.0.1",
