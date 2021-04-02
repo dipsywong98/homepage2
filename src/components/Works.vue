@@ -84,14 +84,19 @@ export default {
       if (reset) {
         this.filters.splice(0, this.filters.length)
       }
-      if (!this.filters.includes(tag)) {
+      if (tag && !this.filters.includes(tag)) {
         this.filters.push(tag)
         this.$refs.top.scrollIntoView()
       }
     },
     onDescriptionClick(event) {
       if (event.path.map(e => e.tagName).includes('A')) {
-        this.onTagClick(event.target.innerText, true)
+        const tag = event.target.innerText
+        if(tag !== 'all') {
+          this.onTagClick(tag, true)
+        } else {
+          this.onTagClick(false, true)
+        }
       }
     }
   }

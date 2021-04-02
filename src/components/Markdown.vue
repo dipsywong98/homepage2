@@ -1,5 +1,5 @@
 <template lang="pug">
-  vue-markdown(:watches="['source', 'show', 'toc', 'story']" :source="source" ref="md")
+  vue-markdown.markdown(:watches="['source', 'show', 'toc', 'story']" :source="source" ref="md")
 </template>
 <script>
 import VueMarkdown from './VueMarkdown'
@@ -41,6 +41,10 @@ export default {
     --function: rgb(220, 220, 170);
     --className: rgb(78, 201, 176);
     --char: rgb(209, 105, 105);
+
+    a {
+      color: var(--blue)
+    }
 
     img {
       max-width: 100%;
