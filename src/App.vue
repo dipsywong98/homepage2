@@ -11,7 +11,9 @@
       NameCard
       PhotoBanner(src="/img/banners/oscon.jpg")
       #works
-      Works(category="works")
+      Works(
+        category="works"
+        :default-filters="['featured']")
       PhotoBanner(src="/img/banners/success.JPG")
       #blog
       Works(category="blog")

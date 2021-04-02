@@ -1,15 +1,20 @@
 <template lang="pug">
-  .tag(@click="onClick")
-    div(v-if="tag in ghcolors")
-      span.color(:style="'background-color:'+ghcolors[tag]")
-      span {{tag}}
-    div(v-else) {{tag}}
+  a.tag(@click="onClick")
+    div(v-if="_tag in ghcolors")
+      span.color(:style="'background-color:'+ghcolors[_tag]")
+      span {{_tag}}
+    div(v-else) {{_tag}}
 </template>
 <script>
   import ghcolors from '../lib/ghcolors'
 
   export default {
     props: ['tag'],
+    computed: {
+      _tag() {
+        return this.tag || this.$slots.default[0].text
+      }
+    },
     data() {
       return { ghcolors }
     },
