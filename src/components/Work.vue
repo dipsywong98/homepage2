@@ -30,6 +30,7 @@
   import Tag from './Tag'
   import RippleFullScreen from './RippleFullScreen'
   import Markdown from './Markdown'
+  import { fresh } from '@/lib/fresh'
 
   export default {
     components: { Tag, RippleFullScreen, Markdown },
@@ -61,15 +62,15 @@
         const title = `${this.work.title} | ${this.category} - Dipsyland`
         document.title = title
         window.history.pushState('', title, `#${encodeURIComponent(this.work.title)}`)
-        if ('story' in this.work && this.story === '') {
+        if ('story' in this.work) {
           this.loading = true
           if (typeof this.work.story === 'string') {
-            fetch(this.work.story)
+            fresh(this.work.story)
               .then(res => res.text())
               .then(text => this.story = text.replace(/^---(\n.*?)*?---/gm, ''))
               .finally(() => this.loading = false)
           } else {
-            fetch(`/${this.category}/${this.work.title}.md`)
+            fresh(`/${this.category}/${this.work.title}.md`)
                 .then(res => res.text())
                 .then(text => this.story = text)
                 .finally(() => this.loading = false)

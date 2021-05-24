@@ -1,3 +1,5 @@
+import { fresh } from '@/lib/fresh'
+
 const yaml = require('js-yaml')
 
 export default async (category) => {
@@ -14,5 +16,5 @@ export default async (category) => {
     method: 'GET',
     cache: 'no-cache'
   };
-  return await fetch(url, myInit).then(res => res.text()).then(text => yaml.load(text, 'utf8'))
+  return await fresh(url, myInit).then(res => res.text()).then(text => yaml.load(text, 'utf8'))
 }

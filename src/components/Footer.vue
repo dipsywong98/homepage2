@@ -8,9 +8,11 @@
           div {{lastMessage}}
 </template>
 <script>
+  import { fresh } from '@/lib/fresh'
+
   export default {
     mounted() {
-      fetch('https://api.github.com/repositories/167823230/commits/dev')
+      fresh('https://api.github.com/repositories/167823230/commits/dev')
         .then(res => res.json())
         .then(json => {
           this.lastTime = json.commit.author.date + ' '
