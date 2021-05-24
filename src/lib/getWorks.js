@@ -10,5 +10,9 @@ export default async (category) => {
       url = 'https://hackmd.io/sRaU_QDUQymyE43tRbgmig/download'
       break
   }
-  return await fetch(url).then(res => res.text()).then(text => yaml.load(text, 'utf8'))
+  const myInit = {
+    method: 'GET',
+    cache: 'no-cache'
+  };
+  return await fetch(url, myInit).then(res => res.text()).then(text => yaml.load(text, 'utf8'))
 }
