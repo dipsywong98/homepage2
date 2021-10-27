@@ -12,60 +12,60 @@
   </div>
 </template>
 <script>
-import { setTimeout } from "timers";
+import { setTimeout } from 'timers'
 export default {
-  data() {
+  data () {
     return {
       radius: 0,
       x: 0,
       y: 0,
       isAnimating: false
-    };
+    }
   },
-  mounted() {
+  mounted () {
     // this.setRippleCircle();
   },
   methods: {
-    setRippleCircle() {
+    setRippleCircle () {
       const {
         offsetWidth: width,
         offsetHeight: height
-      } = this.$refs.rippifyRoot;
-      const { rippleContainer, realRipple } = this.$refs;
-      const radius = Math.max(width, height) / 2;
-      this.radius = radius;
-      rippleContainer.style.width = width + "px";
-      rippleContainer.style.height = height + "px";
-      realRipple.style.width = 2 * radius + "px";
-      realRipple.style.height = 2 * radius + "px";
-      realRipple.style.top = -radius + "px";
+      } = this.$refs.rippifyRoot
+      const { rippleContainer, realRipple } = this.$refs
+      const radius = Math.max(width, height) / 2
+      this.radius = radius
+      rippleContainer.style.width = width + 'px'
+      rippleContainer.style.height = height + 'px'
+      realRipple.style.width = 2 * radius + 'px'
+      realRipple.style.height = 2 * radius + 'px'
+      realRipple.style.top = -radius + 'px'
     },
-    click(e) {
+    click (e) {
       // console.log(e);
-      if (this.isAnimating) return;
-      this.isAnimating = true;
-      this.setRippleCircle();
-      const { layerX: x, layerY: y } = e;
+      if (this.isAnimating) return
+      this.isAnimating = true
+      this.setRippleCircle()
+      const { layerX: x, layerY: y } = e
 
       // this.x = x;
       // this.y = y;
-      const { rippifyRoot, realRipple } = this.$refs;
-      realRipple.style.left = x - this.radius + "px";
-      realRipple.style.top = y - this.radius + "px";
-      realRipple.classList += " animating end";
+      const { rippifyRoot, realRipple } = this.$refs
+      realRipple.style.left = x - this.radius + 'px'
+      realRipple.style.top = y - this.radius + 'px'
+      realRipple.classList += ' animating end'
       // setTimeout(() => {
       //   this.setRippleCircle();
       // }, 1);
       setTimeout(() => {
-        realRipple.classList.remove("animating");
+        realRipple.classList.remove('animating')
         // setTimeout(() => {
-        realRipple.classList.remove("end");
+        realRipple.classList.remove('end')
         // }, 1);
-        this.isAnimating = false;
-      }, 500);
+        this.isAnimating = false
+      }, 500)
     }
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 .rippifyRoot {

@@ -8,24 +8,24 @@
           div {{lastMessage}}
 </template>
 <script>
-  import { fresh } from '@/lib/fresh'
+import { fresh } from '@/lib/fresh'
 
-  export default {
-    mounted() {
-      fresh('https://api.github.com/repositories/167823230/commits/dev')
-        .then(res => res.json())
-        .then(json => {
-          this.lastTime = json.commit.author.date + ' '
-          this.lastMessage = json.commit.message
-        })
-    },
-    data() {
-      return {
-        lastMessage: '',
-        lastTime: ''
-      }
+export default {
+  mounted () {
+    fresh('https://api.github.com/repositories/167823230/commits/dev')
+      .then(res => res.json())
+      .then(json => {
+        this.lastTime = json.commit.author.date + ' '
+        this.lastMessage = json.commit.message
+      })
+  },
+  data () {
+    return {
+      lastMessage: '',
+      lastTime: ''
     }
   }
+}
 </script>
 <style lang="scss">
   footer {

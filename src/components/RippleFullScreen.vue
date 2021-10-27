@@ -16,106 +16,106 @@
   </div>
 </template>
 <script>
-  export default {
-    props: { ripple: { default: true }, showByDefault: { default: false } },
-    data() {
-      return {
-        position: {},
-        isActive: false,
-        isAnimating: false
+export default {
+  props: { ripple: { default: true }, showByDefault: { default: false } },
+  data () {
+    return {
+      position: {},
+      isActive: false,
+      isAnimating: false
+    }
+  },
+  mounted () {
+    const rippleContainer = this.$refs.rippleContainer
+    const whole = this.$refs.whole
+    rippleContainer.style.display = 'none'
+    window.addEventListener('keydown', this.onKeyDown)
+    whole.style.display = 'none'
+    this.isActive = this.showByDefault
+  },
+  beforeDestroy () {
+    window.removeEventListener('keydown', this.onKeyDown)
+  },
+  methods: {
+    onKeyDown ({ key }) {
+      if (key === 'Escape') this.hide()
+    },
+    toggle (e) {
+      if (!this.ripple) return false
+      const prevent = e.composedPath()
+        .map(el => el.classList)
+        .filter(a => !!a)
+        .map(l => l.contains('prevent-ripple-full-screen'))
+        .reduce((a, b) => a || b, false)
+      if (prevent) {
+        return false
+      }
+      const { clientX: x, clientY: y } = e
+      if (!this.isAnimating) {
+        if (!this.isActive) {
+          this.show(x, y)
+        }
       }
     },
-    mounted() {
+    show (x, y) {
+      this.isAnimating = true
+      this.$emit('animate')
       const rippleContainer = this.$refs.rippleContainer
+      const realRipple = this.$refs.realRipple
       const whole = this.$refs.whole
-      rippleContainer.style.display = 'none'
-      window.addEventListener('keydown', this.onKeyDown)
-      whole.style.display = 'none'
-      this.isActive = this.showByDefault
+      this.position.x = x
+      this.position.y = y
+      whole.style.display = ''
+      rippleContainer.style.left = this.position.x + 'px'
+      rippleContainer.style.top = this.position.y + 'px'
+      rippleContainer.style.display = ''
+      document.body.style.overflowY = 'hidden'
+      setTimeout(() => {
+        this.$nextTick(() => {
+          realRipple.classList.add('show')
+          rippleContainer.classList.add('show')
+          rippleContainer.style.left = '50vw'
+          rippleContainer.style.top = '50vh'
+        })
+      }, 1)
+      setTimeout(() => {
+        this.$emit('active')
+        this.isActive = true
+        this.isAnimating = false
+      }, 500)
     },
-    beforeDestroy() {
-      window.removeEventListener('keydown', this.onKeyDown)
+    hide () {
+      this.isAnimating = true
+      const rippleContainer = this.$refs.rippleContainer
+      const realRipple = this.$refs.realRipple
+      const whole = this.$refs.whole
+      realRipple.classList.remove('show')
+      rippleContainer.classList.remove('show')
+      rippleContainer.style.left = this.position.x + 'px'
+      rippleContainer.style.top = this.position.y + 'px'
+      document.body.style.overflowY = ''
+      setTimeout(() => {
+        rippleContainer.style.display = 'none'
+        this.isActive = false
+        this.isAnimating = false
+        whole.style.display = 'none'
+        this.$emit('close')
+      }, 500)
+    }
+  },
+  watch: {
+    ripple (newv) {
+      if (newv === false) {
+        this.hide()
+      }
     },
-    methods: {
-      onKeyDown({ key }) {
-        if (key === 'Escape') this.hide()
-      },
-      toggle(e) {
-        if (!this.ripple) return false
-        const prevent = e.composedPath()
-          .map(el => el.classList)
-          .filter(a => !!a)
-          .map(l => l.contains('prevent-ripple-full-screen'))
-          .reduce((a, b) => a || b, false)
-        if (prevent) {
-          return false
-        }
-        const { clientX: x, clientY: y } = e
-        if (!this.isAnimating) {
-          if (!this.isActive) {
-            this.show(x, y)
-          }
-        }
-      },
-      show(x, y) {
-        this.isAnimating = true
-        this.$emit('animate')
-        const rippleContainer = this.$refs.rippleContainer
-        const realRipple = this.$refs.realRipple
-        const whole = this.$refs.whole
-        this.position.x = x
-        this.position.y = y
-        whole.style.display = ''
-        rippleContainer.style.left = this.position.x + 'px'
-        rippleContainer.style.top = this.position.y + 'px'
-        rippleContainer.style.display = ''
-        document.body.style.overflowY = 'hidden'
-        setTimeout(() => {
-          this.$nextTick(() => {
-            realRipple.classList.add('show')
-            rippleContainer.classList.add('show')
-            rippleContainer.style.left = '50vw'
-            rippleContainer.style.top = '50vh'
-          })
-        }, 1)
-        setTimeout(() => {
-          this.$emit('active')
-          this.isActive = true
-          this.isAnimating = false
-        }, 500)
-      },
-      hide() {
-        this.isAnimating = true
-        const rippleContainer = this.$refs.rippleContainer
-        const realRipple = this.$refs.realRipple
-        const whole = this.$refs.whole
-        realRipple.classList.remove('show')
-        rippleContainer.classList.remove('show')
-        rippleContainer.style.left = this.position.x + 'px'
-        rippleContainer.style.top = this.position.y + 'px'
-        document.body.style.overflowY = ''
-        setTimeout(() => {
-          rippleContainer.style.display = 'none'
-          this.isActive = false
-          this.isAnimating = false
-          whole.style.display = 'none'
-          this.$emit('close')
-        }, 500)
-      },
-    },
-    watch: {
-      ripple(newv) {
-        if (newv === false) {
-          this.hide()
-        }
-      },
-      showByDefault(newv) {
-        if (newv) {
-          this.show(0, 0)
-        }
+    showByDefault (newv) {
+      if (newv) {
+        this.show(0, 0)
       }
     }
   }
+}
 </script>
 <style lang="scss" scoped>
   .whole {

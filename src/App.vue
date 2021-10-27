@@ -44,24 +44,24 @@ export default {
     Sorter,
     Footer
   },
-  data() {
+  data () {
     return { rx: 0 }
   },
   methods: {
-    handleScroll() {
+    handleScroll () {
       this.rx = Math.min(
-          (window.scrollY / this.$refs.ctn.clientHeight) * 110,
-          110
+        (window.scrollY / this.$refs.ctn.clientHeight) * 110,
+        110
       )
-      }
-    },
-    created() {
-      window.addEventListener('scroll', this.handleScroll)
-    },
-    destroyed() {
-      window.removeEventListener('scroll', this.handleScroll)
     }
+  },
+  created () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll)
   }
+}
 </script>
 
 <style lang="scss">

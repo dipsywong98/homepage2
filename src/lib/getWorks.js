@@ -15,6 +15,6 @@ export default async (category) => {
   const myInit = {
     method: 'GET',
     cache: 'no-cache'
-  };
+  }
   return await fresh(url, myInit).then(res => res.text()).then(text => yaml.load(text, 'utf8'))
 }

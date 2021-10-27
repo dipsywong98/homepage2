@@ -26,70 +26,70 @@
 
 </template>
 <script>
-  import ghcolors from '../lib/ghcolors'
-  import Tag from './Tag'
-  import RippleFullScreen from './RippleFullScreen'
-  import Markdown from './Markdown'
-  import { fresh } from '@/lib/fresh'
+import ghcolors from '../lib/ghcolors'
+import Tag from './Tag'
+import RippleFullScreen from './RippleFullScreen'
+import Markdown from './Markdown'
+import { fresh } from '@/lib/fresh'
 
-  export default {
-    components: { Tag, RippleFullScreen, Markdown },
-    props: ['work', 'category'],
-    mounted() {
-      if (window.location.hash === `#${encodeURIComponent(this.work.title)}`) {
-        this.show = true
-      }
+export default {
+  components: { Tag, RippleFullScreen, Markdown },
+  props: ['work', 'category'],
+  mounted () {
+    if (window.location.hash === `#${encodeURIComponent(this.work.title)}`) {
+      this.show = true
+    }
+  },
+  data () {
+    return {
+      ghcolors,
+      story: '',
+      loading: false,
+      show: false,
+      ripple: 'story' in this.work && !('more' in this.work)
+    }
+  },
+  computed: {
+    showMore () {
+      return 'story' in this.work && 'more' in this.work
+    }
+  },
+  methods: {
+    onTagClick (tag) {
+      this.$emit('tagClick', tag)
     },
-    data() {
-      return {
-        ghcolors,
-        story: '',
-        loading: false,
-        show: false,
-        ripple: 'story' in this.work && !('more' in this.work)
-      }
-    },
-    computed: {
-      showMore() {
-        return 'story' in this.work && 'more' in this.work
-      }
-    },
-    methods: {
-      onTagClick(tag) {
-        this.$emit('tagClick', tag)
-      },
-      onRippleAnimate() {
-        const title = `${this.work.title} | ${this.category} - Dipsyland`
-        document.title = title
-        window.history.pushState('', title, `#${encodeURIComponent(this.work.title)}`)
-        if ('story' in this.work) {
-          this.loading = true
-          if (typeof this.work.story === 'string') {
-            fresh(this.work.story)
-              .then(res => res.text())
-              .then(text => this.story = text.replace(/^---(\n.*?)*?---/gm, ''))
-              .finally(() => this.loading = false)
-          } else {
-            fresh(`/${this.category}/${this.work.title}.md`)
-                .then(res => res.text())
-                .then(text => this.story = text)
-                .finally(() => this.loading = false)
-          }
+    onRippleAnimate () {
+      const title = `${this.work.title} | ${this.category} - Dipsyland`
+      document.title = title
+      window.history.pushState('', title, `#${encodeURIComponent(this.work.title)}`)
+      if ('story' in this.work) {
+        this.loading = true
+        if (typeof this.work.story === 'string') {
+          fresh(this.work.story)
+            .then(res => res.text())
+            .then(text => this.story = text.replace(/^---(\n.*?)*?---/gm, ''))
+            .finally(() => this.loading = false)
+        } else {
+          fresh(`/${this.category}/${this.work.title}.md`)
+            .then(res => res.text())
+            .then(text => this.story = text)
+            .finally(() => this.loading = false)
         }
-      },
-      onClose() {
-        const title = `Dipsyland`
-        document.title = title
-        window.history.pushState('', title, `/`)
-        if ('more' in this.work) {
-          this.ripple = false
-        }
-      },
-      onMoreClick() {
-        this.ripple = true
       }
+    },
+    onClose () {
+      const title = 'Dipsyland'
+      document.title = title
+      window.history.pushState('', title, '/')
+      if ('more' in this.work) {
+        this.ripple = false
+      }
+    },
+    onMoreClick () {
+      this.ripple = true
     }
   }
+}
 </script>
 <style lang="scss">
   h4.title {

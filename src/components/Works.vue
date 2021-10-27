@@ -13,7 +13,6 @@
           .placeholder
           .placeholder
 
-
 </template>
 <script>
 import Work from './Work'
@@ -32,47 +31,47 @@ export default {
       default: () => []
     }
   },
-  mounted() {
+  mounted () {
     getWorks(this.category)
-        .then(v => {
-          this.allWorks = v.filter(({meta}) => !meta)
-          this.meta = v.find(({meta}) => meta)
+      .then(v => {
+        this.allWorks = v.filter(({ meta }) => !meta)
+        this.meta = v.find(({ meta }) => meta)
+      })
+      .then(() => {
+        this.$nextTick(() => {
+          updateScroll()
         })
-        .then(() => {
-          this.$nextTick(() => {
-            updateScroll()
-          })
-        })
+      })
   },
   computed: {
-    works() {
+    works () {
       if (this.filters.length === 0) {
         return this.allWorks
       } else {
         return this.allWorks.filter(
-            ({ tags, time, title }) => {
-              const template = (tags || []).concat([time, title]).filter(b => b).map(s => s.toLowerCase())
-              return this.filters.filter(f => template.includes(f.toLowerCase())).length === this.filters.length
-            }
+          ({ tags, time, title }) => {
+            const template = (tags || []).concat([time, title]).filter(b => b).map(s => s.toLowerCase())
+            return this.filters.filter(f => template.includes(f.toLowerCase())).length === this.filters.length
+          }
         )
       }
     },
-    allTags() {
+    allTags () {
       return this.allWorks
-          .map(({ title, time, tags }) => (tags || []).concat(time, title))
-          .flat()
-          .filter(t => typeof t !== 'undefined')
-          .sort()
-          .filter((t, k, s) => t && s.indexOf(t) === k)
+        .map(({ title, time, tags }) => (tags || []).concat(time, title))
+        .flat()
+        .filter(t => typeof t !== 'undefined')
+        .sort()
+        .filter((t, k, s) => t && s.indexOf(t) === k)
     },
     /**
      * @return {string}
      */
-    Category() {
+    Category () {
       return this.category[0].toUpperCase() + this.category.substring(1)
     }
   },
-  data() {
+  data () {
     return {
       filters: this.defaultFilters,
       allWorks: [],
@@ -80,7 +79,7 @@ export default {
     }
   },
   methods: {
-    onTagClick(tag, reset = false) {
+    onTagClick (tag, reset = false) {
       if (reset) {
         this.filters.splice(0, this.filters.length)
       }
@@ -89,10 +88,10 @@ export default {
         this.$refs.top.scrollIntoView()
       }
     },
-    onDescriptionClick(event) {
+    onDescriptionClick (event) {
       if (event.path.map(e => e.tagName).includes('A')) {
         const tag = event.target.innerText
-        if(tag !== 'all') {
+        if (tag !== 'all') {
           this.onTagClick(tag, true)
         } else {
           this.onTagClick(false, true)

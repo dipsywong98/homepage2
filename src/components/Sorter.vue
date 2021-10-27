@@ -30,61 +30,61 @@
       textarea(:value="yml")
 </template>
 <script>
-  import getWorks from '../lib/getWorks'
-  import { safeDump } from 'js-yaml'
+import getWorks from '../lib/getWorks'
+import { safeDump } from 'js-yaml'
 
-  export default {
-    props: ['category'],
-    data() {
-      return {
-        works: [],
-        down: false,
-        hover: false,
-        x: 0,
-        y: 0
+export default {
+  props: ['category'],
+  data () {
+    return {
+      works: [],
+      down: false,
+      hover: false,
+      x: 0,
+      y: 0
+    }
+  },
+  computed: {
+    yml () {
+      return safeDump(this.works)
+    }
+  },
+  mounted () {
+    getWorks(this.category).then(w => this.works = w)
+    window.addEventListener('mouseup', this.onUp)
+  },
+  beforeDestroy () {
+    window.removeEventListener('mouseup', this.onUp)
+  },
+  methods: {
+    onDown (e, w) {
+      // console.log(e,w)
+      this.down = w
+    },
+    onUp () {
+      if (!!this.down && !!this.hover) {
+        this.swap(this.works, this.down, this.hover)
+      }
+      this.down = false
+      this.hover = false
+    },
+    onHover (e, w) {
+      if (this.down) {
+        this.swap(this.works, this.down, w)
       }
     },
-    computed: {
-      yml() {
-        return safeDump(this.works)
-      }
-    },
-    mounted() {
-      getWorks(this.category).then(w => this.works = w)
-      window.addEventListener('mouseup', this.onUp)
-    },
-    beforeDestroy() {
-      window.removeEventListener('mouseup', this.onUp)
-    },
-    methods: {
-      onDown(e, w) {
-        // console.log(e,w)
-        this.down = w
-      },
-      onUp() {
-        if (!!this.down && !!this.hover) {
-          this.swap(this.works, this.down, this.hover)
+    swap (works, a, b) {
+      works.forEach((w, k) => {
+        if (w === a) {
+          works[k] = b
+        } else if (w === b) {
+          works[k] = a
         }
-        this.down = false
-        this.hover = false
-      },
-      onHover(e, w) {
-        if (this.down) {
-          this.swap(this.works, this.down, w)
-        }
-      },
-      swap(works, a, b) {
-        works.forEach((w, k) => {
-          if (w === a) {
-            works[k] = b
-          } else if (w === b) {
-            works[k] = a
-          }
-        })
-        this.works = works.concat([])
-      }
+      })
+      this.works = works.concat([])
     }
   }
+}
 </script>
 <style lang="scss">
   .sorter-root {

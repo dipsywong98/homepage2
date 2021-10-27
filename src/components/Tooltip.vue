@@ -6,17 +6,16 @@
 <script>
 export default {
   props: ['title', 'alwaysShow'],
-  data() {
+  data () {
     return {
       show: this.alwaysShow || false
     }
   },
   methods: {
-    onMouseIn() {
-      if (!!this.title)
-        this.show = true
+    onMouseIn () {
+      if (this.title) { this.show = true }
     },
-    onMouseOut() {
+    onMouseOut () {
       this.show = this.alwaysShow || false
     }
   }

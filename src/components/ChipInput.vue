@@ -24,7 +24,7 @@ import Tag from './Tag'
 export default {
   props: ['availables', 'value'],
   components: { Tag },
-  data() {
+  data () {
     return {
       input: '',
       chips: this.value,
@@ -33,7 +33,7 @@ export default {
     }
   },
   computed: {
-    suggestions() {
+    suggestions () {
       if (this.input === '') {
         return this.availables
       } else {
@@ -41,80 +41,80 @@ export default {
         return this.availables.filter(a => a.toLowerCase().match(regex)).filter(a => !this.chips.includes(a))
       }
     },
-    isShowingAuto() {
-        return this.active && this.suggestions.length > 0
+    isShowingAuto () {
+      return this.active && this.suggestions.length > 0
+    }
+  },
+  methods: {
+    onType () {
+      if (this.input[this.input.length - 1] === ',') {
+        this.trimAndMoveChip(this.input)
       }
     },
-    methods: {
-      onType() {
-        if (this.input[this.input.length - 1] === ',') {
-          this.trimAndMoveChip(this.input)
-        }
-      },
-      onChipClick(chip) {
-        while(true){
-          const index = this.chips.indexOf(chip)
-          if(index === -1) break;
-          this.chips.splice(index,1)
-        }
-        // this.chips = this.chips.filter(c => c !== chip)
-        this.$refs.input.focus()
-      },
-      onKey(event) {
-        switch (event.key) {
-          case 'Enter': //enter
-            if (this.suggestions.length > this.cursor) {
-              this.trimAndMoveChip(this.suggestions[this.cursor])
-            } else {
-              this.trimAndMoveChip(this.input)
-            }
-            break
-          case 'Backspace': //backspace
-            if (this.input === '') {
-              this.chips.pop()
-            }
-            break
-          case 'ArrowUp': //up
-            this.cursor = (this.cursor - 1 + this.suggestions.length) % this.suggestions.length
-            this.$refs.items.scrollTop = this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop
-            // this.$refs.items.scrollIntoView()
-            event.preventDefault()
-            break
-          case 'ArrowDown': //down
-            this.cursor = (this.cursor + 1) % this.suggestions.length
-            this.$refs.items.scrollTop = this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop
-            event.preventDefault()
-            break
-          case 'Escape':
-            this.$refs.input.blur()
-        }
-      },
-      onBlur() {
-        this.active = false
-      },
-      trimAndMoveChip(newChip) {
-        const trimmed = newChip.match(/^(.+)[\s,]*$/g)[0]
-        if (this.chips.indexOf(trimmed)===-1) {
-          this.chips.push(trimmed)
-        }
-        this.input = ''
-        this.cursor = 0
-        this.$refs.input.focus()
+    onChipClick (chip) {
+      while (true) {
+        const index = this.chips.indexOf(chip)
+        if (index === -1) break
+        this.chips.splice(index, 1)
       }
+      // this.chips = this.chips.filter(c => c !== chip)
+      this.$refs.input.focus()
     },
-    watch: {
-      chips() {
-        this.$emit('input', this.chips)
-      },
-      value(oldVal, newVal) {
-        newVal.forEach(v=>{
-          if (this.chips.indexOf(v)===-1) {
-            this.chips.push(v)
+    onKey (event) {
+      switch (event.key) {
+        case 'Enter': // enter
+          if (this.suggestions.length > this.cursor) {
+            this.trimAndMoveChip(this.suggestions[this.cursor])
+          } else {
+            this.trimAndMoveChip(this.input)
           }
-        })
+          break
+        case 'Backspace': // backspace
+          if (this.input === '') {
+            this.chips.pop()
+          }
+          break
+        case 'ArrowUp': // up
+          this.cursor = (this.cursor - 1 + this.suggestions.length) % this.suggestions.length
+          this.$refs.items.scrollTop = this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop
+          // this.$refs.items.scrollIntoView()
+          event.preventDefault()
+          break
+        case 'ArrowDown': // down
+          this.cursor = (this.cursor + 1) % this.suggestions.length
+          this.$refs.items.scrollTop = this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop
+          event.preventDefault()
+          break
+        case 'Escape':
+          this.$refs.input.blur()
       }
+    },
+    onBlur () {
+      this.active = false
+    },
+    trimAndMoveChip (newChip) {
+      const trimmed = newChip.match(/^(.+)[\s,]*$/g)[0]
+      if (this.chips.indexOf(trimmed) === -1) {
+        this.chips.push(trimmed)
+      }
+      this.input = ''
+      this.cursor = 0
+      this.$refs.input.focus()
+    }
+  },
+  watch: {
+    chips () {
+      this.$emit('input', this.chips)
+    },
+    value (oldVal, newVal) {
+      newVal.forEach(v => {
+        if (this.chips.indexOf(v) === -1) {
+          this.chips.push(v)
+        }
+      })
     }
   }
+}
 </script>
 <style lang="scss">
   .input-root {

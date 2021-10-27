@@ -9,17 +9,17 @@ import debounce from 'lodash.debounce'
 export default {
   components: { Tooltip },
   computed: {
-    title() {
+    title () {
       return this.$store.state.popText
     }
   },
-  data() {
+  data () {
     return {
       x: 0,
       y: 0
     }
   },
-  mounted() {
+  mounted () {
     window.addEventListener('mousemove', debounce(event => {
       this.x = event.screenX
       this.y = event.screenY - 50

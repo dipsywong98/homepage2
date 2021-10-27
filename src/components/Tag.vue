@@ -6,24 +6,24 @@
     div(v-else) {{_tag}}
 </template>
 <script>
-  import ghcolors from '../lib/ghcolors'
+import ghcolors from '../lib/ghcolors'
 
-  export default {
-    props: ['tag'],
-    computed: {
-      _tag() {
-        return this.tag || this.$slots.default[0].text
-      }
-    },
-    data() {
-      return { ghcolors }
-    },
-    methods: {
-      onClick() {
-        this.$emit('click')
-      }
+export default {
+  props: ['tag'],
+  computed: {
+    _tag () {
+      return this.tag || this.$slots.default[0].text
+    }
+  },
+  data () {
+    return { ghcolors }
+  },
+  methods: {
+    onClick () {
+      this.$emit('click')
     }
   }
+}
 </script>
 <style lang="scss" scoped>
   .tag {

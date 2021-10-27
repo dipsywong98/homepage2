@@ -6,22 +6,22 @@ import VueMarkdown from './VueMarkdown'
 import copyToClipboard from '../lib/copyToClipboard'
 
 export default {
-    components: { VueMarkdown },
-    props: ['source'],
-    mounted() {
-      const addListener = (code) => {
-        code.addEventListener('click', () => {
-          if (!window.getSelection().toString()) {
-            copyToClipboard(code.innerText)
-            this.$store.commit('popText', 'copied!')
-          }
-        })
-      }
-      this.$refs.md.$el.querySelectorAll('pre').forEach(addListener)
-      this.$refs.md.$el.querySelectorAll('code').forEach(addListener)
-      Prism.highlightAll()
+  components: { VueMarkdown },
+  props: ['source'],
+  mounted () {
+    const addListener = (code) => {
+      code.addEventListener('click', () => {
+        if (!window.getSelection().toString()) {
+          copyToClipboard(code.innerText)
+          this.$store.commit('popText', 'copied!')
+        }
+      })
     }
+    this.$refs.md.$el.querySelectorAll('pre').forEach(addListener)
+    this.$refs.md.$el.querySelectorAll('code').forEach(addListener)
+    Prism.highlightAll()
   }
+}
 </script>
 <style lang="scss">
   .markdown {

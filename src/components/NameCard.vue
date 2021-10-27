@@ -51,10 +51,10 @@ import { fresh } from '@/lib/fresh'
 
 export default {
   components: { SvgLink },
-  async beforeCreate() {
+  async beforeCreate () {
     this.my = jsyaml.load(await (await fresh('https://hackmd.io/ux_QXxWNTbetEKqOgRSQSA/download')).text())
   },
-  data() {
+  data () {
     return {
       my: {
         media: []

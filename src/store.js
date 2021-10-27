@@ -1,9 +1,9 @@
 const store = {
   state: {
-    popText: '',
+    popText: ''
   },
   mutations: {
-    popText(state, text) {
+    popText (state, text) {
       state.popText = text
       window.setTimeout(() => {
         state.popText = ''

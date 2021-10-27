@@ -34,27 +34,27 @@ import RippleFullScreen from './RippleFullScreen'
 
 export default {
   components: { RippleFullScreen },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize)
       this.onResize()
     })
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('resize', this.onResize)
   },
-  data() {
+  data () {
     return {
       windowWidth: 0,
       ripple: true
     }
   },
   methods: {
-    onResize() {
+    onResize () {
       this.windowWidth = window.innerWidth
     }
-    }
   }
+}
 </script>
 <style lang="scss" scoped>
   .navbar-fixed {
@@ -114,4 +114,3 @@ export default {
     }
   }
 </style>
-
