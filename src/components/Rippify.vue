@@ -49,7 +49,7 @@ export default {
 
       // this.x = x;
       // this.y = y;
-      const { rippifyRoot, realRipple } = this.$refs
+      const { realRipple } = this.$refs
       realRipple.style.left = x - this.radius + 'px'
       realRipple.style.top = y - this.radius + 'px'
       realRipple.classList += ' animating end'

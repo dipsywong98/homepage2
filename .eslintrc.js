@@ -15,5 +15,6 @@ module.exports = {
     'vue'
   ],
   rules: {
+    'no-return-assign': 'off'
   }
 }

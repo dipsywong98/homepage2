@@ -17,7 +17,7 @@ export default {
 
   template: '<div><slot></slot></div>',
 
-  data () {
+  data() {
     return {
       sourceData: this.source
     }
@@ -137,12 +137,12 @@ export default {
   },
 
   computed: {
-    tocLastLevelComputed () {
+    tocLastLevelComputed() {
       return this.tocLastLevel > this.tocFirstLevel ? this.tocLastLevel : this.tocFirstLevel + 1
     }
   },
 
-  render (createElement) {
+  render(createElement) {
     this.md = new MarkdownIt()
       .use(mk)
       .use(subscript)
@@ -191,7 +191,7 @@ export default {
         return self.renderToken(tokens, idx, options)
       }
     this.md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
-      Object.keys(this.anchorAttributes).map((attribute) => {
+      Object.keys(this.anchorAttributes).forEach((attribute) => {
         const aIndex = tokens[idx].attrIndex(attribute)
         const value = this.anchorAttributes[attribute]
         if (aIndex < 0) {
@@ -235,14 +235,14 @@ export default {
     this.$emit('rendered', outHtml)
     return createElement(
       'div', {
-        domProps: {
-          innerHTML: outHtml
-        }
+      domProps: {
+        innerHTML: outHtml
       }
+    }
     )
   },
 
-  beforeMount () {
+  beforeMount() {
     if (this.$slots.default) {
       this.sourceData = ''
       for (const slot of this.$slots.default) {

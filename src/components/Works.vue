@@ -1,18 +1,23 @@
 <template lang="pug">
-  .card(ref="top")
-    .container
-      .my-work
-        h1 My {{Category}}
-        .description(@click="onDescriptionClick")
-          Markdown(:source="meta ? meta.description : ''")
-        .filter
-          .label Filter:
-          ChipInput(:availables="allTags" v-model="filters")
-        .works
-          Work(v-for="work in works" :work="work" @tagClick="onTagClick" :category="category" :key="work.title")
-          .placeholder
-          .placeholder
-
+.card(ref="top")
+  .container
+    .my-work
+      h1 My {{ Category }}
+      .description(@click="onDescriptionClick")
+        Markdown(:source="meta ? meta.description : ''")
+      .filter
+        .label Filter:
+        ChipInput(:availables="allTags", v-model="filters")
+      .works
+        Work(
+          v-for="work in works",
+          :work="work",
+          @tagClick="onTagClick",
+          :category="category",
+          :key="work.title"
+        )
+        .placeholder
+        .placeholder
 </template>
 <script>
 import Work from './Work'
@@ -33,9 +38,14 @@ export default {
   },
   mounted () {
     getWorks(this.category)
-      .then(v => {
+      .then((v) => {
         this.allWorks = v.filter(({ meta }) => !meta)
         this.meta = v.find(({ meta }) => meta)
+        this.allWorks.forEach(({ title }) => {
+          if (encodeURIComponent(title) === this.hash) {
+            this.filters = [title]
+          }
+        })
       })
       .then(() => {
         this.$nextTick(() => {
@@ -48,19 +58,23 @@ export default {
       if (this.filters.length === 0) {
         return this.allWorks
       } else {
-        return this.allWorks.filter(
-          ({ tags, time, title }) => {
-            const template = (tags || []).concat([time, title]).filter(b => b).map(s => s.toLowerCase())
-            return this.filters.filter(f => template.includes(f.toLowerCase())).length === this.filters.length
-          }
-        )
+        return this.allWorks.filter(({ tags, time, title }) => {
+          const template = (tags || [])
+            .concat([time, title])
+            .filter((b) => b)
+            .map((s) => s.toLowerCase())
+          return (
+            this.filters.filter((f) => template.includes(f.toLowerCase()))
+              .length === this.filters.length
+          )
+        })
       }
     },
     allTags () {
       return this.allWorks
         .map(({ title, time, tags }) => (tags || []).concat(time, title))
         .flat()
-        .filter(t => typeof t !== 'undefined')
+        .filter((t) => typeof t !== 'undefined')
         .sort()
         .filter((t, k, s) => t && s.indexOf(t) === k)
     },
@@ -69,6 +83,9 @@ export default {
      */
     Category () {
       return this.category[0].toUpperCase() + this.category.substring(1)
+    },
+    hash () {
+      return window.location.hash.replace('#', '')
     }
   },
   data () {
@@ -89,7 +106,7 @@ export default {
       }
     },
     onDescriptionClick (event) {
-      if (event.path.map(e => e.tagName).includes('A')) {
+      if (event.path.map((e) => e.tagName).includes('A')) {
         const tag = event.target.innerText
         if (tag !== 'all') {
           this.onTagClick(tag, true)
@@ -148,11 +165,10 @@ export default {
   flex-flow: wrap;
   /*justify-content: space-between;*/
   & .placeholder {
-    content: '';
+    content: "";
     flex: 1 1 0;
     margin: 11px 11px;
     min-width: 300px;
   }
 }
-
 </style>

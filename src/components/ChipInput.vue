@@ -1,18 +1,37 @@
 <template>
   <div class="input-root">
-    <div :class="`input-field-root ${isShowingAuto && 'auto'} ${active && 'active'} shadow-hover`">
-      <Tag :key="chip" :tag="chip" @click="()=>onChipClick(chip)" v-for="chip in chips"></Tag>
+    <div
+      :class="`input-field-root ${isShowingAuto && 'auto'} ${
+        active && 'active'
+      } shadow-hover`"
+    >
+      <Tag
+        :key="chip"
+        :tag="chip"
+        @click="() => onChipClick(chip)"
+        v-for="chip in value"
+      ></Tag>
       <label class="input-field">
-        <input @blur="onBlur" @focus="active=true" @input="onType" @keydown="onKey"
-               ref="input"
-               v-model="input">
+        <input
+          @blur="onBlur"
+          @focus="active = true"
+          @input="onType"
+          @keydown="onKey"
+          ref="input"
+          v-model="input"
+        />
       </label>
     </div>
     <div class="autofill-root" v-show="isShowingAuto">
       <div class="autofill-container" ref="items">
-        <div :class="`autofill-item ${(k===cursor)&&'active'}`" v-for="(op,k) in suggestions"
-             @mousedown="event=>event.preventDefault()"
-             @click="trimAndMoveChip(op)">{{op}}
+        <div
+          :class="`autofill-item ${k === cursor && 'active'}`"
+          v-for="(op, k) in suggestions"
+          :key="op"
+          @mousedown="(event) => event.preventDefault()"
+          @click="trimAndMoveChip(op)"
+        >
+          {{ op }}
         </div>
       </div>
     </div>
@@ -27,7 +46,6 @@ export default {
   data () {
     return {
       input: '',
-      chips: this.value,
       cursor: 0,
       active: false
     }
@@ -38,7 +56,9 @@ export default {
         return this.availables
       } else {
         const regex = new RegExp(`^${this.input.toLowerCase()}`)
-        return this.availables.filter(a => a.toLowerCase().match(regex)).filter(a => !this.chips.includes(a))
+        return this.availables
+          .filter((a) => a.toLowerCase().match(regex))
+          .filter((a) => !this.value.includes(a))
       }
     },
     isShowingAuto () {
@@ -53,11 +73,11 @@ export default {
     },
     onChipClick (chip) {
       while (true) {
-        const index = this.chips.indexOf(chip)
+        const index = this.value.indexOf(chip)
         if (index === -1) break
-        this.chips.splice(index, 1)
+        this.value.splice(index, 1)
       }
-      // this.chips = this.chips.filter(c => c !== chip)
+      // this.value = this.value.filter(c => c !== chip)
       this.$refs.input.focus()
     },
     onKey (event) {
@@ -71,18 +91,22 @@ export default {
           break
         case 'Backspace': // backspace
           if (this.input === '') {
-            this.chips.pop()
+            this.value.pop()
           }
           break
         case 'ArrowUp': // up
-          this.cursor = (this.cursor - 1 + this.suggestions.length) % this.suggestions.length
-          this.$refs.items.scrollTop = this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop
+          this.cursor =
+            (this.cursor - 1 + this.suggestions.length) %
+            this.suggestions.length
+          this.$refs.items.scrollTop =
+            this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop
           // this.$refs.items.scrollIntoView()
           event.preventDefault()
           break
         case 'ArrowDown': // down
           this.cursor = (this.cursor + 1) % this.suggestions.length
-          this.$refs.items.scrollTop = this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop
+          this.$refs.items.scrollTop =
+            this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop
           event.preventDefault()
           break
         case 'Escape':
@@ -94,98 +118,86 @@ export default {
     },
     trimAndMoveChip (newChip) {
       const trimmed = newChip.match(/^(.+)[\s,]*$/g)[0]
-      if (this.chips.indexOf(trimmed) === -1) {
-        this.chips.push(trimmed)
+      if (this.value.indexOf(trimmed) === -1) {
+        this.value.push(trimmed)
       }
       this.input = ''
       this.cursor = 0
       this.$refs.input.focus()
     }
-  },
-  watch: {
-    chips () {
-      this.$emit('input', this.chips)
-    },
-    value (oldVal, newVal) {
-      newVal.forEach(v => {
-        if (this.chips.indexOf(v) === -1) {
-          this.chips.push(v)
-        }
-      })
-    }
   }
 }
 </script>
 <style lang="scss">
-  .input-root {
-    display: inline-block;
-    flex: 10 1 0;
-    z-index: 1;
-  }
+.input-root {
+  display: inline-block;
+  flex: 10 1 0;
+  z-index: 1;
+}
 
-  .input-field-root {
-    display: flex;
-    padding: 2px 8px;
-    border-radius: 4px;
-    border: 1px solid var(--gray-light);
-    transition: 0.4s;
+.input-field-root {
+  display: flex;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--gray-light);
+  transition: 0.4s;
 
-    &.active {
-      background: #ffffff;
-      box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
-    }
-
-    &.auto {
-      border-radius: 4px 4px 0 0;
-    }
-  }
-
-  .input-field {
-    width: 100%;
-
-    input {
-      border: none;
-      width: 100%;
-      margin: .25em .25em;
-      background: none;
-
-      &:focus {
-        outline: none;
-      }
-    }
-  }
-
-  .autofill-root {
-    position: relative;
-    margin-right: 2px;
-  }
-
-  .autofill-container {
-    scroll-behavior: auto;
-    border-radius: 0 0 4px 4px;
-    border: 1px solid var(--gray-light);
-    position: absolute;
-    max-height: 300px;
-    width: 100%;
-    overflow-y: auto;
+  &.active {
     background: #ffffff;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
   }
 
-  .autofill-item {
-    padding: 8px 16px;
-    cursor: pointer;
+  &.auto {
+    border-radius: 4px 4px 0 0;
+  }
+}
 
-    &.active {
-      background: var(--gray-light);
+.input-field {
+  width: 100%;
 
-      &:hover {
-        background: var(--gray-light);
-      }
-    }
+  input {
+    border: none;
+    width: 100%;
+    margin: 0.25em 0.25em;
+    background: none;
 
-    &:hover {
-      background: var(--gray-very-light);
+    &:focus {
+      outline: none;
     }
   }
+}
+
+.autofill-root {
+  position: relative;
+  margin-right: 2px;
+}
+
+.autofill-container {
+  scroll-behavior: auto;
+  border-radius: 0 0 4px 4px;
+  border: 1px solid var(--gray-light);
+  position: absolute;
+  max-height: 300px;
+  width: 100%;
+  overflow-y: auto;
+  background: #ffffff;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+}
+
+.autofill-item {
+  padding: 8px 16px;
+  cursor: pointer;
+
+  &.active {
+    background: var(--gray-light);
+
+    &:hover {
+      background: var(--gray-light);
+    }
+  }
+
+  &:hover {
+    background: var(--gray-very-light);
+  }
+}
 </style>
