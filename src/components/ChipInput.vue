@@ -78,6 +78,7 @@ export default {
         const index = this.chips.indexOf(chip)
         if (index === -1) break
         this.chips.splice(index, 1)
+        this.chips = [...this.chips]
       }
       // this.chips = this.chips.filter(c => c !== chip)
       this.$refs.input.focus()
