@@ -10,6 +10,7 @@
         :tag="chip"
         @click="() => onChipClick(chip)"
         v-for="chip in value"
+        :removable="true"
       ></Tag>
       <label class="input-field">
         <input
@@ -38,95 +39,95 @@
   </div>
 </template>
 <script>
-import Tag from './Tag'
+import Tag from "./Tag";
 
 export default {
-  props: ['availables', 'value'],
+  props: ["availables", "value"],
   components: { Tag },
-  data () {
+  data() {
     return {
-      input: '',
+      input: "",
       cursor: 0,
-      active: false
-    }
+      active: false,
+    };
   },
   computed: {
-    suggestions () {
-      if (this.input === '') {
-        return this.availables
+    suggestions() {
+      if (this.input === "") {
+        return this.availables;
       } else {
-        const regex = new RegExp(`^${this.input.toLowerCase()}`)
+        const regex = new RegExp(`^${this.input.toLowerCase()}`);
         return this.availables
           .filter((a) => a.toLowerCase().match(regex))
-          .filter((a) => !this.value.includes(a))
+          .filter((a) => !this.value.includes(a));
       }
     },
-    isShowingAuto () {
-      return this.active && this.suggestions.length > 0
-    }
+    isShowingAuto() {
+      return this.active && this.suggestions.length > 0;
+    },
   },
   methods: {
-    onType () {
-      if (this.input[this.input.length - 1] === ',') {
-        this.trimAndMoveChip(this.input)
+    onType() {
+      if (this.input[this.input.length - 1] === ",") {
+        this.trimAndMoveChip(this.input);
       }
     },
-    onChipClick (chip) {
+    onChipClick(chip) {
       while (true) {
-        const index = this.value.indexOf(chip)
-        if (index === -1) break
-        this.value.splice(index, 1)
+        const index = this.value.indexOf(chip);
+        if (index === -1) break;
+        this.value.splice(index, 1);
       }
       // this.value = this.value.filter(c => c !== chip)
-      this.$refs.input.focus()
+      this.$refs.input.focus();
     },
-    onKey (event) {
+    onKey(event) {
       switch (event.key) {
-        case 'Enter': // enter
+        case "Enter": // enter
           if (this.suggestions.length > this.cursor) {
-            this.trimAndMoveChip(this.suggestions[this.cursor])
+            this.trimAndMoveChip(this.suggestions[this.cursor]);
           } else {
-            this.trimAndMoveChip(this.input)
+            this.trimAndMoveChip(this.input);
           }
-          break
-        case 'Backspace': // backspace
-          if (this.input === '') {
-            this.value.pop()
+          break;
+        case "Backspace": // backspace
+          if (this.input === "") {
+            this.value.pop();
           }
-          break
-        case 'ArrowUp': // up
+          break;
+        case "ArrowUp": // up
           this.cursor =
             (this.cursor - 1 + this.suggestions.length) %
-            this.suggestions.length
+            this.suggestions.length;
           this.$refs.items.scrollTop =
-            this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop
+            this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop;
           // this.$refs.items.scrollIntoView()
-          event.preventDefault()
-          break
-        case 'ArrowDown': // down
-          this.cursor = (this.cursor + 1) % this.suggestions.length
+          event.preventDefault();
+          break;
+        case "ArrowDown": // down
+          this.cursor = (this.cursor + 1) % this.suggestions.length;
           this.$refs.items.scrollTop =
-            this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop
-          event.preventDefault()
-          break
-        case 'Escape':
-          this.$refs.input.blur()
+            this.$refs.items.children[Math.max(0, this.cursor - 3)].offsetTop;
+          event.preventDefault();
+          break;
+        case "Escape":
+          this.$refs.input.blur();
       }
     },
-    onBlur () {
-      this.active = false
+    onBlur() {
+      this.active = false;
     },
-    trimAndMoveChip (newChip) {
-      const trimmed = newChip.match(/^(.+)[\s,]*$/g)[0]
+    trimAndMoveChip(newChip) {
+      const trimmed = newChip.match(/^(.+)[\s,]*$/g)[0];
       if (this.value.indexOf(trimmed) === -1) {
-        this.value.push(trimmed)
+        this.value.push(trimmed);
       }
-      this.input = ''
-      this.cursor = 0
-      this.$refs.input.focus()
-    }
-  }
-}
+      this.input = "";
+      this.cursor = 0;
+      this.$refs.input.focus();
+    },
+  },
+};
 </script>
 <style lang="scss">
 .input-root {
