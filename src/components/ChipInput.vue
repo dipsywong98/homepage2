@@ -78,9 +78,7 @@ export default {
         const index = this.chips.indexOf(chip)
         if (index === -1) break
         this.chips.splice(index, 1)
-        this.chips = [...this.chips]
       }
-      // this.chips = this.chips.filter(c => c !== chip)
       this.$refs.input.focus()
     },
     onKey (event) {
@@ -130,10 +128,11 @@ export default {
     }
   },
   watch: {
-    chips (oldv, newv) {
+    chips (newv) {
       this.$emit('value', newv)
     },
-    value (oldv, newv) {
+    value (newv) {
+      console.log(newv)
       this.chips = newv
     }
   }

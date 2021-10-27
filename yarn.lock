@@ -1306,9 +1306,9 @@
   resolved "https://registry.npmjs.org/@vue/cli-overlay/-/cli-overlay-4.5.14.tgz"
   integrity sha512-0LFqTA1uaCTq4N1P9/A0MhWY0tWER3dZkMN1y+ODfrjAcnX96t/qf2jVy9u3QGKHSPbhF5FYBsKEa6uEFYPyfg==
 
-"@vue/cli-plugin-babel@^4.5.13":
+"@vue/cli-plugin-babel@^4.5.14":
   version "4.5.14"
-  resolved "https://registry.npmjs.org/@vue/cli-plugin-babel/-/cli-plugin-babel-4.5.14.tgz"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-babel/-/cli-plugin-babel-4.5.14.tgz#50f0291a50defc7fc081d350256cbd8536970aca"
   integrity sha512-8+K684NwmN7TitdCLB9GVts36582ohusfxAL/v6cWnUgrw79gbdGkY8SqyXWrbXCyWYDJrhB25LQIrqGfsJ6Dg==
   dependencies:
     "@babel/core" "^7.11.0"
@@ -1343,9 +1343,9 @@
   resolved "https://registry.npmjs.org/@vue/cli-plugin-vuex/-/cli-plugin-vuex-4.5.14.tgz"
   integrity sha512-gZNAQzYSzTHshOrwBdqY54U7H5FlyhC5a6sXioWXBuwShOW+FVrywVl90vlimC0OPju0Q5tL7rPMLp4EgmNvUw==
 
-"@vue/cli-service@^4.5.13":
+"@vue/cli-service@^4.5.14":
   version "4.5.14"
-  resolved "https://registry.npmjs.org/@vue/cli-service/-/cli-service-4.5.14.tgz"
+  resolved "https://registry.yarnpkg.com/@vue/cli-service/-/cli-service-4.5.14.tgz#284ce2522fa91b7a9a1205371ace39c0317e9f2f"
   integrity sha512-vKdqs9FQH2PYcmANcUm5McE8qqFKPjvoAh3YiNBD0qjMyuX6XGmej8pICJnbbu0Kn3EgQY3haemSIhVkPPyL4g==
   dependencies:
     "@intervolga/optimize-cssnano-plugin" "^1.0.5"
