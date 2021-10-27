@@ -17,7 +17,7 @@ export default {
 
   template: '<div><slot></slot></div>',
 
-  data() {
+  data () {
     return {
       sourceData: this.source
     }
@@ -137,12 +137,12 @@ export default {
   },
 
   computed: {
-    tocLastLevelComputed() {
+    tocLastLevelComputed () {
       return this.tocLastLevel > this.tocFirstLevel ? this.tocLastLevel : this.tocFirstLevel + 1
     }
   },
 
-  render(createElement) {
+  render (createElement) {
     this.md = new MarkdownIt()
       .use(mk)
       .use(subscript)
@@ -235,14 +235,14 @@ export default {
     this.$emit('rendered', outHtml)
     return createElement(
       'div', {
-      domProps: {
-        innerHTML: outHtml
+        domProps: {
+          innerHTML: outHtml
+        }
       }
-    }
     )
   },
 
-  beforeMount() {
+  beforeMount () {
     if (this.$slots.default) {
       this.sourceData = ''
       for (const slot of this.$slots.default) {

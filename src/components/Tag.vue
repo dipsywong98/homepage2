@@ -8,29 +8,29 @@ a.tag(@click='onClick', :title='title')
       img(width='8px', height='8px', :src='`/svg/cross.svg`', alt='cross')
 </template>
 <script>
-import ghcolors from '../lib/ghcolors';
+import ghcolors from '../lib/ghcolors'
 
 export default {
   props: ['tag', 'removable'],
   computed: {
-    _tag() {
-      return this.tag || this.$slots.default[0].text;
+    _tag () {
+      return this.tag || this.$slots.default[0].text
     },
-    title() {
+    title () {
       return this.removable
         ? 'Toggle to remove this filter'
-        : 'Toggle to add this filter';
-    },
+        : 'Toggle to add this filter'
+    }
   },
-  data() {
-    return { ghcolors };
+  data () {
+    return { ghcolors }
   },
   methods: {
-    onClick() {
-      this.$emit('click');
-    },
-  },
-};
+    onClick () {
+      this.$emit('click')
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .tag {
