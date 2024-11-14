@@ -5,7 +5,7 @@ a.tag(@click='onClick', :title='title')
       span.color(:style='"background-color:" + ghcolors[_tag]')
     div {{ _tag }}
     .cross(v-if='removable')
-      img(width='8px', height='8px', :src='"./svg/cross.svg"', alt='cross')
+      img(width='8px', height='8px', :src='"/homepage2/svg/cross.svg"', alt='cross')
 </template>
 <script>
 import ghcolors from '../lib/ghcolors'
