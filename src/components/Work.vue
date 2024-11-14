@@ -70,7 +70,7 @@ export default {
             .then(text => this.story = text.replace(/^---(\n.*?)*?---/gm, ''))
             .finally(() => this.loading = false)
         } else {
-          fresh(`/${this.category}/${this.work.title}.md`)
+          fresh(`./${this.category}/${this.work.title}.md`)
             .then(res => res.text())
             .then(text => this.story = text)
             .finally(() => this.loading = false)
@@ -80,7 +80,7 @@ export default {
     onClose () {
       const title = 'Dipsyland'
       document.title = title
-      window.history.pushState('', title, '/')
+      window.history.pushState('', title, '#')
       if ('more' in this.work) {
         this.ripple = false
       }
